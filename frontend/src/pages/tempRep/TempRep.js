@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import classes from "./TempRep.module.css";
 import axios from "axios";
+import NavbarAdmin from "../../ui/navbar/NavbarAdmin";
+import RepCard from "./RepCard";
 
 const TempRep = () => {
   const [tempReps, setTempReps] = useState([]);
@@ -20,7 +22,7 @@ const TempRep = () => {
   }, []);
   return (
     <div>
-      {tempReps.map ((tempR) =>(
+      {/* {tempReps.map ((tempR) =>(
         <div key = {tempR.RID}>
             <h4>{tempR.NIC}</h4>
             <h4>{tempR.RID}</h4>
@@ -33,8 +35,14 @@ const TempRep = () => {
 
             
         </div>
-       ))}
-       sssss
+       ))} */}
+     <NavbarAdmin  />
+     <div className={classes.tempReps_card_div}>
+     <RepCard/>
+     <RepCard/>
+     <RepCard/>
+     
+     </div>
     </div>
   );
 };

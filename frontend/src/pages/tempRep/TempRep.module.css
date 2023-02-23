@@ -1,0 +1,7 @@
+.tempReps_card_div{
+    display: flex;
+    gap:30px;
+    margin: 20px 100px;
+    overflow: scroll;
+    
+}
