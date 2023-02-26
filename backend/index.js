@@ -1,6 +1,6 @@
 import express from "express";
 import mysql from "mysql";
-import cors from 'cors';
+import cors from "cors";
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
   res.json("hello");
 });
 
-app.get("/temp_reps", (req, res) => {
+app.get("/reps", (req, res) => {
   const q = "SELECT * FROM sales_rep_temp";
   db.query(q, (err, data) => {
     if (err) return res.json(err);
@@ -26,7 +26,7 @@ app.get("/temp_reps", (req, res) => {
   });
 });
 
-app.post("/temp_reps", (req, res) => {
+app.post("/reps", (req, res) => {
   const q =
     "INSERT INTO sales_rep_temp (`registration_date` ,`password`,`email`,`full_name`,`RID`,`phone`,`NIC`,`address`) VALUES(?)";
 
@@ -44,6 +44,15 @@ app.post("/temp_reps", (req, res) => {
   db.query(q, [values], (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
+  });
+});
+
+app.delete("/reps/:rid", (req, res) => {
+  const rid = req.params.rid;
+  const q = "DELETE FROM sales_rep_temp WHERE rid = ?";
+  db.query(q, [rid], (errr, data) => {
+    if (err) return res.json(err);
+    return res.json("Book has been deleted");
   });
 });
 

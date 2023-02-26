@@ -9,35 +9,37 @@ const RepCard = (props) => {
       <div className={classes.repCard_second_div}>
         <img src ={user}  alt="user"  className ={classes.repCard_image} />
         <table className={classes.repCard_table}>
+          <tbody>
             <tr>
                 <td  className={classes.repCard_table_left}>Full name</td>
-                <td>P.A.Tharaka prbhath jayarathne</td>
+                <td>{props.name}</td>
             </tr>
 
             <tr>
                 <td className={classes.repCard_table_left}>mobile</td>
-                <td>0718736614</td>
+                <td>{props.mobile}</td>
             </tr>
 
             <tr>
                 <td className={classes.repCard_table_left}>NIC</td>
-                <td>992505729V</td>
+                <td>{props.nic}</td>
             </tr>
 
             <tr>
-                <td className={classes.repCard_table_left}>DOB</td>
-                <td>1999-09-06</td>
+                <td className={classes.repCard_table_left}>Reg Date</td>
+                <td>{props.rdate}</td>
             </tr>
 
             <tr>
                 <td className={classes.repCard_table_left}>Address</td>
-                <td>106/6,Bokotuwa Junction,Ethpitiya,Walasmulla</td>
+                <td>{props.address}</td>
             </tr>
 
             <tr>
                 <td>Email</td>
-                <td>tharakaprbhath300@gmail.com</td>
+                <td>{props.email}</td>
             </tr>
+            </tbody>
         </table>
         
       </div>

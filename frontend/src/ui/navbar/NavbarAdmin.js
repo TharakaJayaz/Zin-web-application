@@ -1,10 +1,10 @@
 import React from "react";
 import logo from "../../assets/ZR.png";
 import classes from "./NavbarAdmin.module.css";
-const NavbarAdmin = () => {
+const NavbarAdmin = (props) => {
   return (
     <div>
-      <div className={classes.nav_main_div}>
+      <div className={`${classes.nav_main_div} ${props.className} `}>
         <img src={logo} alt="zr logo" className={classes.logo} />
         <div className={classes.headElements}>
           <ul>
@@ -16,7 +16,7 @@ const NavbarAdmin = () => {
         </div>
         <div className={classes.navSearch}>
           <input type="text" className={classes.navSearch_input} placeholder = "search"/>
-          <button className={classes.navSearch__button}>Search</button>
+          <button className={`${classes.navSearch__button} ${props.buttonstyle}`}>Search</button>
         </div>
         <button className={classes.nav_main_div_logOut_button}>Logout</button>
        

@@ -11,7 +11,7 @@ function App() {
     
         <Route path='/' element = {<Homepage />}    />
 
-        <Route path='/temp_reps' element = {<TempRep />}    />
+        <Route path='/reps' element = {<TempRep />}    />
 
       </Routes>
     </div>

@@ -1,7 +1,32 @@
+.navBarStyle input{
+   opacity: 0;
+}
+
+.searchButtonStyle{
+    opacity: 0;
+}
+
+.tempRep_main_div{
+    height: 100vh;
+    width:100vw;
+    background-color: rgb(251, 238, 238);
+}
+
+
 .tempReps_card_div{
     display: flex;
-    gap:30px;
-    margin: 20px 100px;
-    overflow: scroll;
+    padding-left: 60px;  /*hard coded   */
+}
+
+.tempReps_card_swiper{
+    height: 650px;
     
+}
+.tempReps_card_swiper:hover{
+    cursor: grab;
+}
+
+.tempReps_card_swipeSlide{
+  
+    margin-top: 50px;
 }
