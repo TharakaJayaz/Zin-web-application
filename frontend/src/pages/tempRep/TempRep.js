@@ -13,6 +13,7 @@ import { NavLink } from "react-router-dom";
 const TempRep = () => {
   const [tempReps, setTempReps] = useState([]);
   const [routingValue, setroutingValue] = useState(false);
+  // const [repValLength, setRepValLength] = useState();
 
   useEffect(() => {
     const fetchAllTempReps = async () => {
@@ -29,6 +30,8 @@ const TempRep = () => {
     };
 
     fetchAllTempReps();
+    console.log(tempReps)
+    // setRepValLength(tempReps.length);
   }, []);
   return (
     <div className={classes.tempRep_main_div}>
@@ -42,16 +45,19 @@ const TempRep = () => {
             className={classes.tempReps_card_swiper}
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             spaceBetween={0}
-            slidesPerView={3}
+            // slidesPerView={repValLength <3? repValLength : 3}
+            slidesPerView = {2}
             // navigation
             pagination={{ clickable: true }}
             // scrollbar={{ draggable: true }}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
+            // onSlideChange={() => console.log("slide change")}
+            // onSwiper={(swiper) => console.log(swiper)}
           >
             {tempReps.map((tempR) => (
               <SwiperSlide
-                className={classes.tempReps_card_swipeSlide}
+                className={
+                  classes.tempReps_card_swipeSlide
+                }
                 key={tempR.RID}
               >
                 <RepCard
@@ -61,6 +67,8 @@ const TempRep = () => {
                   name={tempR.full_name}
                   mobile={tempR.phone}
                   rdate={tempR.registration_date}
+                  rid={tempR.RID}
+                  password = {tempR.password}
                 />
               </SwiperSlide>
 

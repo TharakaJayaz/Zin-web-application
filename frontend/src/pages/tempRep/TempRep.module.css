@@ -20,6 +20,7 @@
 
 .tempReps_card_swiper{
     height: 650px;
+    width: 1000px;
     
 }
 .tempReps_card_swiper:hover{
@@ -29,4 +30,6 @@
 .tempReps_card_swipeSlide{
   
     margin-top: 50px;
+    
 }
+
