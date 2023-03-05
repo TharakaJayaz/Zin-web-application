@@ -1,19 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./RepCard.module.css";
 import user from "../../assets/userImage.png";
 import axios from "axios";
 
 const RepCard = (props) => {
   const [datas, setData] = useState({
-  date:" ",
-  password:" ",
-  email:" ",
-  RID:" ",
-  full_name:" ",
-  phone:" ",
-  NIC:" ",
-  address:" ",
+    date: " ",
+    password: " ",
+    email: " ",
+    RID: " ",
+    full_name: " ",
+    phone: " ",
+    NIC: " ",
+    address: " ",
   });
+
+  useEffect(()=>{
+    setData({
+      date:props.rdate,
+      password:props.password,
+      email:props.email,
+      RID:props.rid,
+      full_name:props.name,
+      phone:props.mobile,
+      NIC:props.nic,
+      address:props.address,
+    });
+  },[])
+
+  // const[dataLogic,setDataLogic] = useState('false');
   const handleDelete = async (id) => {
     try {
       await axios.delete("http://localhost:8800/reps/" + props.rid);
@@ -24,20 +39,20 @@ const RepCard = (props) => {
   };
 
   const handleAccept = async (id) => {
-    setData({
-      date: props.date,
-      password: props.password,
-      email: props.email,
-      RID: props.rid,
-      full_name: props.full_name,
-      phone: props.mobile,
-      NIC: props.nic,
-      address: props.address,
-    });
+    // setData({
+    //   date:props.date,
+    //   password:props.password,
+    //   email:props.email,
+    //   RID:props.rid,
+    //   full_name:props.full_name,
+    //   phone:props.mobile,
+    //   NIC:props.nic,
+    //   address:props.address,
+    // });
     try {
       await axios.post("http://localhost:8800/reps", datas);
       //  window.location.reload()
-      console.log(datas)
+      console.log("writing data", datas);
       console.log("add to sales rep table");
     } catch (err) {
       console.log(err);

@@ -27,17 +27,26 @@ app.get("/reps", (req, res) => {
 });
 
 app.post("/reps", (req, res) => {
-  // const q =
-  //   "INSERT INTO sales_rep_temp (`registration_date` ,`password`,`email`,`full_name`,`RID`,`phone`,`NIC`,`address`) VALUES(?)";
+  // const q = "INSERT INTO sales_reps(`RID`,`registration_date`,`password`,`email`,`full_name`,`phone`,`NIC`,`address`) VALUES(?)";
 
   const q =
-    "INSERT INTO sales_rep (`registration_date` ,`password`,`email`,`full_name`,`RID`,`phone`,`NIC`,`address`) VALUES(?)";
+    "INSERT INTO sales_reps(`RID`,`registration_date`,`password`,`email`,`full_name`,`phone`,`NIC`,`address`) VALUES(?)";
 
+  // const values = [
+  //   "1112",
+  //   "2023-3-2",
+  //   "123",
+  //   "testmail@gmail.com",
+  //   "test name",
+  //   "0718736614",
+  //   "992505729V",
+  //   "test address",
+  // ];
   const values = [
+    req.body.RID,
     req.body.date,
     req.body.password,
     req.body.email,
-    req.body.RID,
     req.body.full_name,
     req.body.phone,
     req.body.NIC,
@@ -47,7 +56,7 @@ app.post("/reps", (req, res) => {
   db.query(q, [values], (err, data) => {
     console.log("wrote in sles_rep");
     if (err) return res.json(err);
-    return res.json(data);
+    return res.json(err);
   });
 });
 
