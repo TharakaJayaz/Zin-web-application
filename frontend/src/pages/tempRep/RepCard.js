@@ -49,6 +49,8 @@ const RepCard = (props) => {
     //   NIC:props.nic,
     //   address:props.address,
     // });
+
+    // hello
     try {
       await axios.post("http://localhost:8800/reps", datas);
       //  window.location.reload()
