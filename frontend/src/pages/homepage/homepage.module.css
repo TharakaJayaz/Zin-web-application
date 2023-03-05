@@ -61,6 +61,7 @@ color: #FFFFFF;
 }
 
 .body_btn{
+    z-index: 10000;
     width: 223px;
     height: 59px;
     background: #00A878;
