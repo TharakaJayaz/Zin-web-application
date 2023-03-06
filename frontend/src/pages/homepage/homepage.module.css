@@ -61,7 +61,8 @@ color: #FFFFFF;
 }
 
 .body_btn{
-    z-index: 10000;
+   
+    margin-top: 100px;
     width: 223px;
     height: 59px;
     background: #00A878;
@@ -80,6 +81,9 @@ color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: center;
+
+
+  
 }
 
 .body_btn_icon{
