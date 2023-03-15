@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import classes from "./RepCard.module.css";
+import classes from "./RepSearchCard.module.css";
 import user from "../../assets/userImage.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RepSearchCard = (props) => {
 //   const [datas, setData] = useState({
@@ -50,6 +51,10 @@ const RepSearchCard = (props) => {
     //   address:props.address,
     // });
 
+    const handleUpdate = ()  =>{
+        navigate('/admin/repUpdate');
+    }
+
     // hello
 //     try {
 //       await axios.post("http://localhost:8800/reps", datas);
@@ -60,6 +65,8 @@ const RepSearchCard = (props) => {
 //       console.log(err);
 //     }
 //   };
+
+const navigate = useNavigate();
   return (
     <div className={classes.repCard_main_div}>
       <div className={classes.repCard_second_div}>
@@ -99,17 +106,21 @@ const RepSearchCard = (props) => {
         </table>
       </div>
       <div className={classes.repCard_button_div}>
+      
         <button
           className={classes.repCard_Button_accepts}
-        //   onClick={() => handleAccept(props.rid)}
+          onClick={handleUpdate}
+        
         >
-          Accept
+         
+         Update   
         </button>
+        
         <button
           className={classes.repCard_Button_cancel}
         //   onClick={() => handleDelete(props.rid)}
         >
-          Cancel
+          Delete
         </button>
       </div>
     </div>
