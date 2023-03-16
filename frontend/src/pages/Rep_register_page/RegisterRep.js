@@ -3,6 +3,7 @@ import classes from "./RegisterRep.module.css";
 import backgroundDesign from "../../assets/Background vector group.png";
 import logo from "../../assets/zr red.png";
 import { useNavigate } from "react-router-dom";
+import ResitrationSuccess from "./ResitrationSuccess";
 
 const RegisterRep = () => {
   const nameInputRef = useRef();
@@ -22,6 +23,7 @@ const RegisterRep = () => {
   const [passwordValidLogic,setPasswordValidLogic] = useState();
   const [emailValidLogic,setEmailValidLogic] = useState();
   const [nicValidLogic,setNicValidLogic] = useState();
+  const[buttonLogic,setButtonLogic] = useState(false);
 
   const navigation = useNavigate();
 
@@ -103,13 +105,12 @@ const RegisterRep = () => {
 
     if(!((validationLogic ===true)||(passwordValidLogic ===true)||(emailValidLogic ===true)||(nicValidLogic ===true))){
       console.log('validation all are correct');
-      navigation("/");
+      setButtonLogic(true);
+      // navigation("/");
     }
   };
 
-  const buttonHandler = event =>{
-   
-  }
+  
 
 
 
@@ -119,7 +120,7 @@ const RegisterRep = () => {
 
   return (
     <div className={classes.main_div}>
-      <div className={classes.secondry_div}>
+      {!buttonLogic &&(<div className={classes.secondry_div}>
         <img src={logo} alt="zr red logo" />
         <form onSubmit={formSubmitHandler} className={classes.form_main}>
           <h2 className={classes.form_heading}>
@@ -241,7 +242,7 @@ const RegisterRep = () => {
           </table>
           {validationLogic && <p className={classes.err_para}>All inputs should  be filled*</p>}
           <div className={classes.form_button_div}>
-            <button type="submit" className={classes.form_cancel} onClick ={buttonHandler}>
+            <button type="submit" className={classes.form_cancel} >
               {" "}
               Cancel
             </button>
@@ -250,8 +251,8 @@ const RegisterRep = () => {
           
         </form>
       
-      </div>
-
+      </div>  )}
+   {buttonLogic&&(<ResitrationSuccess  style ={classes.erro_message} />  )}
       <img
         className={classes.img_back}
         src={backgroundDesign}

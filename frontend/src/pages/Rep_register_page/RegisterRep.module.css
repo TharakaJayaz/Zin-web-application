@@ -153,6 +153,11 @@
     
 }
 
+.erro_message{
+    z-index: 10000;
+  
+}
+
 .img_back{
     width:100vw;
     height:500px;
