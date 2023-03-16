@@ -67,6 +67,7 @@ const RegisterRep = () => {
 
   if(inputValues.passwordValue!== inputValues.cpasswordValue){
     setPasswordValidLogic(true);
+    return;
   }else{
     setPasswordValidLogic(false);
   }
@@ -79,6 +80,7 @@ const RegisterRep = () => {
  if(!(emailString.includes('@'))){
   setEmailValidLogic(true);
   console.log("email does not have @");
+  return;
  }else{
   setEmailValidLogic(false)
  }
@@ -88,6 +90,7 @@ const RegisterRep = () => {
  if(!(nicString.match('V')||nicString.includes('v'))){
   setNicValidLogic(true);
   console.log("nic does not has v");
+  return;
  }else{
   setNicValidLogic(false);
  }
