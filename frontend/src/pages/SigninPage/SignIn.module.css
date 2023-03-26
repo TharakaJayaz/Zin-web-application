@@ -1,0 +1,101 @@
+.signIn_main_div{
+    background: #F55A5A;
+    height: 100vh;
+    width:100vw;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.signIn_image{
+    width:100vw;
+    height:500px;
+    position: absolute;
+    top:245px;
+}
+
+.signIn_logo{
+    position: relative;
+    top: -290px;
+    left: 40px;
+    z-index: 500;
+    
+}
+
+.signIn_second_div{
+    z-index: 50;
+    width: 1450px;
+    height: 675px;
+    background: rgba(251, 251, 251, 0.88);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -60px;
+}
+
+.signIn_third_div{
+   text-align: center;
+   /* display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center; */
+}
+
+.signIn_third_div_heding{
+    font-size: 70px;
+    margin-bottom: 40px;
+    
+    font-family: 'Inter',sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    color: #0F4689;
+
+}
+
+.signIn_third_div_para{
+    margin-bottom: 100px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+
+}
+
+.signIn_third_div_input_form{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ 
+}
+
+.signIn_third_div_input_form input{
+    margin-bottom: 20px;
+    height:30px;
+    width:250px;
+    border: transparent;
+    background-color: transparent;
+    border-bottom: 1.5px solid rgba(99, 98, 98, 0.622);
+}
+
+.signIn_third_div_input_form input:focus,
+.signIn_third_div_input_form input:active{
+    border: transparent;
+}
+
+.signIn_third_div_input_form button{
+    margin-top: 30px;
+    font-size: 20px;
+    font-family: 'Inter';
+    font-style: normal;
+    background: #00A878;
+    border: none;
+    padding: 10px 50px;
+    color: #fff;
+    border-radius: 10px;
+}
+
+

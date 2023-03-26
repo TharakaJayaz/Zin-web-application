@@ -1,0 +1,119 @@
+.nav_main_div{
+    height: 60px;
+    background-color: #F55A5A;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+.logo{
+    width: 57px;
+    height: 43px;
+    scale: 0.9;
+}
+
+
+.headElements{
+     margin-left: -60px;
+}
+
+
+.headElements ul{
+    display: flex;
+    list-style: none;
+    gap: 60px;
+}
+
+.headElements ul li {
+    font-family: 'Franklin Gothic Book';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 40px;
+    letter-spacing: 0.025em;
+    
+    color: #E9EEED;
+    border-bottom: 2px solid black;
+    border-color: transparent;
+}
+
+
+.headElements ul li:hover{
+    scale:1.09;
+    transition: 0.5s;
+    cursor: pointer;
+    border-color: white;
+
+    
+    /* border-bottom: 1px solid white; */
+}
+
+.navSearch{
+
+}
+.navSearch_input{
+    width: 250px;
+    height: 30px;
+    background: #c9191992;
+    /* opacity: 0.4; */
+    border-radius: 9px;
+    border:none ;
+    color: white;
+    letter-spacing: 1.5px;
+    font-size: 17px;
+    font-family: 'Franklin Gothic Book';
+    font-style: normal;
+    
+    
+}
+
+.navSearch_input::placeholder{
+    color: white;
+    padding:2px 10px;
+    
+    letter-spacing: 1.5px;
+    font-size: 17px;
+    /* font-weight: 500; */
+    
+    font-family: 'Franklin Gothic Book';
+    font-style: normal;
+}
+
+
+
+
+.navSearch__button{
+    width: 70px;
+    height: 30px;
+    background: rgba(134, 12, 12, 0.48);
+    border: 2px solid #C72929;
+    border-radius: 10px;
+    margin-left: 5px;
+    color:white;
+}
+
+.nav_main_div_logOut_button{
+    
+    
+    background: #FAFAFA;
+    border: 2px solid #FFFAFA;
+    border-radius: 10px;
+     padding: 3px 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.025em;
+
+color: #9D0404;
+
+} 
+
+.nav_style{
+    text-decoration: none;
+}
