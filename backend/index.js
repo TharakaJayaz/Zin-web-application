@@ -65,7 +65,7 @@ app.delete("/reps/:rid", (req, res) => {
   const q = "DELETE FROM sales_rep_temp WHERE rid = ?";
   db.query(q, [rid], (err, data) => {
     if (err) return res.json(err);
-    return res.json("Book has been deleted");
+    return res.json("Book has been deleted from the database");
   });
 });
 
