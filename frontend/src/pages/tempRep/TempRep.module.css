@@ -1,0 +1,73 @@
+.navBarStyle input{
+   opacity: 0;
+}
+
+.searchButtonStyle{
+    opacity: 0;
+}
+
+.tempRep_main_div{
+    height: 100vh;
+    width:100vw;
+    background-color: rgb(251, 238, 238);
+}
+
+
+.tempReps_card_div{
+    display: flex;
+    padding-left: 60px;  /*hard coded   */
+}
+
+.tempReps_card_swiper{
+    height: 650px;
+    width: 1000px;
+    
+}
+.tempReps_card_swiper:hover{
+    cursor: grab;
+}
+
+.tempReps_card_swipeSlide{
+  
+    margin-top: 50px;
+    
+}
+
+.tempReps_route_button_div{
+   /* margin-left: 900px;
+   margin-top: -40px;
+   margin-bottom: 40px; */
+    
+}
+
+.tempReps_route_button_div button{
+    background-color: transparent;
+    border: none;
+    color:rgb(255, 255, 255);
+    font-size: 20px;
+    z-index: 500;
+    
+}
+
+.tempReps_route_button_div button:hover{
+    cursor: pointer;
+    scale: 1.1;
+    transition: 0.4s;
+}
+
+.routing_button{
+    position: relative;
+     top:-40px;
+     left:900px;
+     color:#fff;
+     background-color: transparent;
+     border: none;
+     font-size: 20px;
+}
+
+.routing_button:hover{
+   cursor: pointer;
+   scale: 1.1;
+   transition: 0.4s;
+}
+
