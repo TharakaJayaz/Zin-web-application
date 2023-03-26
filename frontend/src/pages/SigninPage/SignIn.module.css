@@ -83,7 +83,7 @@
 
 .signIn_third_div_input_form input:focus,
 .signIn_third_div_input_form input:active{
-    border: transparent;
+    outline: transparent;
 }
 
 .signIn_third_div_input_form button{

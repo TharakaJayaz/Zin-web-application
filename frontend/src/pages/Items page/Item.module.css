@@ -1,0 +1,45 @@
+
+.item_main{
+    background-color: rgb(253, 246, 246);
+    height:100vh;
+}
+.item_style{
+    margin-top: 75px;
+    /* border: 1px solid black; */
+}
+
+.nav_input{
+    padding-left: 10px;
+    height:34px;
+    width: 200px;
+    border-radius: 20px;
+    border-color: transparent;
+    background-color: rgb(245, 245, 178);
+    font-weight: 400;
+}
+
+.nav_input:focus{
+    background-color: rgb(252, 252, 151);
+    outline: none;
+}
+
+.nav_btn{
+    height: 34px;
+  width:34px;
+  border-radius: 17px;
+  margin-left:10px;
+  border-color: transparent;
+  
+  font-weight: 550;
+  background-color: rgb(255, 255, 187);
+  
+
+}
+
+.nav_btn:hover{
+    scale: 1.1;
+    transition: .4s;
+}
+.itemcard_style{
+    max-width:100vw;
+}
