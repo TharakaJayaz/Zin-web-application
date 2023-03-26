@@ -17,8 +17,9 @@ const NavbarAdmin = (props) => {
           </ul>
         </div>
         <div className={classes.navSearch}>
-          <input type="text" className={classes.navSearch_input} placeholder = "search"/>
-          <button className={`${classes.navSearch__button} ${props.buttonstyle}`}>Search</button>
+          {props.children}
+          {/* <input type="text" className={classes.navSearch_input} placeholder = "search"/>
+          <button className={`${classes.navSearch__button} ${props.buttonstyle}`}>Search</button> */}
         </div>
         <button className={classes.nav_main_div_logOut_button}>Logout</button>
        

@@ -4,6 +4,13 @@ import backgroundDesign from "../../assets/Background vector group.png";
 import logo from "../../assets/zr red.png";
 import { useNavigate } from "react-router-dom";
 import ResitrationSuccess from "./ResitrationSuccess";
+import axios from "axios";
+
+
+
+
+
+
 
 const RegisterRep = () => {
   const nameInputRef = useRef();
@@ -34,24 +41,37 @@ const RegisterRep = () => {
     setGenderInput(event.target.value);
    
   }
+
+// const handleClick = async e =>{
+//   e.preventDefault();
+//   try{
+//     await axios.post ("http://localhost:8800/salesrep",inputValues)
+
+//   }catch(err){
+//     console.log(err);
+
+//   }
+// }
+
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    console.log("submitted");
+    // console.log("submitted");
     const inputValues ={
-      nameValue:nameInputRef.current.value,
-      mobileValue:mobileInputRef.current.value,
-      emailValue:emailInputRef.current.value,
-      passwordValue:passwordInputRef.current.value,
-      cpasswordValue:cPasswordInputRef.current.value,
-      nicValue:nicInputRef.current.value,
+      fullname:nameInputRef.current.value,
+      phonenumber:mobileInputRef.current.value,
+      email:emailInputRef.current.value,
+      password:passwordInputRef.current.value,
+      reenterpassword:cPasswordInputRef.current.value,
+      NIC:nicInputRef.current.value,
       adressValue:addressInputRef.current.value,
       dobValue:dobInputRef.current.value,
       documentValue:documentInputRef.current.value,
-      dateValue:dateInputRef.current.value,
-      genderValue:genderInput
+      registrationdate:dateInputRef.current.value,
+      sex:genderInput
     }
 
-    if(inputValues.nameValue.trim()===''|| inputValues.mobileValue.trim()===''||inputValues.emailValue.trim()===''|| inputValues.passwordValue.trim()===''||inputValues.cpasswordValue.trim()===''|| inputValues.nicValue.trim()===''||inputValues.adressValue.trim()===''|| inputValues.dobValue===''|| inputValues.dateValue===''){
+    if(inputValues.fullname.trim()===''|| inputValues.phonenumber.trim()===''||inputValues.email.trim()===''|| inputValues.password.trim()===''||inputValues.reenterpassword.trim()===''|| inputValues.NIC.trim()===''||inputValues.adressValue.trim()===''|| inputValues.dobValue===''|| inputValues.registrationdate===''){
       setValidationLogic(true);
       console.log('setting true')
       return;
@@ -67,7 +87,7 @@ const RegisterRep = () => {
 
   // password validation
 
-  if(inputValues.passwordValue!== inputValues.cpasswordValue){
+  if(inputValues.password!== inputValues.reenterpassword){
     setPasswordValidLogic(true);
     return;
   }else{
@@ -76,7 +96,7 @@ const RegisterRep = () => {
 
   // email validation
 
-  const emailString = String(inputValues.emailValue);
+  const emailString = String(inputValues.email);
 
 
  if(!(emailString.includes('@'))){
@@ -88,7 +108,7 @@ const RegisterRep = () => {
  }
 
  //NIC validation
- const nicString = String(inputValues.nicValue);
+ const nicString = String(inputValues.NIC);
  if(!(nicString.match('V')||nicString.includes('v'))){
   setNicValidLogic(true);
   console.log("nic does not has v");
@@ -99,18 +119,37 @@ const RegisterRep = () => {
 
 
 
-    console.log(inputValues.nameValue,inputValues.mobileValue,inputValues.emailValue,inputValues.passwordValue,inputValues.cpasswordValue,inputValues.nicValue,inputValues.adressValue,inputValues.dobValue,inputValues.documentValue,inputValues.dateValue,inputValues.genderValue);
+    console.log(inputValues.fullname,inputValues.phonenumber,inputValues.email,inputValues.password,inputValues.reenterpassword,inputValues.nicValue,inputValues.adressValue,inputValues.dobValue,inputValues.documentValue,inputValues.registrationdate,inputValues.sex);
 
     console.log("validlogic",validationLogic,"email logic",emailValidLogic,"password logic",passwordValidLogic,"nic logic",nicValidLogic);
 
     if(!((validationLogic ===true)||(passwordValidLogic ===true)||(emailValidLogic ===true)||(nicValidLogic ===true))){
       console.log('validation all are correct');
+
+
+
+        // sending data to backend
+
+        // const handleClick = async e =>{
+        //   e.preventDefault();
+        //   try{
+        //     await axios.post ("http://localhost:8800/salesrep",inputValues)
+        
+        //   }catch(err){
+        //     console.log(err);
+        
+        //   }
+        // }
+
+        // handleClick();
       setButtonLogic(true);
       // navigation("/");
     }
   };
 
-  
+  const imgOnclickHandler = ()  =>{
+      navigation("/");
+  }
 
 
 
@@ -121,7 +160,7 @@ const RegisterRep = () => {
   return (
     <div className={classes.main_div}>
       {!buttonLogic &&(<div className={classes.secondry_div}>
-        <img src={logo} alt="zr red logo" />
+        <img  className={classes.zr_logo}  onClick={imgOnclickHandler} src={logo} alt="zr red logo" />
         <form onSubmit={formSubmitHandler} className={classes.form_main}>
           <h2 className={classes.form_heading}>
             Sales Representative Registration

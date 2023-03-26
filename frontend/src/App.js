@@ -4,6 +4,7 @@ import AdminPage from "./pages/admin page/AdminPage";
 import Homepage from "./pages/homepage/Homepage";
 import ItemList from "./pages/item list page/ItemList";
 import Item from "./pages/Items page/Item";
+import ItemUpdate from "./pages/Items page/Item update page/ItemUpdate";
 import Reports from "./pages/report page/Reports";
 import RegisterRep from "./pages/Rep_register_page/RegisterRep";
 import Shops from "./pages/shops page/Shops";
@@ -38,6 +39,9 @@ function App() {
         <Route path="/admin/reports" element={<Reports/>} />
 
         <Route path="/admin/shops" element={<Shops />} />
+
+        {/* temparary route */}
+        <Route path="/admin/items/update" element={<ItemUpdate />} />
       </Routes>
     </div>
   );

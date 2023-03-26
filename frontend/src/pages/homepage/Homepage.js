@@ -9,8 +9,8 @@ const Homepage = () => {
   const navigation = useNavigate();
 
   const startButtonHandler = (event) => {
-    // navigation("/registerRep");
-    console.log("on click");
+    navigation("/registerRep");
+    // console.log("on click");
   };
   return (
     <div className={classes.home_main_div}>
