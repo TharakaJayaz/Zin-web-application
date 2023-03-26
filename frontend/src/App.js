@@ -11,6 +11,7 @@ import SignInPage from "./pages/SigninPage/SignInPage";
 import StockKeeper from "./pages/stock keeper page/StockKeeper";
 import Stock from "./pages/stock page/Stock";
 import TempRep from "./pages/tempRep/TempRep";
+import UpdateRep from "./pages/updateRep/UpdateRep";
 function App() {
   return (
     <div>
@@ -29,6 +30,8 @@ function App() {
         <Route path = '/stock_keeper/stock' element = {<Stock/>}   />
 
         <Route path="/admin/temp_reps" element={<TempRep />} />
+
+        <Route  path= "/admin/repUpdate"  element = {<UpdateRep />}    />
 
         <Route path="/admin/items" element={<Item />} />
 

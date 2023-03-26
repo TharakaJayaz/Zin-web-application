@@ -3,9 +3,15 @@ import backgroundLogo from "../../assets/Background vector group.png";
 import logo from "../../assets/ZR.png";
 import classes from "./homepage.module.css";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Homepage = () => {
+  const navigation = useNavigate();
+
+  const startButtonHandler = (event) => {
+    // navigation("/registerRep");
+    console.log("on click");
+  };
   return (
     <div className={classes.home_main_div}>
       <nav className={classes.navbar}>
@@ -18,14 +24,18 @@ const Homepage = () => {
         <p>
           Sales Representatives <br></br> for Zincat
         </p>
-
         {/* should link to registerRep page */}
-
-        <button className={classes.body_btn}>
+   
+        <button className={classes.body_btn} onClick={startButtonHandler}>
           GET STARTED
-          <AiOutlineArrowRight className={classes.body_btn_icon} />
         </button>
+       
       </div>
+      {/* <button className={classes.body_btn} onClick = {startButtonHandler}>
+          GET STARTED
+         
+        </button> */}
+        {/* <button className={classes.body_btn2}  onClick ={startButtonHandler} >try this </button> */}
       <img className={classes.background_img} src={backgroundLogo} alt="logo" />
     </div>
   );
