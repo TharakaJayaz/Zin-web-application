@@ -1,9 +1,10 @@
 import React from 'react'
+import NavbarStok from '../../ui/navbar/NavbarStok'
 
 const ItemList = () => {
   return (
     <div>
-      <h1> Item list ui</h1>
+      <NavbarStok />
     </div>
   )
 }

@@ -25,6 +25,12 @@
     
 }
 
+.signIn_logo:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    scale: 1.1;
+}
+
 .signIn_second_div{
     z-index: 50;
     width: 1450px;

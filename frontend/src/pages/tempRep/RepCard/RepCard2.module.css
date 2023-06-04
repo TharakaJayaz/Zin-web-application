@@ -1,0 +1,145 @@
+.repCard_main_div{
+    width:100vw;
+    height:100vh;
+    position: relative;
+}
+
+.repCard_second_div{
+    width:1000px;
+    /* height:600px; */
+    padding:30px 0;
+    /* background: rgb(248, 224, 224); */
+    background-color: rgb(255, 227, 224);
+    border: 2px solid #fff;
+    border-radius: 10px;
+}
+
+.repCard_image{
+    width: 100px;
+    height: 100px;
+    float: left;
+    /* padding: 20px 20px; */
+    /* padding: 0px 50px; */
+    margin:0px 50px;
+}
+
+.repCard_table{
+    width:1000px;
+    /* height:400px; */
+    /* background-color: rgb(251, 219, 219); */
+   
+    padding:0 50px;
+    padding-top:30px;
+    
+}
+
+
+
+.table_tr{
+    height:70px;
+    width:100px;
+    font-family: 'Inter',sans-serif;
+    width:100%;
+   
+   
+}
+
+.table_tr td{
+    width:50%;
+  font-size: 15px;
+  color: rgb(68, 67, 67);
+  
+}
+
+.table_tr td p{
+    margin-top: 5px;
+    font-size: 20px;
+    color:black;
+    font-weight: 500;
+}
+
+.btn_div{
+   display: flex;
+   gap:40px;
+   justify-content: flex-end;
+   padding-right:40px;
+   margin-top: 20px;
+}
+
+.repCard_Button_accepts,.repCard_Button_cancel{
+    /* margin-top: 50px; */
+    font-weight: 600;
+    font-size: 18px;
+    padding:10px 30px;
+    background-color: transparent;
+    border-radius: 3px;
+    cursor: pointer;
+
+
+}
+
+.repCard_Button_accepts{
+    color: rgb(26, 233, 29);
+    border: 2px solid rgb(83, 224, 86) ;
+    /* position: absolute; */
+    /* position:relative;
+    right:-500px; */
+}
+
+.repCard_Button_accepts:hover{
+    background-color: rgb(26, 233, 29);
+    color:#fff;
+    transition: 0.5s;
+    scale: 1.1;
+}
+
+
+.repCard_Button_cancel{
+    color: rgb(233, 74, 26);
+    border: 2px solid rgb(244, 60, 32) ;
+
+    /* position:relative;
+    left:300px; */
+    /* position: absolute; */
+}
+
+.repCard_Button_cancel:hover{
+    background-color: rgb(244, 60, 32) ;
+    color:#fff;
+    transition: 0.5s;
+    scale: 1.1;
+}
+
+.repCard_table_left{}
+
+
+.repCard_button_div{}
+
+
+.repCard_Button_accepts{}
+
+
+.repCard_Button_cancel{}
+
+
+.err_msg{
+    width:100%;
+    display: flex;
+
+}
+
+.err_msg p{
+   
+}
+
+.err_msg button{
+    padding:5px 10px;
+}
+
+.btny{
+  color:red;
+}
+
+.btnN{
+  color:green;
+}

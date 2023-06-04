@@ -13,6 +13,7 @@ import StockKeeper from "./pages/stock keeper page/StockKeeper";
 import Stock from "./pages/stock page/Stock";
 import TempRep from "./pages/tempRep/TempRep";
 import UpdateRep from "./pages/updateRep/UpdateRep";
+import StockUpdate from './pages/stock page/stock update/StockUpdate';
 function App() {
   return (
     <div>
@@ -28,7 +29,14 @@ function App() {
 
         <Route path = '/stock_keeper/item_list' element = {<ItemList />}   />
 
+        {/* stoxk keeper routing */}
+
         <Route path = '/stock_keeper/stock' element = {<Stock/>}   />
+
+
+        <Route path = '/stock_keeper/stock/stock_update' element = {<StockUpdate/>}   />
+
+
 
         <Route path="/admin/temp_reps" element={<TempRep />} />
 
