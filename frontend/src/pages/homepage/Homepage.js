@@ -12,10 +12,19 @@ const Homepage = () => {
     navigation("/registerRep");
     // console.log("on click");
   };
+
+  const imgClickHandler = () => {
+    navigation("/");
+  };
   return (
     <div className={classes.home_main_div}>
       <nav className={classes.navbar}>
-        <img src={logo} alt="zr" className={classes.nav_logo} />
+        <img
+          src={logo}
+          alt="zr"
+          className={classes.nav_logo}
+          onClick={imgClickHandler}
+        />
         <Link to="/signIn">
           <button className={classes.nav_btn}>LOGIN</button>
         </Link>
@@ -25,17 +34,13 @@ const Homepage = () => {
           Sales Representatives <br></br> for Zincat
         </p>
         {/* should link to registerRep page */}
-   
+
         <button className={classes.body_btn} onClick={startButtonHandler}>
           GET STARTED
         </button>
-       
       </div>
-      {/* <button className={classes.body_btn} onClick = {startButtonHandler}>
-          GET STARTED
-         
-        </button> */}
-        {/* <button className={classes.body_btn2}  onClick ={startButtonHandler} >try this </button> */}
+      
+    
       <img className={classes.background_img} src={backgroundLogo} alt="logo" />
     </div>
   );

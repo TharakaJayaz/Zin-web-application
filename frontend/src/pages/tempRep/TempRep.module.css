@@ -9,7 +9,8 @@
 .tempRep_main_div{
     height: 100vh;
     width:100vw;
-    background-color: rgb(251, 238, 238);
+    /* background-color: rgb(251, 238, 238); */
+    background-color: rgb(251, 232, 232);
 }
 
 

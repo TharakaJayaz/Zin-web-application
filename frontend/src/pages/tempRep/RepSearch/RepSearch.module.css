@@ -68,10 +68,11 @@
 }
 
 .repSearch_table{
-    width: 1200px;
+    width: 1400px;
+    /* width: 100vw; */
     text-align: center;
-    margin-top: 50px;
-    background: rgba(255, 255, 255, 0.647);
+    margin: 50px 20px; 
+    background: rgb(238, 236, 236);
    color: rgb(63, 63, 63);
     font-family: 'Inter',sans-serif;
     font-style: normal;
@@ -83,7 +84,7 @@
 .repSearch_table tr{
   
    text-align: left;
-   height:30px;
+   height:50px;
    border: 1px solid black;
 }
 .repSearch_table th{
@@ -95,7 +96,8 @@
 
 .map_raw:hover{
     transition: 0.4s;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(253, 253, 253);
+    outline-color: aqua;
 }
 
 .heading1{
@@ -115,7 +117,7 @@
 }
 
 .heading5{
-   width:200px;
+   /* width:200px; */
 }
 
 
@@ -124,6 +126,8 @@
 }
 
 .repSearch_item_display{
+    width:100%;
+    margin:0px auto;
     margin-top: 50px;
 }
 

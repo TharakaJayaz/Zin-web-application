@@ -14,9 +14,9 @@ const db = mysql.createConnection({
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.json("hello");
-});
+// app.get("/", (req, res) => {
+//   res.json("hello");
+// });
 
 app.get("/reps", (req, res) => {
   const q = "SELECT * FROM sales_rep_temp";
@@ -54,9 +54,9 @@ app.post("/reps", (req, res) => {
   ];
 
   db.query(q, [values], (err, data) => {
-    console.log("wrote in sles_rep");
+    // console.log("wrote in sles_rep");
     if (err) return res.json(err);
-    return res.json(err);
+    return res.json("sales rep has been added");
   });
 });
 
@@ -65,7 +65,7 @@ app.delete("/reps/:rid", (req, res) => {
   const q = "DELETE FROM sales_rep_temp WHERE rid = ?";
   db.query(q, [rid], (err, data) => {
     if (err) return res.json(err);
-    return res.json("Book has been deleted from the database created from nadunDevelopments neww.");
+    return res.json("Book has been deleted from the database");
   });
 });
 

@@ -1,8 +1,10 @@
-import React from "react";
+import React from 'react';
+import classes from './NavbarStock.module.css';
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/ZR.png";
-import classes from "./NavbarAdmin.module.css";
-const NavbarAdmin = (props) => {
+
+
+const NavbarStok = (props) => {
 
   const navigation = useNavigate();
 
@@ -16,10 +18,10 @@ const NavbarAdmin = (props) => {
         <div className={classes.headElements}>
           <ul>
 
-            <NavLink   to = "/admin/items" className={classes.nav_style}><li>Items</li></NavLink>
-            <NavLink  to =  "/admin/temp_reps" className={classes.nav_style}><li>Reps</li></NavLink>
-            <NavLink to = "/admin/reports"  className={classes.nav_style}><li>Reports</li></NavLink>
-            <NavLink to = "/admin/shops" className={classes.nav_style}><li>Shop</li></NavLink>
+            <NavLink   to = '/stock_keeper/item_list' className={classes.nav_style}><li>Item List</li></NavLink>
+            <NavLink  to = '/stock_keeper/stock' className={classes.nav_style}><li>Stock List</li></NavLink>
+            {/* <NavLink to = "/admin/reports"  className={classes.nav_style}><li>Reports</li></NavLink>
+            <NavLink to = "/admin/shops" className={classes.nav_style}><li>Shop</li></NavLink> */}
           </ul>
         </div>
         <div className={classes.navSearch}>
@@ -32,6 +34,6 @@ const NavbarAdmin = (props) => {
       </div>
     </div>
   );
-};
+}
 
-export default NavbarAdmin;
+export default NavbarStok

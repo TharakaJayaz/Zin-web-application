@@ -2,6 +2,8 @@
    background-color: rgb(220, 249, 249);
    width: 420px;
    height: 500px;
+   /* width:1000px;
+   height:800px; */
    
 }
 
@@ -37,7 +39,7 @@
 
 .repCard_button_div{
    display: flex;
-   justify-content: space-around;;
+   justify-content: space-around;
    margin:60px 100px;
 
 

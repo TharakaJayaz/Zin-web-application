@@ -1,63 +1,75 @@
 import React, { useState } from "react";
 import classes from "./RepSearch.module.css";
 import { GoSearch } from "react-icons/go";
-import RepSearchCard from "./RepSearchCard";
+import RepSearchCard from "../RepSearchCard/RepSearchCard";
 
 const RepSearch = (props) => {
   const details = [
     {
       id: 1,
       name: "tharaka",
+      gender:"male",
       mobile: "0718736614",
+      bdate:"1999-01-02",
       nic: "992505729V",
-      rdate: "2023-3-9",
-      address: "test address 192/16 bokotuwa junction,ethpitiya,walasmulla",
-      email: "test@mail.com",
+      rdate: "2023-03-19",
+      address: "192/16 bokotuwa junction,ethpitiya,walasmulla",
+      email: "tha1@gmail.com",
     },
     {
       id: 2,
       name: "prabhath",
+      gender:"male",
       mobile: "0779256365",
-      nic: "992505729V",
-      rdate: "2023-3-9",
-      address: "test address",
-      email: "test@mail.com",
+      bdate:"2000-01-02",
+      nic: "992505730V",
+      rdate: "2023-03-20",
+      address: "162/4 nawala road,dehiwala",
+      email: "pra1@gmail.com",
     },
     {
       id: 3,
-      name: "jayarathna",
+      name: "tharaki",
+      gender:"male",
       mobile: "0472245591",
-      nic: "992505729V",
-      rdate: "2023-3-9",
-      address: "test address",
-      email: "test@mail.com",
+      bdate:"1999-02-02",
+      nic: "992505731V",
+      rdate: "2023-03-29",
+      address: "122/3 piliandala road,maharagama",
+      email: "jay12@mail.com",
     },
     {
       id: 4,
       name: "tharuka",
-      mobile: "0718736614",
+      gender:"male",
+      mobile: "0778776614",
+      bdate:"1989-08-02",
       nic: "992505729V",
-      rdate: "2023-3-9",
-      address: "test address",
-      email: "test@mail.com",
+      rdate: "2023-02-9",
+      address: "123/6,new road horana,mawanalla",
+      email: "tharu12@gmail.com",
     },
     {
       id: 5,
-      name: "tharaka2",
-      mobile: "0718736614",
-      nic: "992505729V",
-      rdate: "2023-3-9",
-      address: "test address",
-      email: "test@mail.com",
+      name: "janith",
+      gender:"male",
+      mobile: "0778736614",
+      bdate:"1989-07-02",
+      nic: "992505749V",
+      rdate: "2023-01-9",
+      address: "145/6 kumarasingha kuliyapitiya",
+      email: "janith`@gmail.com",
     },
     {
       id: 6,
-      name: "tharaka22",
-      mobile: "0718736614",
+      name: "jayasingha",
+      gender:"male",
+      mobile: "0718736644",
+      bdate:"1989-07-9",
       nic: "992505729V",
-      rdate: "2023-3-9",
-      address: "test address",
-      email: "test@mail.com",
+      rdate: "2023-01-9",
+      address: "452/1 kuliyapitiya,kurunegala",
+      email: "jay12@gmail.com",
     },
   ];
 
@@ -69,7 +81,7 @@ const RepSearch = (props) => {
   const [displayLogicTable,setDisplaylogicTable] = useState(false);
 
   const inputHandler = (event) => {
-    setInputValue(event.target.value);
+    setInputValue(event.target.value);  // function to onclick on search button to get the enterd value of input
   };
 
   const submitHandler = (event) => {
@@ -77,7 +89,7 @@ const RepSearch = (props) => {
     // console.log('entered name',inputValue)
     for (let i = 0; i < details.length; i++) {
       if (details[i].name === inputValue) {
-        setDisplayDetials(details[i]);
+        setDisplayDetials(details[i]);   // set values of matching representative to display card
         setDisplayLogic(true);
         console.log(displayDetails);
         // console.log('id for entered value',details[i].id)
@@ -86,13 +98,18 @@ const RepSearch = (props) => {
   };
 
   const inputBlurHandler = event =>{
-           setDisplaylogicTable(false)
+           setDisplaylogicTable(false)  
+           if(displayDetails !==' '){
+            setDisplayLogic(true);
+           } // change logic value related to display detail table when lose focus on input element
   };
 
-  const inputFocusHandler = event =>{
-    if(!displayLogic){
-    setDisplaylogicTable(true)
-    }
+  const inputFocusHandler = event =>{   // cchange logic value related to display detail table when  focus on input element
+    // if(!displayLogic){
+    // setDisplaylogicTable(true)
+    // }
+    setDisplayLogic(false);
+    setDisplaylogicTable(true);
   }
 
   // const tableDesicionHandler = ()  =>{
@@ -127,8 +144,9 @@ const RepSearch = (props) => {
                 <th className={classes.heading6}>Email</th>
               </tr>
               {details
-                .filter((user) => user.name.toLowerCase().includes(inputValue))
+                .filter((user) => user.name.toLowerCase().includes(inputValue))  // filter values and display in table
                 .map((detial) => (
+                 
                   <tr key={detial.id} className={classes.map_raw}>
                     <td>{detial.name}</td>
                     <td>{detial.mobile}</td>
@@ -137,6 +155,8 @@ const RepSearch = (props) => {
                     <td>{detial.address}</td>
                     <td>{detial.email}</td>
                   </tr>
+                
+                 
                 ))}
             </tbody>
           </table>
@@ -150,6 +170,8 @@ const RepSearch = (props) => {
               rdate={displayDetails.rdate}
               address={displayDetails.address}
               email={displayDetails.email}
+              gender = {displayDetails.gender}
+              bdate = {displayDetails.bdate}
             />
           )}
         </div>

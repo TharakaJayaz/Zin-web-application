@@ -40,8 +40,9 @@
 }
 
 .nav_btn:hover{
-    border: 2px solid #062af1;
-    color:#062af1;
+    border: 2px solid #ffffff;
+    background-color: #fff;
+    color:#000000;
     scale: 1.01;
     transition: 0.4s;
 }
@@ -83,6 +84,14 @@
     justify-content: center; 
     z-index:100;
     margin-top: 100px;
+}
+
+.body_btn:hover{
+    transition: 0.8s ease-in-out;
+    scale: 1.1;
+    transition-timing-function: ease-out;
+    background-color: #fff;
+    color:#09e74f;
 }
 
 .body_btn2{
