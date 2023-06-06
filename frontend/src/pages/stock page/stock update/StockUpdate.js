@@ -2,10 +2,17 @@ import React from 'react';
 import classes from './StockUpdate.module.css';
 import backgroundLogo from "../../../assets/Background vector group.png";
 import logo from '../../../assets/zr red.png'
+import { useNavigate } from 'react-router-dom';
 const StockUpdate = () => {
+    const navigation = useNavigate();
+
+    const logoHandler = () =>{
+            navigation("/");
+    }
+         {/* install redux toolkit and get details for update using previous page */}
 
 
-     {/* install redux toolkit and get details for update using previous page */}
+
   return (
 
    
@@ -13,7 +20,7 @@ const StockUpdate = () => {
         <div className={classes.main_div_sub_div1}>
             <div className={classes.wrapper_div}>
             <section className={classes.sub_sec1}>
-                <img src = {logo}  alt = "logo"  />
+                <img src = {logo}  alt = "logo"  onClick={logoHandler}  />
             </section>
             <section className={classes.sub_sec2}>
                 Update Stock List
@@ -63,7 +70,7 @@ const StockUpdate = () => {
                 </form>
             </section>
             <section className={classes.sub_sec4}>
-                <button>Update</button>
+                <button  >Update</button>
             </section>
         </div>
      <img src = {backgroundLogo}   alt = "background"  className={classes.background_img} />
