@@ -4,6 +4,7 @@ import AdminPage from "./pages/admin page/AdminPage";
 import Homepage from "./pages/homepage/Homepage";
 import ItemList from "./pages/item list page/ItemList";
 import Item from "./pages/Items page/Item";
+import ItemAdd from "./pages/Items page/ItemAdd"
 import ItemUpdate from "./pages/Items page/Item update page/ItemUpdate";
 import Reports from "./pages/report page/Reports";
 import RegisterRep from "./pages/Rep_register_page/RegisterRep";
@@ -17,6 +18,7 @@ import StockUpdate from './pages/stock page/stock update/StockUpdate';
 function App() {
   return (
     <div>
+      <img src="http://localhost:8800/static/b21755eec485ffd3f36bb9394c3703ff" />
       {/* <Homepage /> */}
       <Routes>
         <Route path="/" element={<Homepage />} exact />
@@ -27,27 +29,27 @@ function App() {
 
         {/* <Route path = '/admin' element = {<AdminPage />}/> */}
 
-        <Route path = '/stock_keeper/item_list' element = {<ItemList />}   />
+        <Route path='/stock_keeper/item_list' element={<ItemList />} />
 
         {/* stoxk keeper routing */}
 
-        <Route path = '/stock_keeper/stock' element = {<Stock/>}   />
+        <Route path='/stock_keeper/stock' element={<Stock />} />
 
 
-        <Route path = '/stock_keeper/stock/stock_update' element = {<StockUpdate/>}   />
+        <Route path='/stock_keeper/stock/stock_update' element={<StockUpdate />} />
 
 
 
         <Route path="/admin/temp_reps" element={<TempRep />} />
 
-        <Route  path= "/admin/repUpdate"  element = {<UpdateRep />}    />
+        <Route path="/admin/repUpdate" element={<UpdateRep />} />
 
         <Route path="/admin/items" element={<Item />} />
 
-        <Route path="/admin/reports" element={<Reports/>} />
+        <Route path="/admin/reports" element={<Reports />} />
 
         <Route path="/admin/shops" element={<Shops />} />
-
+        <Route path="/admin/add/item" element={<ItemAdd />} />
         {/* temparary route */}
         <Route path="/admin/items/update" element={<ItemUpdate />} />
       </Routes>
