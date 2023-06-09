@@ -48,6 +48,7 @@ const StockSearch = (props) => {
 
   const suggestDisplayHandler = (event) => {
     setInputValue(event.target.innerHTML);
+    console.log("suggestDisplayHandler is working");
   };
 
   return (

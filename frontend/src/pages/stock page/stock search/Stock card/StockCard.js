@@ -1,11 +1,22 @@
 import React from "react";
 import classes from "./stockCard.module.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { stocKupdateAction } from "../../../../store";
 
 const StockCard = (props) => {
   const navigation = useNavigate();
+  const dispatch = useDispatch();
 
   const updateBtnHandler = () =>{
+         dispatch(stocKupdateAction.add({
+          id: props.data.id,
+          date:props.data.date,
+          salesRep:props.data.saleRep,
+          vehicle:props.data.vNo,
+          route:"sample route",
+          itemList:props.data.itemLId
+         }))
     navigation('/stock_keeper/stock/stock_update');
   }
   return (
