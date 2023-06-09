@@ -1,12 +1,21 @@
 import React from "react";
 import classes from "./ItemListCard.module.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { ItemListupdateAction } from "../../../../store";
 
 const ItemCArd = (props) => {
   const navigation = useNavigate();
+  const dispatch = useDispatch();
 
   const updateBtnHandler = ()  =>{
+       dispatch(ItemListupdateAction.add({
+        // id:props.id,
+        id:props.details.id,
+        items:props.details.items
+       }))
        navigation("/stock_keeper/item_list/update");
+       console.log("details from properties",props.details);
   }
   return (
     <div className={`${classes.ItemCard_main} ${props.className}`}>
@@ -23,9 +32,9 @@ const ItemCArd = (props) => {
                 <th>Price</th>
                 <th>QTY</th>
               </tr>
-              {console.log("details", props.details.items)}
+              {/* {console.log("details", props.details.items)} */}
               {props.details.items.map((item) => (
-                <tr id={item.id}  className={classes.row_data} >
+                <tr key={item.id}  className={classes.row_data} >
                   <td>{item.id}</td>
                   <td>{item.des}</td>
                   <td>RS {item.price}.00</td>

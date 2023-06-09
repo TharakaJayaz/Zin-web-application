@@ -104,8 +104,8 @@ const backBtnHandler =() =>{
             </div>
           </div>
         )}
-        {console.log(displayDetails)}
-        {displayLogic && <ItemListCard   className = {classes.card_style}    details = {displayDetails}/>}
+        {console.log("display details",displayDetails)}
+        {displayLogic && <ItemListCard   className = {classes.card_style}    id = {displayDetails.id}  details = {displayDetails}/>}
         
       </div>
     </div>
