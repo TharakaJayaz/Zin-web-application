@@ -1,0 +1,55 @@
+.itemList_main{
+    min-height:100vh;
+    background: #F5E9E9;
+   
+}
+
+.nav_style{
+    position: absolute;
+    min-width:100vw;
+}
+
+.itemList_main_btn_div{
+    width:100%;
+    min-height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+   
+   
+}
+
+.itemList_main_btn_div>div{
+    display: flex;
+    flex-direction: column;
+    gap:1.5rem;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.itemList_main_btn_div>div button{
+    font-size: 1.8rem;
+    min-width:12em;
+    padding:1em;
+    border-radius: 2em;
+    border:2.5px solid transparent;
+    color:#fff;
+    font-weight:700;
+    transition: all 0.5s ease-in-out;
+}
+.btn_st{
+    background-color: rgb(26, 233, 29);
+    color:#fff; 
+}
+
+.btn_sl{
+    background-color: rgb(26, 233, 29);
+}
+
+.itemList_main_btn_div>div button:hover{
+    scale: 1.05;
+    border:2.5px solid green;
+}
+

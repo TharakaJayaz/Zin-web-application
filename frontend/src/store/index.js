@@ -23,6 +23,14 @@ const stockUpdateSlice = createSlice({
       }
 });
 
+
+const ItemListUpdateSLice = createSlice({
+            name:"ItemListUpdate",
+            initialState:{
+              
+            }
+});
+
 const store = configureStore({
     reducer:{stockUpdate:stockUpdateSlice.reducer}
 });

@@ -53,7 +53,11 @@ const StockUpdate = () => {
             navigation("/");
     }
      
-    
+    // handling function for update button
+
+    const updateHandler = ()  =>{
+
+    }
 
 
   return (
@@ -113,7 +117,7 @@ const StockUpdate = () => {
                 </form>
             </section>
             <section className={classes.sub_sec4}>
-                <button  >Update</button>
+                <button onClick={updateHandler} >Update</button>
             </section>
         </div>
      <img src = {backgroundLogo}   alt = "background"  className={classes.background_img} />
