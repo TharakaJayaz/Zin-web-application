@@ -15,10 +15,12 @@ import Stock from "./pages/stock page/Stock";
 import TempRep from "./pages/tempRep/TempRep";
 import UpdateRep from "./pages/updateRep/UpdateRep";
 import StockUpdate from './pages/stock page/stock update/StockUpdate';
+
+
 function App() {
   return (
     <div>
-      <img src="http://localhost:8800/static/b21755eec485ffd3f36bb9394c3703ff" />
+     
       {/* <Homepage /> */}
       <Routes>
         <Route path="/" element={<Homepage />} exact />
@@ -52,6 +54,8 @@ function App() {
         <Route path="/admin/add/item" element={<ItemAdd />} />
         {/* temparary route */}
         <Route path="/admin/items/update" element={<ItemUpdate />} />
+        
+        
       </Routes>
     </div>
   );

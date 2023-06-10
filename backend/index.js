@@ -73,7 +73,7 @@ app.get("/", (req, res) => {
 });
 
 
-app.get("/salesrep", checkAuth, (req, res) => {
+app.get("/salesrep", (req, res) => {
   const q = "SELECT * FROM sales_rep"
   db.query(q, (err, data) => {
     if (err) return res.json(err);
@@ -82,13 +82,14 @@ app.get("/salesrep", checkAuth, (req, res) => {
   })
 
 });
-
-
 app.post("/add", (req, res) => {
-  const q = "INSERT * FROM sales_rep"
-  db.query(q, (err, data) => {
-    if (err) return res.json(err);
-    return res.json(data);
+  const q = "INSERT INTO `codewithx_Project`.`sales_rep` (`RID`, `NIC`, `registrationdate`, `fullname`, `password`, `email`, `phoneNo`, `type`, `address`) VALUES ((?), (?),(?), (?), (?), (?), (?), (?), (?));"
+  const values = [req.body.rid, req.body.nic, req.body.registrationdate, req.body.fullname, req.body.password, req.body.email, req.body.phonenumber, req.body.type, req.body.address]
+  // console.log(req.body);
+  db.query(q, values, (err, data) => {
+    if (err) console.log(err);
+    console.log("Success");
+    // return res.json(data);
   })
 })
 
@@ -112,8 +113,7 @@ app.get("/salesreptemp", (req, res) => {
 
 
 app.post("/salesreptempadd", (req, res) => {
-  const q = "INSERT INTO `projectwork`.`sales_rep` (`fullname`, `NIC`, `registrationdate`,  `password`,`reenterpassword`, `email`, `phonenumber`,  `sex`) VALUES (?,?,?,?,?,?,?,?);"
-
+  const q = "INSERT INTO `codewithx_Project`.`sales_repTemp` (`fullname`, `NIC`, `registrationdate`,  `password`,`reenterpassword`, `email`, `phonenumber`,  `sex`) VALUES (?,?,?,?,?,?,?,?);"
   const values = [
     req.body.fullname,
     req.body.NIC,
@@ -123,7 +123,6 @@ app.post("/salesreptempadd", (req, res) => {
     req.body.email,
     req.body.phonenumber,
     req.body.sex,
-
   ];
 
   // console.log(values);
@@ -202,7 +201,7 @@ app.get("/user", (req, res) => {
 })
 
 app.post("/userreg", (req, res) => {
-  const r = "INSERT INTO `projectwork`.`userpw` (`userid`, `password`) VALUES (?,?);"
+  const r = "INSERT INTO `codewithx_Project`.`userpw` (`userid`, `password`) VALUES (?,?);"
 
   const values = [
     req.body.userid,
@@ -216,9 +215,8 @@ app.post("/userreg", (req, res) => {
   })
 })
 
-
-app.post("/stock", upload.single('image'), (req, res) => {
-  const p = "INSERT INTO `projectwork`.`stock` (`stockID`, `qty`, `productname`, `name`, `price`, `manufacturedate`, `expirydate`, `discount`, `image`) VALUES (?,?,?,?,?,?,?,?,?);"
+app.post("/stockA", upload.single('image'), (req, res) => {
+  const p = "INSERT INTO `codewithx_Project`.`stock` (`stockID`, `qty`, `productname`, `name`, `price`, `manufacturedate`, `expirydate`, `discount`, `image`) VALUES (?,?,?,?,?,?,?,?,?);"
 
   console.log(req.body)
   const values = [
@@ -251,13 +249,10 @@ app.post("/stock", upload.single('image'), (req, res) => {
 
   // // Call the deleteItem function with the ID of the item you want to delete
   // deleteItem(stockID);
-
-
-
 })
 
 app.post("/salesrep", (req, res) => {
-  const q = "INSERT INTO `projectwork`.`sales_rep` (`RID`, `NIC`, `registrationdate`, `fullname`, `password`, `email`, `phoneNo`, `type`, `address`) VALUES (?,?,?,?,?,?,?,?,?);"
+  const q = "INSERT INTO `codewithx_Project`.`sales_rep` (`RID`, `NIC`, `registrationdate`, `fullname`, `password`, `email`, `phoneNo`, `type`, `address`) VALUES (?,?,?,?,?,?,?,?,?);"
   const values = [
     req.body.rid,
     req.body.nic,
@@ -276,6 +271,28 @@ app.post("/salesrep", (req, res) => {
     return res.json("salesrep values has been created successfully");
   })
 })
+
+app.post("/updateItem", (req, res) => {
+  const q =
+    "UPDATE stock SET qty = ?, productname = ?, name = ?, price = ?, manufacturedate = ?, expirydate = ?, discount = ? WHERE stockID = ?";
+
+  const values = [
+    req.body.qty,
+    req.body.productname,
+    req.body.name,
+    req.body.price,
+    req.body.manufacturedate,
+    req.body.expirydate,
+    req.body.discount,
+    req.body.stockID,
+  ];
+
+  // console.log(values);
+  db.query(q, values, (err, data) => {
+    if (err) return res.json(err);
+    return res.json("updated successfully");
+  });
+});
 
 app.use((req, res, next) => {
   res.status(404).json({

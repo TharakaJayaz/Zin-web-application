@@ -1,162 +1,100 @@
 import React, { useState, useEffect, useRef } from "react";
-import classes from "./Item.module.css";
+import classes from "./ItemAdd.module.css";
 import logo from "../../assets/ZR.png";
-import ResitrationSuccess from "../Rep_register_page/RegisterRep";
 import { useNavigate } from 'react-router-dom';
 import backgroundDesign from "../../assets/Background vector group.png";
 import background from '../../assets/Background vector group.png';
+import ItemAddSuccess from "./ItemAddSuccess";
 import axios from "axios";
+
+import PopupMessage from './popupMessage'; // Import the component responsible for displaying the popup message
+//import classes from "./popupMessage.module.css";
+//import { shouldProcessLinkClick } from "react-router-dom/dist/dom";
 
 const ItemAdd = () => {
   const stockIDInputRef = useRef();
   const qtyInputRef = useRef();
   const productnameInputRef = useRef();
   const nameInputRef = useRef();
+  const priceInputRef = useRef();
   const manufacturedateInputRef = useRef();
   const expirydateInputRef = useRef();
   const discountInputRef = useRef();
   const imageInputRef = useRef();
 
 
+  
+
   //validation logic values
+
   const [validationLogic, setValidationLogic] = useState();
-  const [passwordValidLogic, setPasswordValidLogic] = useState();
-  const [passwordError, setpasswordError] = useState();
-  const [emailValidLogic, setEmailValidLogic] = useState();
+  // const [passwordValidLogic, setPasswordValidLogic] = useState();
+  // const [passwordError, setpasswordError] = useState();
+  const [Showmessage, setShowmessage] = useState(false);
   const [nicValidLogic, setNicValidLogic] = useState();
   const [buttonLogic, setButtonLogic] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const navigation = useNavigate();
+  const handleAddButtonClick = () => {
+    setShowPopup(true);
+  };
+  
+  // const handleClick = () => {
 
-
-
-
+  //   setShowmessage(true);
+  // };
   // const genderHandler = event =>{
   //   setGenderInput(event.target.value);
-
   // }
-
-
-
   const formSubmitHandler = (event) => {
     event.preventDefault();
     console.log("submitted");
-
     const inputValues = {
       stockID: stockIDInputRef.current.value,
       qty: qtyInputRef.current.value,
       productname: productnameInputRef.current.value,
       name: nameInputRef.current.value,
+      price: priceInputRef.current.value,
       manufacturedate: manufacturedateInputRef.current.value,
       expirydate: expirydateInputRef.current.value,
       discount: discountInputRef.current.value,
-      price: 0,
       image: imageInputRef.current.files[0]
     }
 
-    return axios.postForm("http://localhost:8800/stock", inputValues).then(doc => {
-      console.log(doc);
-    }).catch(err => {
-      console.error(err);
-    })
-
-    // if (inputValues.stockID.trim() === '' || inputValues.qty.trim() === '' || inputValues.name.trim() === '' || inputValues.manufacturedate.trim() === '' || inputValues.expirydate.trim() === '' || inputValues.discount.trim() === '' || inputValues.image.trim() === '') {
-    //   setValidationLogic(false);
-    //   console.log('setting true')
-    //   return;
-
-    // } else {
-    //   setValidationLogic(true)
-    // }
-
-    // // FORM VALIDATION
-    // // password validation
-
-    // setPasswordValidLogic(true);
-    // if (inputValues.password !== inputValues.reenterpassword) {
-    //   setPasswordValidLogic(true);
-    //   return;
-    // } else {
-    //   setPasswordValidLogic(false);
-    // }
-
-    // //email validation
-
-    // const emailString = String(inputValues.email);
-    // if (!(emailString.includes('@'))) {
-    //   setEmailValidLogic(false);
-    //   console.log("email does not have @");
-    //   return;
-    // } else {
-    //   setEmailValidLogic(true)
-    // }
-
-    // //NIC validation
-    // const nicString = String(inputValues.nic);
-    // if (!(nicString.match('V') || nicString.includes('v'))) {
-    //   setNicValidLogic(false);
-    //   console.log("nic does not has v");
-    //   return;
-    // } else {
-    //   setNicValidLogic(true);
-    // }
-
-    // console.log(inputValues.rid, inputValues.nic, inputValues.registrationdate, inputValues.fullname, inputValues.password, inputValues.email, inputValues.phonenumber, inputValues.type, inputValues.address);
-
-    // console.log("validlogic", validationLogic, "email logic", emailValidLogic, "password logic", passwordValidLogic, "nic logic", nicValidLogic);
-
-    // if ((validationLogic === true) && (passwordValidLogic === true) && (emailValidLogic === true) && (nicValidLogic === true)) {
-    //   console.log('validation all are correct');
 
 
+    console.log(inputValues.stockID, inputValues.qty, inputValues.name, inputValues.price, inputValues.manufacturedate, inputValues.expirydate, inputValues.discount, inputValues.image);
+    if (inputValues.stockID.trim() === '' || inputValues.qty.trim() === '' || inputValues.name.trim() === '' || inputValues.price.trim() === '' || inputValues.manufacturedate.trim() === '' || inputValues.expirydate.trim() === '' || inputValues.discount.trim() === '' || inputValues.image.trim() === '') {
+      setValidationLogic(false);
+      console.log('setting true')
+      return;
 
-    //   // sending data to backend
-
-    //   const handleClick = async e => {
-    //     e.preventDefault();
-    //     try {
-    //       await axios.post("http://localhost:8800/salesrep", inputValues)
-    //     } catch (err) {
-    //       console.log(err);
-    //     }
-    //   }
-
-    //   handleClick();
-    //   setButtonLogic(true);
-    //   // navigation("/");
-    // }
+    } else {
+      setValidationLogic(true)
+    }
+    const handleClick = async e => {
+      e.preventDefault();
+      try {
+        await axios.post("http://localhost:8800/stock", inputValues)
+      } catch (err) {
+        console.log(err);
+      }
+      handleClick();
+      setButtonLogic(true);
+    }
   };
-
-
-
-
-  // const handlepasswordchange = (event) => {
-  //   setPasswordValidLogic(event.target.value);
-  //   if (event.target.value.length < 8) {
-  //     alert("password must have 8 characters")
-  //   } else {
-  //     setpasswordError(" ");
-  //   }
-  // };
-
-
-
-
 
 
 
   const imgOnclickHandler = () => {
     navigation("/");
   }
-
-
-
-
-
-
-
   return (
     <div className={classes.main_div}>
+      
+      {showPopup && <PopupMessage onClose={() => setShowPopup(false)} />}
+
       {!buttonLogic && (<div className={classes.secondry_div}>
         <img className={classes.zr_logo} onClick={imgOnclickHandler} src={logo} alt="zr red logo" />
         <form onSubmit={formSubmitHandler} className={classes.form_main}>
@@ -189,19 +127,21 @@ const ItemAdd = () => {
                   <br></br>
                   <input ref={nameInputRef} type="text" className={classes.form_inputs} />
                 </td>
-
+                <td>
+                  price <br></br>
+                  <input ref={discountInputRef} type="text" className={classes.form_inputs} />
+                </td>
 
                 <td>
                   manufacturedate<br></br>
                   <input ref={manufacturedateInputRef} type="date" className={classes.form_inputs} />
                 </td>
-
+              </tr>
+              <tr className={classes.form_tr3}>
                 <td>
                   expirydate <br></br>
                   <input ref={expirydateInputRef} type="date" className={`${classes.form_inputs} ${nicValidLogic && (classes.err_style)}`} />
                 </td>
-              </tr>
-              <tr className={classes.form_tr3}>
                 <td>
                   discount <br></br>
                   <input ref={discountInputRef} type="text" className={classes.form_inputs} />
@@ -215,20 +155,20 @@ const ItemAdd = () => {
               </tr>
             </tbody>
           </table>
+          {/* {validationLogic && <p className={classes.err_para}>All inputs should  be filled*</p>} */}
           <div className={classes.form_button_div}>
             <button type="submit" className={classes.form_cancel} >
               {" "}
               Cancel
             </button>
-            <button className={classes.form_continue} onClick={formSubmitHandler}>Continue</button>
+            <button className={classes.form_continue} onClick={handleAddButtonClick}>Add</button>
           </div>
-
-
-
         </form>
-
       </div>)}
-      {buttonLogic && (<ResitrationSuccess style={classes.erro_message} />)}
+    
+
+      {/* {buttonLogic && (<ItemAddSuccess style={classes.erro_message} />)} */}
+      {showPopup && <PopupMessage center onClose={() => setShowPopup(false)} />}
       <img
         className={classes.img_back}
         src={backgroundDesign}

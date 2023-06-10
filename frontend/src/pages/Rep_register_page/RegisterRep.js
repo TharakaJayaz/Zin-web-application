@@ -51,7 +51,6 @@ const RegisterRep = () => {
       phonenumber: phoneNoInputRef.current.value,
       type: typeInputRef.current.value,
       address: addressInputRef.current.value,
-
     }
 
     if (inputValues.rid.trim() === '' || inputValues.nic.trim() === '' || inputValues.registrationdate.trim() === '' || inputValues.fullname.trim() === '' || inputValues.password.trim() === '' || inputValues.email.trim() === '' || inputValues.phonenumber.trim() === '' || inputValues.type.trim() === '' || inputValues.address.trim() === '') {
@@ -107,9 +106,8 @@ const RegisterRep = () => {
       // sending data to backend
 
       const handleClick = async e => {
-        e.preventDefault();
         try {
-          await axios.post("http://localhost:8800/salesrep", inputValues)
+          await axios.post("http://localhost:8800/add", inputValues)
         } catch (err) {
           console.log(err);
         }
@@ -142,13 +140,6 @@ const RegisterRep = () => {
   const imgOnclickHandler = () => {
     navigation("/");
   }
-
-
-
-
-
-
-
   return (
     <div className={classes.main_div}>
       {!buttonLogic && (<div className={classes.secondry_div}>
@@ -157,7 +148,6 @@ const RegisterRep = () => {
           <h2 className={classes.form_heading}>
             Sales Representative Registration
           </h2>
-
           <table className={classes.form_table}>
             <tbody>
               <tr className={classes.form_tr1}>
@@ -165,26 +155,20 @@ const RegisterRep = () => {
                   rid <br></br>
                   <input ref={ridInputRef} type="text" className={classes.form_inputs} />
                 </td>
-
                 <td>
                   nic <br></br>
                   <input ref={nicInputRef} type="text" className={classes.form_inputs} />
                 </td>
-
                 <td>
                   registrationdate<br></br>
                   <input ref={registrationdatelInputRef} type="date" className={`${classes.form_inputs} ${emailValidLogic && (classes.err_style)}`} />
                 </td>
               </tr>
-
-
               <tr className={classes.form_tr2}>
                 <td>
                   fullname<br></br>
                   <input ref={fullnameInputRef} type="text" className={classes.form_inputs} />
                 </td>
-
-
                 <td>
                   Password <br></br>
                   <input ref={passwordInputRef} type="password" className={`${classes.form_inputs} ${passwordValidLogic && (classes.err_style)}`} />
@@ -192,7 +176,7 @@ const RegisterRep = () => {
 
                 <td>
                   email <br></br>
-                  <input ref={emailInputRef} type="email" className={`${classes.form_inputs} ${nicValidLogic && (classes.err_style)}`} />
+                  <input ref={emailInputRef} type="email" className={`${classes.form_inputs} ${emailValidLogic && (classes.err_style)}`} />
                 </td>
               </tr>
               <tr className={classes.form_tr3}>
@@ -223,11 +207,7 @@ const RegisterRep = () => {
             </button>
             <button className={classes.form_continue} onClick={formSubmitHandler}>Continue</button>
           </div>
-
-
-
         </form>
-
       </div>)}
       {buttonLogic && (<ResitrationSuccess style={classes.erro_message} />)}
       <img
