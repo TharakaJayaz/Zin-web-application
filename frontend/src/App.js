@@ -17,6 +17,10 @@ import StockUpdate from "./pages/stock page/stock update/StockUpdate";
 import ItemSearch from "./pages/item list page/Item search/ItemSearch";
 import ItemNew from "./pages/item list page/item new/ItemNew";
 import ItemListUpdate from "./pages/item list page/ItemListUpdate/ItemListUpdate";
+import ShopRequest from './pages/shops page/shop request/ShopRequest';
+import ShopSearch from './pages/shops page/shop search/ShopSearch';
+import ShopNew from './pages/shops page/shop new/ShopNew';
+import ShopUpdate from "./pages/shops page/shop update/ShopUpdate";
 function App() {
   return (
     <div>
@@ -56,6 +60,15 @@ function App() {
         <Route path="/admin/reports" element={<Reports />} />
 
         <Route path="/admin/shops" element={<Shops />} />
+
+        <Route path="/admin/shops/shop_req" element={<ShopRequest />} />
+
+        <Route path="/admin/shops/shop_new" element={<ShopNew />} />
+
+        <Route path="/admin/shops/shop_srch" element={<ShopSearch />} />
+
+        <Route path="/admin/shops/shop_srch/update" element={<ShopUpdate />} />
+
 
         {/* temparary route */}
         <Route path="/admin/items/update" element={<ItemUpdate />} />

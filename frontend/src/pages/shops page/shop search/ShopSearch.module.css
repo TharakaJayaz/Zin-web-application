@@ -1,0 +1,224 @@
+.stock_search_main{
+    /* width:100vw;
+    height:100vh;
+    background: rgb(253, 225, 225); */
+
+    background: #F55A5A;
+    height: 100vh;
+    width:100vw;
+    position: relative;
+    /* z-index: 100; */
+    z-index:1;
+}
+
+
+
+
+.back_btn{
+    position: absolute;
+    left:50px;
+    top:30px;
+    z-index: 500;
+    
+    
+}
+
+.back_btn button{
+    display: flex;
+    align-items: center;
+    padding: 0.5em 1.2em;
+    font-size: 1.1rem;
+    border-radius: 2em;
+    border:2.3px solid transparent;
+    background-color: rgb(9, 9, 168);
+    color:#fff;
+    font-weight: 700;
+    /* position: relative;
+    margin-top: 2rem; */
+    transition: all 0.5s;
+}
+.back_btn button:hover{
+    cursor: pointer;
+    color:rgb(9, 9, 168);
+    background: #fff;
+    border:2.3px solid rgb(9, 9, 168);
+    scale: 1.02;
+}
+
+
+
+.repSearch_form{
+    width:100%;
+   z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:0 150px;
+    padding-top: 100px;
+}
+
+.repSearch_form input{
+    z-index: inherit;
+    height:45px;
+    width:400px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    padding-left:20px;
+    font-size: 15px;
+    /* border:1px solid black; */
+
+}
+
+.repSearch_form input::placeholder{
+      padding-left: 10px;
+      font-weight: bold;
+      font-size: 15px;
+}
+
+.repSearch_form input:focus{
+    outline: transparent;
+}
+
+/* .repSearch_form input::content{
+    padding-left: 20px;
+    font-weight: bold;
+    font-size: 15px;   
+} */
+
+.repSearch_form button{
+    z-index: inherit;
+    height:40px;
+    width:60px;
+    border: none;
+    border-radius:25px;
+    background-color: rgb(95, 255, 95);
+    font-weight:500;
+    position: relative;
+    left:-63px;
+}
+
+.repSearch_form button:hover{
+    cursor: pointer;
+   
+}
+
+.search_icon{
+    scale: 1.6;
+    padding-top:5px;
+}
+
+
+.suggest_div{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: relative;
+    top:-100px; */
+    
+}
+
+.suggest_div_sub_div{
+    box-sizing: border-box;
+    z-index:2;
+    position: relative;
+    top:-40px;
+    left:-30px;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    /* min-height:20px; */
+    width:400px;
+    padding:0 20px;
+    padding-top:10px;
+    max-height: 200px;
+    overflow-y: scroll;
+    background-color: rgb(255, 255, 255);
+}
+
+.suggest_div_display{
+    width:100%;
+    
+    /* padding-top:50px; */
+    
+    padding-bottom:15px;
+    padding-left:10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:rgb(110, 108, 108)
+}
+
+.suggest_div_display:hover{
+    background-color: bisque;
+}
+
+
+.logic_display_div{
+    display: flex;
+    width:100%;
+    /* align-items: center; */
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.logic_display_div section{
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+    gap:0.5em;
+}
+
+.logic_display_div section button{
+    font-size: 1.2rem;
+    width:10rem;
+    padding:0.8rem 0;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    
+}
+
+
+.logic_display_div section .btn_updt{
+
+    background-color: rgba(255, 255, 255, 0.829);
+    color: rgb(26, 233, 29);
+    border: 2px solid rgb(83, 224, 86) ;
+
+}
+
+.logic_display_div section .btn_updt:hover{
+    background-color: rgb(26, 233, 29);
+    color:white;
+    transition: 0.4s;
+}
+
+.logic_display_div section .btn_dlt{
+
+    background-color: rgba(255, 255, 255, 0.829);
+    color: rgb(233, 74, 26);
+    border: 2px solid rgb(244, 60, 32) ;
+
+}
+
+.logic_display_div section .btn_dlt:hover{
+    background-color: rgb(233, 74, 26);
+    color:white;
+    transition: 0.4s;
+}
+
+.card_style{
+    width:70%;
+    height:70%;
+    background: white;
+    /* margin-top: 20px; */
+}
+
+
+.background_img{
+    width:100vw;
+    height:500px;
+    position: absolute;
+    top:245px;
+    z-index: -10;
+}
