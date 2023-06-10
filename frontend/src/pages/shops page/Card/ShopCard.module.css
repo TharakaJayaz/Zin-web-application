@@ -1,0 +1,46 @@
+.card_main{
+    width:100%;
+    height:100%;
+    background-color: #f0dede;
+    font-family: 'Inter',sans-serif;
+    font-style: normal;
+    padding:20px 40px;
+    border-radius: 10px;
+}
+
+.card_sec1{
+    width:100%; 
+    text-align: center;
+    font-size: 2rem;
+    color:rgb(6, 6, 186)
+}
+
+
+.card_sec2{
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.card_sec2 table {
+    width:90%;
+    /* height:80%; */
+}
+
+
+.card_sec2 table tbody tr{
+   height: 8rem;
+   font-size: 1.2rem;
+}
+
+
+.card_sec2 table tbody tr td{}
+
+
+.card_sec2 table tbody tr td span{
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 650;
+}

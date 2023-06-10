@@ -1,0 +1,134 @@
+.main_div{
+    background: #F55A5A;
+    height: 100vh;
+    width:100vw;
+    position: relative;
+    /* z-index: 100; */
+    z-index:1;
+}
+
+.sub_div{
+    width:100%;
+    height:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(7, 7, 7, 0.116);
+    
+}
+
+.back_btn{
+    position: absolute;
+    left:50px;
+    top:30px;
+    z-index: 500;
+    
+    
+}
+
+.back_btn button{
+    display: flex;
+    align-items: center;
+    padding: 0.5em 1.2em;
+    font-size: 1.1rem;
+    border-radius: 2em;
+    border:2.3px solid transparent;
+    background-color: rgb(9, 9, 168);
+    color:#fff;
+    font-weight: 700;
+    /* position: relative;
+    margin-top: 2rem; */
+    transition: all 0.5s;
+}
+.back_btn button:hover{
+    cursor: pointer;
+    color:rgb(9, 9, 168);
+    background: #fff;
+    border:2.3px solid rgb(9, 9, 168);
+    scale: 1.02;
+}
+
+.detail_div{
+  width:90%;
+  height:90%;
+  /* background: green; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top:20px;
+  
+}
+
+.tempReps_card_swiper{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* margin-left: 50px; */
+   
+}
+
+.detail_subDiv{
+    width:100%;
+    height:600px;
+    
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.sub_sec1{
+    flex: 6;
+    height:100%;
+    
+}
+.sub_sec2{
+    flex: 1.2;
+    height:100%;
+    display: flex;
+    gap:0.5rem;
+    flex-direction: column;
+    padding-left:0.5rem;
+   
+}
+
+.sub_sec2 button{
+    padding:1em 0;
+    font-size: 1.3rem;
+    border-radius: 0.4em;
+    font-weight: 700;
+    transition: 0.4s ease-in-out;
+}
+
+.sub_sec2 .btn_conf{
+    border:3px solid rgb(6, 239, 25);
+    color:rgb(6, 239, 25);
+}
+
+.sub_sec2 .btn_conf:hover{
+    color:#fff;
+    background: rgb(6, 239, 25);
+}
+
+
+.sub_sec2 .btn_del{
+    border:3px solid rgb(243, 72, 20);
+    color:rgb(243, 72, 20);
+}
+
+.sub_sec2 .btn_del:hover{
+    color:#fff;
+    background-color: rgb(243, 72, 20);
+}
+
+.background_img{
+    width:100vw;
+    height:500px;
+    position: absolute;
+    top:245px;
+    z-index: -10;
+}

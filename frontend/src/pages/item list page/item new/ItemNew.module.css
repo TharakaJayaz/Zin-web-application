@@ -1,10 +1,301 @@
-.itemNew_main{
-    min-height:100vh;
-    background: #F5E9E9;
+.ItemListUpdate_main{
+    background: #F55A5A;
+    height: 100vh;
+    width:100vw;
+    position: relative;
+    font-family: 'Inter',sans-serif;
+    font-style: normal;
+    /* z-index: 100; */
+    z-index:1;
+}
+
+
+
+.err_div{
+    position: absolute;
+    z-index: 1000;
+    width:100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.852);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s ease-in-out;
+  
+}
+
+.err_div_msg{
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding:3rem 5rem;
+    font-size: 1.5rem;
+}
+
+.err_div_msg_sec1{
+    
+}
+
+.err_div_msg_sec2{
+    margin-top: 2rem;
+   
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.err_div_msg_sec2 button{
+    width:100px;
+    font-size: 1.1rem;
+    padding:0.3rem 0.5rem ;
+    border-radius: 5px;
+    transition: 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+.err_div_msg_sec2 .bt1{
+    border:2px solid red;
+    color:red;
+}
+
+
+.err_div_msg_sec2 .bt1:hover{
+    background: red;
+    color:#fff;
+    scale: 1.1;
+}
+
+
+.err_div_msg_sec2 .bt2:hover{
+    background: rgb(13, 236, 13);
+    color:#fff;
+    scale: 1.1;
+}
+
+.err_div_msg_sec2 .bt2{
+    border:2px solid rgb(13, 236, 13);
+    color:rgb(13, 236, 13);
+
+}
+
+
+.background_img{
+    width:100vw;
+    height:500px;
+    position: absolute;
+    top:245px;
+    z-index: -10;
+}
+
+.ILU_details{
+    width:100%;
+    height:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ILU_details_subDiv{
+    width:80%;
+    height:95%;
+    padding: 40px 50px; 
+    z-index: 10; 
+    background: rgba(251, 251, 251, 0.88);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+
+.details_div_sec1{
+    width:100%;
+    display: flex;
+    /* flex-direction: column; */
+    gap:10px;
+    align-items: center;
+    justify-content:center;
+
+}
+
+.details_div_sec1 img{
+    cursor: pointer;
+    width:40px;
+    position: relative;
+    left:-440px;
+    top:-10px;
+    transition: 0.4s ease-in-out;
    
 }
 
-.nav_style{
-    position: absolute;
-    min-width:100vw;
+.details_div_sec1 img:hover{
+    scale:1.1;
+}
+
+
+.details_div_sec1 h1{
+    color: #0F4689;
+    font-weight: 500;
+}
+
+
+
+.details_div_sec2{
+    width: 100%;
+    height:40%;
+    overflow-y: auto;
+    margin-top: 50px;
+}
+
+.details_div_sec2 form table,.details_div_sec3 form table{
+    width:100%;
+   
+    border:none;
+    outline: none;
+    border-collapse: collapse;
+    border:1px solid black;
+  
+}
+
+
+.details_div_sec2 form table tbody tr,.details_div_sec3 form table tbody tr {
+    padding:0.2rem;
+    border-bottom: 1px solid black;
+}
+
+.details_div_sec2 form table tbody tr th,.details_div_sec3 form table tbody tr th{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    border:none;
+    outline: none;
+    text-align: left;
+    font-size: 1.2rem;
+    padding:1rem;
+    padding-bottom: 0.2em;
+    font-weight: 500;
+}
+
+.details_div_sec2 form table tbody tr td,.details_div_sec3 form table tbody tr td{
+    line-height:1.0rem;
+    padding:1rem;
+}
+
+.details_div_sec2 form table .row_head,.details_div_sec3 form table .row_head{
+    background-color: rgb(143, 165, 245);
+}
+
+.details_div_sec2 form table .row_data,.details_div_sec3 form table .row_data{
+    background-color: rgb(208, 215, 240);
+}
+
+.delete_svg{
+    margin: 0;
+    padding:0;
+    color:red;
+    scale:1.6;
+    transition: 0.4s ease-in-out;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.delete_svg:hover{
+    scale:1.8;
+    color: #fff;
+    background-color: red;
+}
+
+/* .delete_svg::after{
+    content:"delete this";
+    color:black;
+} */
+
+.details_div_sec3{
+    width:100%;
+    margin-top: 20px;
+    padding-top:20px;
+    height:29%;
+    border:2px solid rgb(254, 228, 228);
+    border-radius: 15px;
+    background-color: rgb(239, 217, 217);
+}
+
+
+.details_div_sec3 form table{
+    border:none;
+}
+.details_div_sec3 form table tbody tr {
+    border:none;
+}
+
+.details_div_sec3 form table .row_head{
+    background-color: transparent;
+    padding-bottom: 0;
+}
+
+.details_div_sec3 form table .row_data{
+    background-color: transparent;
+    
+}
+
+.input{
+    height:1.6rem;
+    background: rgba(251, 251, 251, 0.88);
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    padding-left:10px;
+}
+
+.input:focus{
+    outline:2px solid blue;
+}
+
+.details_div_sec3 section{
+    width: 100%;
+    display: flex;
+    padding-right:20px;
+    justify-content: center;
+}
+
+.details_div_sec3 section button{
+    cursor: pointer;
+    padding:0.7rem 10rem;
+    margin-top: 0.3rem;
+    /* margin-right:105px; */
+    font-size: 1.1rem;
+    border:2px transparent;
+    border-radius: 5px;
+    background-color: #1b42f1;
+    color:white;
+    letter-spacing: 1px;
+    transition: 0.4s ease-in-out;
+}
+
+
+.details_div_sec3 section button:hover{
+       scale:1.1;
+}
+
+.details_div_sec4{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+.details_div_sec4 button{
+    cursor: pointer;
+    margin-top: 30px;
+    padding:1rem 12rem;
+    font-size: 1.5rem;
+    border:none;
+    color:#fff;
+    background: rgb(22, 240, 22);
+    border-radius: 7px;
+    letter-spacing: 1px;
+    transition: 0.4s ease-in-out;
+}
+
+.details_div_sec4 button:hover{
+    scale:1.1;
 }

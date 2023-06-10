@@ -116,11 +116,17 @@
 }
 
 .details_div_sec1 img{
+    cursor: pointer;
     width:40px;
     position: relative;
     left:-440px;
     top:-10px;
+    transition: 0.4s ease-in-out;
    
+}
+
+.details_div_sec1 img:hover{
+    scale:1.1;
 }
 
 
@@ -235,8 +241,12 @@
     border: 1px solid rgba(0, 0, 0, 0.24);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
+    padding-left:10px;
 }
 
+.input:focus{
+    outline:2px solid blue;
+}
 
 .details_div_sec3 section{
     width: 100%;
