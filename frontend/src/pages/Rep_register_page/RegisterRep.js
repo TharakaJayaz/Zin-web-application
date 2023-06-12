@@ -13,6 +13,7 @@ const RegisterRep = () => {
   const registrationdatelInputRef = useRef();
   const fullnameInputRef = useRef();
   const passwordInputRef = useRef();
+  const confirmPasswordInputRef = useRef();
   const emailInputRef = useRef();
   const phoneNoInputRef = useRef();
   const typeInputRef = useRef();
@@ -22,6 +23,7 @@ const RegisterRep = () => {
   const [validationLogic, setValidationLogic] = useState();
   const [passwordValidLogic, setPasswordValidLogic] = useState();
   const [passwordError, setpasswordError] = useState();
+  const [confirmPasswordError, setConfirmPasswordError] = useState();
   const [emailValidLogic, setEmailValidLogic] = useState();
   const [nicValidLogic, setNicValidLogic] = useState();
   const [buttonLogic, setButtonLogic] = useState(false);
@@ -132,7 +134,13 @@ const RegisterRep = () => {
   };
 
 
-
+  const onBlurConfirmPassword = () => {
+    if (passwordInputRef.current.value !== confirmPasswordInputRef.current.value) {
+      setConfirmPasswordError("Does not match with Confirm password");
+    } else {
+      setConfirmPasswordError(null);
+    }
+  }
 
 
 
@@ -172,6 +180,11 @@ const RegisterRep = () => {
                 <td>
                   Password <br></br>
                   <input ref={passwordInputRef} type="password" className={`${classes.form_inputs} ${passwordValidLogic && (classes.err_style)}`} />
+                </td>
+                <td>
+                  Confirm Password <br></br>
+                  <input ref={confirmPasswordInputRef} type="password" onBlur={onBlurConfirmPassword} className={`${classes.form_inputs} ${passwordValidLogic && (classes.err_style)}`} />
+                  <label style={{ color: "red" }}>{confirmPasswordError}</label>
                 </td>
 
                 <td>

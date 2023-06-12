@@ -19,7 +19,7 @@ const ItemAdd = () => {
   const priceInputRef = useRef();
   const manufacturedateInputRef = useRef();
   const expirydateInputRef = useRef();
-  const discountInputRef = useRef();
+  const dInputRef = useRef();
   const imageInputRef = useRef();
 
 
@@ -34,20 +34,31 @@ const ItemAdd = () => {
   const [nicValidLogic, setNicValidLogic] = useState();
   const [buttonLogic, setButtonLogic] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [itemData, setItemData] = useState({});
+
 
   const navigation = useNavigate();
   const handleAddButtonClick = () => {
     setShowPopup(true);
   };
-  
-  // const handleClick = () => {
+  const handleClick = async (e,inputData) => {
+    console.log("call handle click")
+    console.log(itemData)
 
-  //   setShowmessage(true);
-  // };
-  // const genderHandler = event =>{
-  //   setGenderInput(event.target.value);
-  // }
-  const formSubmitHandler = (event) => {
+    try {
+      const response = await axios.post("http://localhost:8800/stock", itemData)
+      
+      if(response.data=='successfull'){
+        setShowPopup(true);
+      }
+      
+    } catch (err) {
+      console.log(err);
+    }
+    
+  }
+  
+  const formSubmitHandler = async (event) => {
     event.preventDefault();
     console.log("submitted");
     const inputValues = {
@@ -58,14 +69,15 @@ const ItemAdd = () => {
       price: priceInputRef.current.value,
       manufacturedate: manufacturedateInputRef.current.value,
       expirydate: expirydateInputRef.current.value,
-      discount: discountInputRef.current.value,
-      image: imageInputRef.current.files[0]
+      discount: dInputRef.current.value,
+      image: imageInputRef.current.files[0].name
     }
 
+    
 
 
     console.log(inputValues.stockID, inputValues.qty, inputValues.name, inputValues.price, inputValues.manufacturedate, inputValues.expirydate, inputValues.discount, inputValues.image);
-    if (inputValues.stockID.trim() === '' || inputValues.qty.trim() === '' || inputValues.name.trim() === '' || inputValues.price.trim() === '' || inputValues.manufacturedate.trim() === '' || inputValues.expirydate.trim() === '' || inputValues.discount.trim() === '' || inputValues.image.trim() === '') {
+    if (inputValues.stockID.trim() === '' || inputValues.qty.trim() === '' || inputValues.name.trim() === ''  || inputValues.manufacturedate.trim() === '' || inputValues.expirydate.trim() === '' || inputValues.discount.trim() === '') {
       setValidationLogic(false);
       console.log('setting true')
       return;
@@ -73,27 +85,28 @@ const ItemAdd = () => {
     } else {
       setValidationLogic(true)
     }
-    const handleClick = async e => {
-      e.preventDefault();
-      try {
-        await axios.post("http://localhost:8800/stock", inputValues)
-      } catch (err) {
-        console.log(err);
-      }
-      handleClick();
-      setButtonLogic(true);
-    }
+    await setItemData(inputValues);
+    
   };
-
-
+  useEffect(() => {
+    if (Object.keys(itemData).length > 0) {
+      handleClick(itemData);
+    }
+  }, [itemData]);
+  const x={name:"akile", age:23}
 
   const imgOnclickHandler = () => {
     navigation("/");
   }
   return (
-    <div className={classes.main_div}>
+    <div className={classes.main_div} style={{position: "relative"}}>
+      <div style={{position: "absolute", zIndex: 200}}>
+        {/* {showPopup && <PopupMessage onClose={() => setShowPopup(false)} data={x}/>} */}
+        {showPopup && <PopupMessage onClose={() => setShowPopup(false)}/>}
+
+      </div>
       
-      {showPopup && <PopupMessage onClose={() => setShowPopup(false)} />}
+      
 
       {!buttonLogic && (<div className={classes.secondry_div}>
         <img className={classes.zr_logo} onClick={imgOnclickHandler} src={logo} alt="zr red logo" />
@@ -129,7 +142,7 @@ const ItemAdd = () => {
                 </td>
                 <td>
                   price <br></br>
-                  <input ref={discountInputRef} type="text" className={classes.form_inputs} />
+                  <input ref={priceInputRef} type="text" className={classes.form_inputs} />
                 </td>
 
                 <td>
@@ -144,12 +157,12 @@ const ItemAdd = () => {
                 </td>
                 <td>
                   discount <br></br>
-                  <input ref={discountInputRef} type="text" className={classes.form_inputs} />
+                  <input ref={dInputRef} type="text" className={classes.form_inputs} />
                 </td>
 
                 <td>
                   image <br></br>
-                  <input ref={imageInputRef} type="file" className={classes.form_inputs} name="image" />
+                  <input ref={imageInputRef} type="file" className={classes.form_inputs} name="image" style={{ padding:'4px' }}/>
                 </td>
 
               </tr>
@@ -157,18 +170,18 @@ const ItemAdd = () => {
           </table>
           {/* {validationLogic && <p className={classes.err_para}>All inputs should  be filled*</p>} */}
           <div className={classes.form_button_div}>
-            <button type="submit" className={classes.form_cancel} >
+            <button  className={classes.form_cancel} >
               {" "}
               Cancel
             </button>
-            <button className={classes.form_continue} onClick={handleAddButtonClick}>Add</button>
+            <button type="submit" className={classes.form_continue} onClick={formSubmitHandler} >Add</button>
           </div>
         </form>
       </div>)}
     
 
       {/* {buttonLogic && (<ItemAddSuccess style={classes.erro_message} />)} */}
-      {showPopup && <PopupMessage center onClose={() => setShowPopup(false)} />}
+      {/* {showPopup && <PopupMessage center onClose={() => setShowPopup(false)} />} */}
       <img
         className={classes.img_back}
         src={backgroundDesign}

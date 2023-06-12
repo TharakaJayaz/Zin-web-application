@@ -14,14 +14,15 @@ const SignInPage = () => {
   const navigate = useNavigate();//hook provided by the react-router-dom
 //hooks can make the code readable and easier to maintain.allows developoers to add state and other features to functional components.
   const checkUser = value => {
-    debugger;
-    if (value === 'http://localhost:8800/user') {
-      navigate('/admin/temp_reps')
-    //} else if (value === 'stock') {
-    //  navigate('/stock_keeper/item_list')
-    } else {
-      navigate('/');
-    }
+    // debugger;
+    navigate('/admin/temp_reps')
+    // if (value === 'http://localhost:8800/user') {
+    //   navigate('/admin/temp_reps')
+    // //} else if (value === 'stock') {
+    // //  navigate('/stock_keeper/item_list')
+    // } else {
+    //   navigate('/');
+    // }
   }
 
   const inputUsernameHandler = (event) => {

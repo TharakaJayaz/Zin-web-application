@@ -15,7 +15,7 @@ import Stock from "./pages/stock page/Stock";
 import TempRep from "./pages/tempRep/TempRep";
 import UpdateRep from "./pages/updateRep/UpdateRep";
 import StockUpdate from './pages/stock page/stock update/StockUpdate';
-
+import ShopRegistration from './pages/ShopRegistration';
 
 function App() {
   return (
@@ -54,7 +54,7 @@ function App() {
         <Route path="/admin/add/item" element={<ItemAdd />} />
         {/* temparary route */}
         <Route path="/admin/items/update" element={<ItemUpdate />} />
-        
+        <Route path="/admin/shop/register" element={<ShopRegistration />} />
         
       </Routes>
     </div>
