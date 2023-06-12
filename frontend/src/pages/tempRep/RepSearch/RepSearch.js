@@ -98,10 +98,15 @@ const RepSearch = (props) => {
   };
 
   const inputBlurHandler = event =>{
-           setDisplaylogicTable(false)  
+           
+            setDisplaylogicTable(false) ;
+           
+            
            if(displayDetails !==' '){
             setDisplayLogic(true);
            } // change logic value related to display detail table when lose focus on input element
+          
+          
   };
 
   const inputFocusHandler = event =>{   // cchange logic value related to display detail table when  focus on input element
@@ -118,7 +123,9 @@ const RepSearch = (props) => {
   //   }
   // }
 
-  
+  const trHandler = (value) =>{
+           console.log('tr clicked');
+  }
 
   return (
     <div className={`${classes.repSearch_main_div} ${props.classname}`}>
@@ -147,7 +154,7 @@ const RepSearch = (props) => {
                 .filter((user) => user.name.toLowerCase().includes(inputValue))  // filter values and display in table
                 .map((detial) => (
                  
-                  <tr key={detial.id} className={classes.map_raw}>
+                  <tr key={detial.id} className={classes.map_raw} onClick={()=>trHandler(detial.name)}>
                     <td>{detial.name}</td>
                     <td>{detial.mobile}</td>
                     <td>{detial.nic}</td>

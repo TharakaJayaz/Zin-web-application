@@ -24,28 +24,36 @@ const StockUpdate = () => {
 
   //create onChange handling functions for each input
 
+  const [idValue, setIdValue] = useState(currentDetails.id);
+
+  const [dateValue, setdateValue] = useState(currentDetails.date);
+  const [salesRepValue, setsalesRepValue] = useState(currentDetails.salesRep);
+  const [vehicleValue, setvehicleValue] = useState(currentDetails.vehicle);
+  const [routeValue, setrouteValue] = useState(currentDetails.route);
+  const [itemListValue, setitemListValue] = useState(currentDetails.itemList);
+
   const idInputHandler = (event) => {
-    setCurrntDetailsForInputs({ id: event.target.value });
+    setIdValue(event.target.value);
   };
 
   const dateInputHandler = (event) => {
-    setCurrntDetailsForInputs({ date: event.target.value });
+    setdateValue(event.target.value);
   };
 
   const salesRepInputHandler = (event) => {
-    setCurrntDetailsForInputs({ salesRep: event.target.value });
+    setsalesRepValue(event.target.value);
   };
 
   const vehicleInputHandler = (event) => {
-    setCurrntDetailsForInputs({ vehicle: event.target.value });
+    setvehicleValue(event.target.value);
   };
 
   const routeInputHandler = (event) => {
-    setCurrntDetailsForInputs({ route: event.target.value });
+    setrouteValue(event.target.value);
   };
 
   const itemListInputHandler = (event) => {
-    setCurrntDetailsForInputs({ itemList: event.target.value });
+    setitemListValue(event.target.value);
   };
 
   const logoHandler = () => {
@@ -54,8 +62,21 @@ const StockUpdate = () => {
 
   // handling function for update button
 
+
+
   const updateHandler = (event) => {
     event.preventDefault();
+    console.log("clicked");
+
+    setCurrntDetailsForInputs({
+      id: idValue,
+      date: dateValue,
+      salesRep: salesRepValue,
+      vehicle: vehicleValue,
+      route: routeValue,
+      itemList: itemListValue,
+    });
+    console.log("value after update", currntDetailsForInputs);
   };
 
   return (
@@ -77,7 +98,7 @@ const StockUpdate = () => {
                         type="text"
                         onChange={idInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.id}
+                        value={idValue}
                       />
                     </td>
                   </tr>
@@ -89,7 +110,7 @@ const StockUpdate = () => {
                         type="text"
                         onChange={dateInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.date}
+                        value={dateValue}
                       />
                     </td>
                   </tr>
@@ -101,7 +122,7 @@ const StockUpdate = () => {
                         type="text"
                         onChange={salesRepInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.salesRep}
+                        value={salesRepValue}
                       />
                     </td>
                   </tr>
@@ -113,7 +134,7 @@ const StockUpdate = () => {
                         type="text"
                         onChange={vehicleInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.vehicle}
+                        value={vehicleValue}
                       />
                     </td>
                   </tr>
@@ -125,7 +146,7 @@ const StockUpdate = () => {
                         type="text"
                         onChange={routeInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.route}
+                        value={routeValue}
                       />
                     </td>
                   </tr>
@@ -136,7 +157,7 @@ const StockUpdate = () => {
                         type="text"
                         onChange={itemListInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.itemList}
+                        value={itemListValue}
                       />
                     </td>
                   </tr>

@@ -27,37 +27,55 @@ const ShopUpdate = () => {
   });
   const id = currentDetails.id;
 
+  const [shopNamevalue,setshopNameValue]  = useState(currentDetails.shopName);
+  const [idvalue,setidValue]  = useState(currentDetails.id);
+  const [ownerNamevalue,setownerNameValue]  = useState(currentDetails.ownerName);
+  const [nicvalue,setnicValue]  = useState(currentDetails.nic);
+  const [mobilevalue,setmobileValue]  = useState(currentDetails.mobile);
+  const [emailvalue,setemailValue]  = useState(currentDetails.email);
+  const [dobvalue,setdobValue]  = useState(currentDetails.dob);
+  const [addressvalue,setaddressValue]  = useState(currentDetails.address);
+  const [sexvalue,setsexValue]  = useState(currentDetails.sex);
+
   const shopNameInputHandler = (event) => {
-    setCurrntDetailsForInputs({ id: event.target.value });
+    setshopNameValue(event.target.value);
+    
   };
 
   const ownerNameInputHandler = (event) => {
-    setCurrntDetailsForInputs({ ownerName: event.target.value });
+    setownerNameValue(event.target.value);
+    
   };
 
   const nicInputHandler = (event) => {
-    setCurrntDetailsForInputs({ nic: event.target.value });
+    setnicValue(event.target.value);
+    
   };
 
   const sexInputHandler = (event) => {
-    setCurrntDetailsForInputs({ sex: event.target.value });
+    setsexValue(event.target.value);
+    
   };
 
   const mobileInputHandler = (event) => {
-    setCurrntDetailsForInputs({ mobile: event.target.value });
+    setmobileValue(event.target.value);
+    
   };
 
   const dobInputHandler = (event) => {
-    setCurrntDetailsForInputs({ dob: event.target.value });
+    setdobValue(event.target.value);
+    
   };
 
   const addressInputHandler = (event) => {
-    setCurrntDetailsForInputs({ address: event.target.value });
+    setaddressValue(event.target.value);
+    
   };
 
 
   const emailInputHandler = (event) => {
-    setCurrntDetailsForInputs({ email: event.target.value });
+    setemailValue(event.target.value);
+    
   };
 
 
@@ -68,6 +86,21 @@ const ShopUpdate = () => {
 
   const updateHandler = (event) => {
     event.preventDefault();
+    console.log("update clicked");
+    setCurrntDetailsForInputs({
+         
+    id:idvalue,
+    shopName: shopNamevalue,
+    ownerName: ownerNamevalue,
+    nic: nicvalue,
+    mobile: mobilevalue,
+    email: emailvalue,
+    dob:dobvalue,
+    address:addressvalue,
+    sex: sexvalue
+    });
+    console.log("value after update",currntDetailsForInputs);
+    
   };
 
   return (
@@ -77,7 +110,7 @@ const ShopUpdate = () => {
           <section className={classes.sub_sec1}>
             <img src={logo} alt="logo" onClick={logoHandler} />
           </section>
-          <section className={classes.sub_sec2}>Update Shop:{id}</section>
+          <section className={classes.sub_sec2}>Update Shop:{idvalue}</section>
           <section className={classes.sub_sec3}>
             <form>
               <table>
@@ -89,7 +122,7 @@ const ShopUpdate = () => {
                         type="text"
                         onChange={shopNameInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.shopName}
+                        value={shopNamevalue}
                       />
                     </td>
                   </tr>
@@ -101,7 +134,7 @@ const ShopUpdate = () => {
                         type="text"
                         onChange={ownerNameInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.ownerName}
+                        value={ownerNamevalue}
                       />
                     </td>
                   </tr>
@@ -113,7 +146,7 @@ const ShopUpdate = () => {
                         type="text"
                         onChange={nicInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.nic}
+                        value={nicvalue}
                       />
                     </td>
                   </tr>
@@ -125,7 +158,7 @@ const ShopUpdate = () => {
                         type="text"
                         onChange={sexInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.sex}
+                        value={sexvalue}
                       />
                     </td>
                   </tr>
@@ -137,7 +170,7 @@ const ShopUpdate = () => {
                         type="text"
                         onChange={mobileInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.mobile}
+                        value={mobilevalue}
                       />
                     </td>
                   </tr>
@@ -148,7 +181,7 @@ const ShopUpdate = () => {
                         type="text"
                         onChange={dobInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.dob}
+                        value={dobvalue}
                       />
                     </td>
                   </tr>
@@ -159,7 +192,7 @@ const ShopUpdate = () => {
                         type="text"
                         onChange={addressInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.address}
+                        value={addressvalue}
                       />
                     </td>
                   </tr>
@@ -171,7 +204,7 @@ const ShopUpdate = () => {
                         type="text"
                         onChange={emailInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.email}
+                        value={emailvalue}
                       />
                     </td>
                   </tr>

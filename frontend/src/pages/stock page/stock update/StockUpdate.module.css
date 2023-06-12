@@ -3,7 +3,8 @@
     width:100vw;
     position: relative;
     /* z-index: 100; */
-    z-index:1;}
+    z-index:1;
+}
 
 .background_img{
     width:100vw;
@@ -21,6 +22,7 @@
     flex-direction: column;
      justify-content: center;
      align-items: center;
+     z-index: 100;
      
   
 }
@@ -58,6 +60,7 @@
 .sub_sec3{
     font-family: 'Inter',sans-serif;
     font-style: normal;
+    z-index: 20;
 }
 
 .sub_sec3 form table tbody tr{
@@ -91,6 +94,7 @@
    align-items: center;
    justify-content: center;
    margin-top: 1rem;
+   z-index: 500;
    
 }
 
@@ -101,4 +105,5 @@
     background: #00A878;
     color:#fff;
     border: none;
+    z-index: 500;
 }

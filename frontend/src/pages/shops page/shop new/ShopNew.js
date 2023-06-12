@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import classes from './ShopNew.module.css';
+import React, { useState } from "react";
+import classes from "./ShopNew.module.css";
 import backgroundLogo from "../../../assets/Background vector group.png";
 import logo from "../../../assets/zr red.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 const ShopNew = () => {
-
   const navigation = useNavigate();
 
   const logoHandler = () => {
@@ -13,17 +13,16 @@ const ShopNew = () => {
   };
 
   const [currntDetailsForInputs, setCurrntDetailsForInputs] = useState({
- 
     id: "",
     shopName: "",
     ownerName: "",
     nic: "",
     mobile: "",
     email: "",
-    dob:"",
-    address:"",
-    sex:""
-   
+    dob: "",
+    address: "",
+    sex: "",
+
     // id:currentDetails.id,
     // shopName: currentDetails.shopName,
     // ownerName: currentDetails.ownerName,
@@ -33,56 +32,92 @@ const ShopNew = () => {
     // dob:currentDetails.dob,
     // address:currentDetails.address,
     // sex: currentDetails.sex
-
-
   });
 
-  
+
+  const [shopNamevalue,setshopNameValue]  = useState();
+  const [idvalue,setidValue]  = useState();
+  const [ownerNamevalue,setownerNameValue]  = useState();
+  const [nicvalue,setnicValue]  = useState();
+  const [mobilevalue,setmobileValue]  = useState();
+  const [emailvalue,setemailValue]  = useState();
+  const [dobvalue,setdobValue]  = useState();
+  const [addressvalue,setaddressValue]  = useState();
+  const [sexvalue,setsexValue]  = useState();
+
+
+  const shopIdInputHandler = (event) => {
+      setidValue(event.target.value);
+  };
+
   const shopNameInputHandler = (event) => {
-    setCurrntDetailsForInputs({ id: event.target.value });
+    setshopNameValue(event.target.value);
   };
 
   const ownerNameInputHandler = (event) => {
-    setCurrntDetailsForInputs({ ownerName: event.target.value });
+    setownerNameValue(event.target.value);
   };
 
   const nicInputHandler = (event) => {
-    setCurrntDetailsForInputs({ nic: event.target.value });
+    setnicValue(event.target.value);
   };
 
   const sexInputHandler = (event) => {
-    setCurrntDetailsForInputs({ sex: event.target.value });
+    setsexValue(event.target.value);
   };
 
   const mobileInputHandler = (event) => {
-    setCurrntDetailsForInputs({ mobile: event.target.value });
+    setmobileValue(event.target.value);
   };
 
   const dobInputHandler = (event) => {
-    setCurrntDetailsForInputs({ dob: event.target.value });
+    setdobValue(event.target.value);
   };
 
   const addressInputHandler = (event) => {
-    setCurrntDetailsForInputs({ address: event.target.value });
+    setaddressValue(event.target.value);
   };
-
 
   const emailInputHandler = (event) => {
-    setCurrntDetailsForInputs({ email: event.target.value });
+    setemailValue(event.target.value);
   };
-
-
 
   const updateHandler = (event) => {
+  
     event.preventDefault();
+
+    setCurrntDetailsForInputs({
+         
+      id:idvalue,
+      shopName: shopNamevalue,
+      ownerName: ownerNamevalue,
+      nic: nicvalue,
+      mobile: mobilevalue,
+      email: emailvalue,
+      dob:dobvalue,
+      address:addressvalue,
+      sex: sexvalue
+      });
+      
+      setidValue("");
+      setshopNameValue("");
+      setownerNameValue("");
+      setnicValue("");
+      setsexValue("");
+      setmobileValue("");
+      setdobValue("");
+      setaddressValue("");
+      setemailValue("");
+      swal("sucessfully added");
+
+
+      console.log("final details",currntDetailsForInputs);
   };
 
-
-
   return (
-    
     <div className={classes.main_div}>
       <div className={classes.main_div_sub_div1}>
+        
         <div className={classes.wrapper_div}>
           <section className={classes.sub_sec1}>
             <img src={logo} alt="logo" onClick={logoHandler} />
@@ -93,13 +128,24 @@ const ShopNew = () => {
               <table>
                 <tbody>
                   <tr>
+                    <td className={classes.td_left}>Shop ID</td>
+                    <td className={classes.td_right}>
+                      <input
+                        type="text"
+                        onChange={shopIdInputHandler}
+                        className={classes.form_inputs}
+                        value={idvalue}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
                     <td className={classes.td_left}>Shop Name</td>
                     <td className={classes.td_right}>
                       <input
                         type="text"
                         onChange={shopNameInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.shopName}
+                        value={shopNamevalue}
                       />
                     </td>
                   </tr>
@@ -111,7 +157,7 @@ const ShopNew = () => {
                         type="text"
                         onChange={ownerNameInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.ownerName}
+                        value={ownerNamevalue}
                       />
                     </td>
                   </tr>
@@ -123,7 +169,7 @@ const ShopNew = () => {
                         type="text"
                         onChange={nicInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.nic}
+                        value={nicvalue}
                       />
                     </td>
                   </tr>
@@ -135,7 +181,7 @@ const ShopNew = () => {
                         type="text"
                         onChange={sexInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.sex}
+                        value={sexvalue}
                       />
                     </td>
                   </tr>
@@ -147,7 +193,7 @@ const ShopNew = () => {
                         type="text"
                         onChange={mobileInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.mobile}
+                        value={mobilevalue}
                       />
                     </td>
                   </tr>
@@ -158,7 +204,7 @@ const ShopNew = () => {
                         type="text"
                         onChange={dobInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.dob}
+                        value={dobvalue}
                       />
                     </td>
                   </tr>
@@ -169,7 +215,7 @@ const ShopNew = () => {
                         type="text"
                         onChange={addressInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.address}
+                        value={addressvalue}
                       />
                     </td>
                   </tr>
@@ -181,15 +227,16 @@ const ShopNew = () => {
                         type="text"
                         onChange={emailInputHandler}
                         className={classes.form_inputs}
-                        value={currntDetailsForInputs.email}
+                        value={emailvalue}
                       />
                     </td>
                   </tr>
                 </tbody>
               </table>
               <section className={classes.sub_sec4}>
-            <button onClick={updateHandler}>Update</button>
-          </section>
+                <button onClick={updateHandler}>Add</button>
+                
+              </section>
             </form>
           </section>
           {/* <section className={classes.sub_sec4}>
@@ -204,8 +251,7 @@ const ShopNew = () => {
       </div>
       <img className={classes.background_img} src={backgroundLogo} alt="logo" />
     </div>
-  
-  )
-}
+  );
+};
 
-export default ShopNew
+export default ShopNew;
