@@ -104,4 +104,9 @@
     border-radius: 10px;
 }
 
-
+.err_msg{
+  
+    color:red;
+    font-size: 1.2rem;
+    
+}

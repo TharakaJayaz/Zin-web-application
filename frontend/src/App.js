@@ -17,10 +17,15 @@ import StockUpdate from "./pages/stock page/stock update/StockUpdate";
 import ItemSearch from "./pages/item list page/Item search/ItemSearch";
 import ItemNew from "./pages/item list page/item new/ItemNew";
 import ItemListUpdate from "./pages/item list page/ItemListUpdate/ItemListUpdate";
-import ShopRequest from './pages/shops page/shop request/ShopRequest';
-import ShopSearch from './pages/shops page/shop search/ShopSearch';
-import ShopNew from './pages/shops page/shop new/ShopNew';
+import ShopRequest from "./pages/shops page/shop request/ShopRequest";
+import ShopSearch from "./pages/shops page/shop search/ShopSearch";
+import ShopNew from "./pages/shops page/shop new/ShopNew";
 import ShopUpdate from "./pages/shops page/shop update/ShopUpdate";
+
+import ItemAdd from "./pages/Items page/ItemAdd";
+
+// import ShopRegistration from "./pages/ShopRegistration";
+
 function App() {
   return (
     <div>
@@ -38,7 +43,7 @@ function App() {
 
         <Route path="/stock_keeper/item_list" element={<ItemList />} />
 
-        <Route path="/stock_keeper/stock" element={<Stock />} />
+        <Route path="/stock_keeper/stock" element={<Stock />} />   {/*  stock kepper route */}
 
         <Route
           path="/stock_keeper/stock/stock_update"
@@ -47,7 +52,10 @@ function App() {
 
         <Route path="/stock_keeper/item_list/search" element={<ItemSearch />} />
 
-        <Route path="/stock_keeper/item_list/update" element={<ItemListUpdate />} />
+        <Route
+          path="/stock_keeper/item_list/update"
+          element={<ItemListUpdate />}
+        />
 
         <Route path="/stock_keeper/item_list/new" element={<ItemNew />} />
 
@@ -69,9 +77,14 @@ function App() {
 
         <Route path="/admin/shops/shop_srch/update" element={<ShopUpdate />} />
 
-
         {/* temparary route */}
         <Route path="/admin/items/update" element={<ItemUpdate />} />
+
+        {/*  6/13 routing */}
+
+        <Route path="/admin/add/item" element={<ItemAdd />} />
+
+        {/* <Routes path="/admin/shop/register" element={<ShopRegistration />} /> */}
       </Routes>
     </div>
   );

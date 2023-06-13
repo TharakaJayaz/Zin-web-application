@@ -1,75 +1,80 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Item.module.css";
 import NavbarAdmin from "../../ui/navbar/NavbarAdmin";
 import ItemCard from "./ItemCard";
 import { FaSearch } from "react-icons/fa";
+import background from '../../assets/Background vector group.png';
 
-import item1 from '../../assets/busicuit.jpg';
-import item2 from '../../assets/lighter.jpg';
-import item3 from '../../assets/tea bag.jpg';
-import item4 from '../../assets/toffee.png';
-import item5 from '../../assets/shampoo2.jpg';
 
-const Item = () => {
-  const Item_list = [
-    {
-      id:1,
-      name:'buscuit',
-      image:item1
-    },
-    {
-      id:2,
-      name:'lighter',
-      image:item2
-    },
-    {
-      id:3,
-      name:'tea bag',
-      image:item3
-    },
-    {
-      id:4,
-      name:'toffee',
-      image:item4
-    },
-    {
-      id:5,
-      name:'shampoo',
-      image:item5
-    }
-  ];
+import axios from 'axios';
+import { Link } from "react-router-dom";
 
-  const [inputValue,setInputValue]  = useState();
-  const[cardLogic,setCardLogic] = useState(false);
 
-  const inputHandler = event =>{
-    //  console.log(event.target.value);
-     setInputValue(event.target.value)
-  } ;
-   return (
-    <div className={classes.item_main}>
-      <NavbarAdmin>
-       
-        <>
-       
-          <input
-            className={classes.nav_input}
-            type="text"
-            placeholder=" Search...."
-            onChange={inputHandler}
-            value = {inputValue}
-          />
-          <button className={classes.nav_btn}>
-          
-            <FaSearch className={classes.svg} />
-          </button>
-        </>
-      </NavbarAdmin>
-      <div className={classes.item_style}>
-      <ItemCard style={classes.itemcard_style} count={[400, 600]} />
+function Item() {
+  const [stockData, setStockData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8800/stock');
+        setStockData(response.data);
+      } catch (error) {
+        console.error('Error fetching stock data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+     <NavbarAdmin  className = {classes.nav_style}/>
+
+      <div className={classes.updt_div}>
+      <div className={classes.table_div}> 
+        {stockData.length > 0 ? (
+         
+          <table className={classes.item_tbl}>
+            <thead>
+              <tr>
+                <th>Stock ID</th>
+                <th>Qty</th>
+                <th>Product Name</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Manufacture Date</th>
+                <th>Expiry Date</th>
+                <th>Discount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {stockData.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.stockID}</td>
+                  <td>{item.qty}</td>
+                  <td>{item.productname}</td>
+                  <td>{item.name}</td>
+                  <td>{item.price}</td>
+                  <td>{item.manufacturedate}</td>
+                  <td>{item.expirydate}</td>
+                  <td>{item.discount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>Loading stock data...</p>
+        )}
+        </div>
+
+        <img src={background} alt='background vector' className={classes.back_img} />
+        <button className={classes.update_btn}>  <Link to = "/admin/items/update"> Change </Link> </button>
       </div>
     </div>
   );
 };
+
+
+
 
 export default Item;
