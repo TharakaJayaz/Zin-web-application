@@ -26,6 +26,18 @@ app.get("/reps", (req, res) => {
   });
 });
 
+// ----------------------------------------CODING FOR ONLINE DATABASW--------------------------------------------------------------
+
+app.get("/reps2", (req, res) => {
+  const q = "select * from sales_rep";
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
+// -------------------------------CODING FOR ONLINE DATABASW-----------------------------------------------------------------------------
+
 app.post("/reps", (req, res) => {
   // const q = "INSERT INTO sales_reps(`RID`,`registration_date`,`password`,`email`,`full_name`,`phone`,`NIC`,`address`) VALUES(?)";
 
