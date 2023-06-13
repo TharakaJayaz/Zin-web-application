@@ -13,3 +13,11 @@
         position: absolute;
         top:245px;
 }
+.form_button_div{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap:20px;
+    margin-bottom: 20px;
+    margin-right: 120px;
+}
