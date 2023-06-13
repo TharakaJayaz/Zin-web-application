@@ -22,6 +22,30 @@ const stockUpdateSlice = createSlice({
   },
 });
 
+
+const repUpdateSlice = createSlice({
+  name:"repUpdate",
+  initialState :{
+    name:"",
+    mobile:"",
+    email:"",
+    nic:"",
+    address:"",
+    id:""
+  },
+  reducers:{
+    add(state,action){
+      state.id = action.payload.id;
+      state.name = action.payload.name;
+      state.nic = action.payload.nic;
+      state.mobile = action.payload.mobile;
+      state.email = action.payload.email;
+      state.address = action.payload.address;
+    }
+  }
+})
+
+
 const ItemListUpdateSLice = createSlice({
   name: "ItemListUpdate",
   initialState: {
@@ -98,12 +122,14 @@ const store = configureStore({
   reducer: {
     stockUpdate: stockUpdateSlice.reducer,
     itemListUpdate: ItemListUpdateSLice.reducer,
-    shopUpdate:shopUpdateSlice.reducer
+    shopUpdate:shopUpdateSlice.reducer,
+    repUpdate:repUpdateSlice.reducer
   },
 });
 
 export const stocKupdateAction = stockUpdateSlice.actions;
 export const ItemListupdateAction = ItemListUpdateSLice.actions;
 export const shopUpdateAction = shopUpdateSlice.actions;
+export const repUpdateAction = repUpdateSlice.actions;
 
 export default store;

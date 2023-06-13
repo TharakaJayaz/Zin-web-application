@@ -32,58 +32,36 @@ function App() {
       {/* <Homepage /> */}
       <Routes>
         <Route path="/" element={<Homepage />} exact />
-
         <Route path="/registerRep" element={<RegisterRep />} />
-
         <Route path="/signIn" element={<SignInPage />} />
-
         {/* <Route path = '/admin' element = {<AdminPage />}/> */}
-
         {/* stoxk keeper routing */}
-
         <Route path="/stock_keeper/item_list" element={<ItemList />} />
-
-        <Route path="/stock_keeper/stock" element={<Stock />} />   {/*  stock kepper route */}
-
+        <Route path="/stock_keeper/stock" element={<Stock />} />{" "}
+        {/*  stock kepper route */}
         <Route
           path="/stock_keeper/stock/stock_update"
           element={<StockUpdate />}
         />
-
         <Route path="/stock_keeper/item_list/search" element={<ItemSearch />} />
-
         <Route
           path="/stock_keeper/item_list/update"
           element={<ItemListUpdate />}
         />
-
         <Route path="/stock_keeper/item_list/new" element={<ItemNew />} />
-
         <Route path="/admin/temp_reps" element={<TempRep />} />
-
         <Route path="/admin/repUpdate" element={<UpdateRep />} />
-
         <Route path="/admin/items" element={<Item />} />
-
         <Route path="/admin/reports" element={<Reports />} />
-
         <Route path="/admin/shops" element={<Shops />} />
-
         <Route path="/admin/shops/shop_req" element={<ShopRequest />} />
-
         <Route path="/admin/shops/shop_new" element={<ShopNew />} />
-
         <Route path="/admin/shops/shop_srch" element={<ShopSearch />} />
-
         <Route path="/admin/shops/shop_srch/update" element={<ShopUpdate />} />
-
         {/* temparary route */}
         <Route path="/admin/items/update" element={<ItemUpdate />} />
-
         {/*  6/13 routing */}
-
         <Route path="/admin/add/item" element={<ItemAdd />} />
-
         {/* <Routes path="/admin/shop/register" element={<ShopRegistration />} /> */}
       </Routes>
     </div>

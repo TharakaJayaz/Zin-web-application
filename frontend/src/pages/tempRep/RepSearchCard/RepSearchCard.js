@@ -3,8 +3,15 @@ import classes from "./RepSearchCard.module.css";
 import user from "../../../assets/userImage.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { repUpdateAction } from "../../../store";
+import swal from "sweetalert";
 
 const RepSearchCard = (props) => {
+
+  const [deleteLogic,setDeleteLogic] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   //   const [datas, setData] = useState({
   //     date: " ",
   //     password: " ",
@@ -52,8 +59,45 @@ const RepSearchCard = (props) => {
   // });
 
   const handleUpdate = () => {
+    console.log("update btn clicked");
+    dispatch(repUpdateAction.add({name:props.name,
+      nic:props.nic,
+      mobile:props.mobile,
+      email:props.email,
+      address:props.address,
+      id:props.id
+
+    }));
+
     navigate("/admin/repUpdate");
   };
+
+  const handleDelete = async () =>{
+    setDeleteLogic(true);
+        console.log("RID",props.id)
+  
+
+    // 
+
+  }
+
+  const yesBtnHandler = async ()  =>{
+      try {
+      await axios.delete("http://localhost:8800/reps_confirm/" + props.id);
+      setDeleteLogic(false);
+      window.location.reload();
+      
+    } catch (err) {
+      console.log(err);
+    }
+
+
+
+  }
+
+  const noBtnHandler = ()  =>{
+        setDeleteLogic(false);
+  }
 
   // hello
   //     try {
@@ -66,7 +110,7 @@ const RepSearchCard = (props) => {
   //     }
   //   };
 
-  const navigate = useNavigate();
+  
   return (
     // <div className={classes.repCard_main_div}>
     //   <div className={classes.repCard_second_div}>
@@ -126,6 +170,15 @@ const RepSearchCard = (props) => {
     // </div>
     <div className={classes.repCard_main_div}>
       <div className={classes.repCard_second_div}>
+      { deleteLogic &&(<div className={classes.err_div}>
+        <div className={classes.err_div_msg}>
+          <section className={classes.err_div_msg_sec1}>Do You Want To Remove This Rep details ? </section>
+          <section className={classes.err_div_msg_sec2}>
+            <button className={classes.bt1} onClick={yesBtnHandler} >Yes</button>
+            <button className={classes.bt2} onClick={noBtnHandler} >No</button>
+          </section>
+        </div>
+      </div>)}
         <img src={user} alt="user" className={classes.repCard_image} />
         <table className={classes.repCard_table}>
           <tbody>
@@ -213,7 +266,7 @@ const RepSearchCard = (props) => {
             </button>
           
           
-            <button className={classes.repCard_Button_cancel}>Delete</button>
+            <button    onClick={handleDelete}  className={classes.repCard_Button_cancel}>Delete</button>
           
         </div>
       </div>
