@@ -510,7 +510,7 @@ app.post("/userpw", (req, res) => {
             expiresIn: "2h"
           });
 
-          console.log("Successfully found user")
+        console.log("Successfully found user")
         res.send({
           status: true,
           token,
@@ -574,7 +574,7 @@ app.post("/userreg", (req, res) => {
 
 app.post("/stock", upload.single('image'), (req, res) => {
   const p = "INSERT INTO `codewithx_Project`.`stock_product` (`stockID`, `qty`, `productname`, `name`, `price`, `manufacturedate`, `expirydate`, `discount`,image) VALUES (?,?,?,?,?,?,?,?,?);"
-  
+
 
   const values = [
     req.body.stockID,
@@ -589,15 +589,51 @@ app.post("/stock", upload.single('image'), (req, res) => {
   ];
   console.log(values);
   db.query(p, values, (err, data) => {
-    
+
     if (err) {
       console.log(err)
       return res.json(err)
     }
-    else{
+    else {
       return res.json("successfull");
     }
-    
+
+  })
+
+})
+
+app.get("/shopadd", (req, res) => {
+
+  console.log("called");
+
+  const p = "INSERT INTO `codewithx_Project`.`shop` (`SID`, `email`, `shop_name`, `location`, `address`, `Fname`, `Lname`, `phoneNo`, `NIC`, `Rcode`) VALUES ((?), (?), (?), (?), (?), (?), (?), (?), (?), (?));"
+
+
+  const values = [
+    req.body.SID,
+    req.body.email,
+    req.body.shop_name,
+    req.body.location,
+    req.body.address,
+    req.body.Lname,
+    req.body.Fname,
+    req.body.phoneNo,
+    req.body.NIC,
+    req.body.Rcode
+  ];
+
+  console.log(values);
+
+  db.query(p, values, (err, data) => {
+
+    if (err) {
+      console.log(err)
+      return res.json(err)
+    }
+    else {
+      return res.json("successfull");
+    }
+
   })
 
 })
@@ -652,15 +688,15 @@ app.post("/deleteItem", (req, res) => {
   const values = [req.body.id];
 
   db.query(q, values, (err, data) => {
-    if (err){
+    if (err) {
       console.log(err)
       return res.json(err);
-    } 
-    else{
+    }
+    else {
       console.log("success")
       return res.json("successfull");
     }
-    
+
   });
 });
 

@@ -233,3 +233,19 @@ const RegisterRep = () => {
 };
 
 export default RegisterRep;
+/*const ShopRegistration =()=>{
+    const SIDinputRef = useRef();
+    const emailinputRef = useRef();
+    const shop_nameinputRef = useRef();
+    const locationinputRef = useRef();
+    const  FnameinputRef = useRef();
+    const LnameinputRef = useRef();
+    const phoneNoinputRef = useRef();
+    const NICinputRef = useRef();
+    const RcodeinputRef = useRef();
+    
+    const [emailValidLogic, setEmailValidLogic] = useState();
+    const [nicValidLogic, setNicValidLogic] = useState();
+    const[buttonLogic,setButtonLogic] = useState(false);
+    
+    const navigation = useNavigate();*/
