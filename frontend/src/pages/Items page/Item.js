@@ -4,6 +4,7 @@ import NavbarAdmin from "../../ui/navbar/NavbarAdmin";
 import ItemCard from "./ItemCard";
 import { FaSearch } from "react-icons/fa";
 import background from '../../assets/Background vector group.png';
+import Table from 'react-bootstrap/Table';
 
 
 import axios from 'axios';
@@ -14,6 +15,7 @@ function Item() {
 
   useEffect(() => {
     const fetchData = async () => {
+      debugger;
       try {
         const response = await axios.get('http://localhost:8800/stock');
         setStockData(response.data);
@@ -27,14 +29,15 @@ function Item() {
 
   return (
     <div>
+      <NavbarAdmin />
 
-
-      <div className={classes.updt_div}>
+      <div className={classes.updt_div} style={{ padding: "60px" }}>
 
         {stockData.length > 0 ? (
-          <table>
+          <Table striped bordered hover>
             <thead>
               <tr>
+                <th>Image</th>
                 <th>Stock ID</th>
                 <th>Qty</th>
                 <th>Product Name</th>
@@ -48,6 +51,7 @@ function Item() {
             <tbody>
               {stockData.map((item, index) => (
                 <tr key={index}>
+                  <td><img src={"http://localhost:8800/static/" + item.image} height={60} width={60} /></td>
                   <td>{item.stockID}</td>
                   <td>{item.qty}</td>
                   <td>{item.productname}</td>
@@ -59,12 +63,10 @@ function Item() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         ) : (
           <p>Loading stock data...</p>
         )}
-
-        <img src={background} alt='background vector' className={classes.back_img} />
       </div>
     </div>
   );

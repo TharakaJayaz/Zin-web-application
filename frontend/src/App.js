@@ -40,8 +40,6 @@ function App() {
 
         <Route path='/stock_keeper/stock/stock_update' element={<StockUpdate />} />
 
-
-
         <Route path="/admin/temp_reps" element={<TempRep />} />
 
         <Route path="/admin/repUpdate" element={<UpdateRep />} />

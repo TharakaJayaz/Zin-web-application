@@ -106,16 +106,12 @@ const PopupMessageForUpdate = ({ onClose, data }) => {
                     justifyContent: 'center',
                 }}
             >
-                <form onSubmit={formSubmitHandler} className={classes.form_main}>
+                <form onSubmit={formSubmitHandler} className={classes.form_main} >
                     <h2 className={classes.form_heading}>
                         Update Item
                     </h2>
                     <table className={classes.form_table}>
                         <tbody>
-
-
-
-
                             <tr style={{ margin: '50px' }} className={classes.form_tr1}>
                                 <td>
                                     StockID <br></br>
