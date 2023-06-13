@@ -1,10 +1,4 @@
 
-// import classes from "./ShopRegistration.css"
-// import backgroundDesign from "../../assets/Background vector group.png";
-// import React, { useRef, useState } from 'react';
-// import axios from 'axios';
-// import logo from "./src/assets/zr red.png";
-// import { useNavigate } from "react-router-dom";
 import classes from "./ShopRegistration.css";
 import backgroundDesign from "../assets/Background vector group.png";
 import React, { useRef, useState } from 'react';
@@ -31,6 +25,7 @@ const ShopRegistration = () => {
   const [buttonLogic, setButtonLogic] = useState(false);
 
   const navigation = useNavigate();
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
@@ -47,9 +42,14 @@ const ShopRegistration = () => {
       Rcode: RcodeInputRef.current.value,
     };
 
-    if (
-      Object.values(inputValues).some((value) => value.trim() === '')
-    ) {
+    // if (
+    //   Object.values(inputValues).some((value) => value.trim() === '')
+    // ) 
+    if (inputValues.SID.trim() === '' || inputValues.email.trim() === '' || inputValues.shop_name.trim() === '' || inputValues.location.trim() === '' || inputValues.address.trim() === '' || inputValues.Fname.trim() === '' || inputValues.Lname.trim() === '' || inputValues.phoneNo.trim() === '' || inputValues.NIC.trim() === ''||
+    inputValues.Rcode.trim()=='')
+    
+    
+    {
       setValidationLogic(true);
       return;
     }
@@ -132,16 +132,16 @@ const ShopRegistration = () => {
                 </tbody>
             </table>
         
-            <button type="submit">Register Shop</button>
+            {/* <button type="submit">Register Shop</button> */}
           </form>
           {validationLogic && (
-            <p>All inputs should be filled*</p>)}
+            <p className={classes.err_para}>All inputs should be filled*</p>)}
              <div className={classes.form_button_div}>
             <button type="submit" className={classes.form_cancel} >
               {" "}
               Cancel
             </button>
-            {/* <button className={classes.form_continue} onClick={formSubmitHandler}>Continue</button> */}
+            <button className={classes.form_continue} onClick={formSubmitHandler}>Register</button>
           </div>
         </div>
       ) : (

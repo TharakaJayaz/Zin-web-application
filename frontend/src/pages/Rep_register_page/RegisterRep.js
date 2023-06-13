@@ -55,7 +55,9 @@ const RegisterRep = () => {
       address: addressInputRef.current.value,
     }
 
-    if (inputValues.rid.trim() === '' || inputValues.nic.trim() === '' || inputValues.registrationdate.trim() === '' || inputValues.fullname.trim() === '' || inputValues.password.trim() === '' || inputValues.email.trim() === '' || inputValues.phonenumber.trim() === '' || inputValues.type.trim() === '' || inputValues.address.trim() === '') {
+    if (inputValues.rid.trim() === '' || inputValues.nic.trim() === '' || inputValues.registrationdate.trim() === '' || inputValues.fullname.trim() === '' || inputValues.password.trim() === '' || inputValues.email.trim() === '' || inputValues.phonenumber.trim() === '' || inputValues.type.trim() === '' || inputValues.address.trim() === '')
+    
+    {
       setValidationLogic(false);
       console.log('setting true')
       return;
@@ -160,51 +162,51 @@ const RegisterRep = () => {
             <tbody>
               <tr className={classes.form_tr1}>
                 <td>
-                  rid <br></br>
+                  RID: <br></br>
                   <input ref={ridInputRef} type="text" className={classes.form_inputs} />
                 </td>
                 <td>
-                  nic <br></br>
+                  NIC: <br></br>
                   <input ref={nicInputRef} type="text" className={classes.form_inputs} />
                 </td>
                 <td>
-                  registrationdate<br></br>
+                  Registrationdate:<br></br>
                   <input ref={registrationdatelInputRef} type="date" className={`${classes.form_inputs} ${emailValidLogic && (classes.err_style)}`} />
                 </td>
               </tr>
               <tr className={classes.form_tr2}>
                 <td>
-                  fullname<br></br>
+                  Fullname:<br></br>
                   <input ref={fullnameInputRef} type="text" className={classes.form_inputs} />
                 </td>
                 <td>
-                  Password <br></br>
+                  Password: <br></br>
                   <input ref={passwordInputRef} type="password" className={`${classes.form_inputs} ${passwordValidLogic && (classes.err_style)}`} />
                 </td>
                 <td>
-                  Confirm Password <br></br>
+                  Confirm Password: <br></br>
                   <input ref={confirmPasswordInputRef} type="password" onBlur={onBlurConfirmPassword} className={`${classes.form_inputs} ${passwordValidLogic && (classes.err_style)}`} />
                   <label style={{ color: "red" }}>{confirmPasswordError}</label>
                 </td>
 
                 <td>
-                  email <br></br>
+                  Email: <br></br>
                   <input ref={emailInputRef} type="email" className={`${classes.form_inputs} ${emailValidLogic && (classes.err_style)}`} />
                 </td>
               </tr>
               <tr className={classes.form_tr3}>
                 <td>
-                  phonenumber <br></br>
+                  Phonenumber: <br></br>
                   <input ref={phoneNoInputRef} type="text" className={classes.form_inputs} />
                 </td>
 
                 <td>
-                  type <br></br>
+                  Type: <br></br>
                   <input ref={typeInputRef} type="text" className={classes.form_inputs} />
                 </td>
 
                 <td>
-                  address <br></br>
+                  Address: <br></br>
                   <input ref={addressInputRef} type="text" className={classes.form_inputs}
                   />
                 </td>
@@ -233,19 +235,3 @@ const RegisterRep = () => {
 };
 
 export default RegisterRep;
-/*const ShopRegistration =()=>{
-    const SIDinputRef = useRef();
-    const emailinputRef = useRef();
-    const shop_nameinputRef = useRef();
-    const locationinputRef = useRef();
-    const  FnameinputRef = useRef();
-    const LnameinputRef = useRef();
-    const phoneNoinputRef = useRef();
-    const NICinputRef = useRef();
-    const RcodeinputRef = useRef();
-    
-    const [emailValidLogic, setEmailValidLogic] = useState();
-    const [nicValidLogic, setNicValidLogic] = useState();
-    const[buttonLogic,setButtonLogic] = useState(false);
-    
-    const navigation = useNavigate();*/
