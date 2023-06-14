@@ -64,7 +64,7 @@ const PopupMessageForUpdate = ({ onClose, data }) => {
 
     const formSubmitHandler = async (event) => {
         event.preventDefault();
-        console.log(stockIDInputRef.current.value, qtyInputRef.current.value, productnameInputRef.current.value, nameInputRef.current.value);
+        console.log(stockIDInputRef.current.value, qtyInputRef.current.value, productnameInputRef.current.value, nameInputRef.current.value,imageInputRef.current.value);
         debugger;
         const itemData = {
             stockID: stockIDInputRef.current.value,

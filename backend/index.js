@@ -430,6 +430,16 @@ app.get("/stock", (req, res) => {
 })
 
 
+app.get("/feedback", (req, res) => {
+  const p = "SELECT * FROM feedback"
+  db.query(p, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  })
+})
+
+
+
 app.get("/salesreptemp", (req, res) => {
   const q = "SELECT * FROM Sales_repTemp"
   db.query(q, (err, data) => {

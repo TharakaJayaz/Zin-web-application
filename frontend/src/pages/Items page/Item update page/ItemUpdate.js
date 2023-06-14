@@ -85,7 +85,7 @@ function ItemUpdate() {
 
                 <div className='container'>
                     <div className='mt-3'>
-                        <h2>-------------------------ITEMS FETCHED.-------------------------</h2>
+                        <h2 >  -------------------------ITEMS FETCHED.------------------------- </h2>
                         <br></br>
                         {stockData.length > 0 ? (
                             <>

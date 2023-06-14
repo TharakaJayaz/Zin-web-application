@@ -16,6 +16,7 @@ import TempRep from "./pages/tempRep/TempRep";
 import UpdateRep from "./pages/updateRep/UpdateRep";
 import StockUpdate from './pages/stock page/stock update/StockUpdate';
 import ShopRegistration from './pages/ShopRegistration';
+import FeedbackReport from "./pages/FeedbackReport";
 
 function App() {
   return (
@@ -53,6 +54,8 @@ function App() {
         {/* temparary route */}
         <Route path="/admin/items/update" element={<ItemUpdate />} />
         <Route path="/admin/shop/register" element={<ShopRegistration />} />
+        
+        {/* <Route path="/admin/feedback" element={<FeedbackReport />} /> */}
         
       </Routes>
     </div>

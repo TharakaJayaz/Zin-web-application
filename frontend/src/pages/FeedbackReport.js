@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import classes from "./Reports.Module.css";
+import classes from "./FeedbackReportModule.css";
 //import NavbarAdmin from "../../ui/navbar/NavbarAdmin";
 //import ItemCard from "./ItemCard";
 // import { FaSearch } from "react-icons/fa";
 // import background from '../../assets/Background vector group.png';
 import Table from 'react-bootstrap/Table';
-//import NavbarAdmin from "../../../ui/navbar/NavbarAdmin";
+
 
 import axios from 'axios';
 import { Navigate } from "react-router-dom";
@@ -46,7 +46,6 @@ function FeedbackReport() {
             <tbody>
               {stockData.map((item, index) => (
                 <tr key={index}>
-
                   {/* <td><img src={"http://localhost:8800/static/" + item.image} height={60} width={60} /></td> */}
                   <td>{item.FID}</td>
                   <td>{item.comment}</td>
