@@ -5,7 +5,7 @@ const ShopCard = (props) => {
   return (
     <div className={`${classes.card_main} ${props.className}`}>
       <section className={classes.card_sec1}>
-        <h2>Shop ID : <span>{props.details.id}</span> </h2>
+        <h2>Shop ID : <span>{props.details.SID}</span> </h2>
       </section>
       <section className={classes.card_sec2}>
         <table>
@@ -13,34 +13,34 @@ const ShopCard = (props) => {
             <tr>
               <td>
                 Shop name
-                <span>{props.details.shopName}</span>
+                <span>{props.details.shop_name}</span>
               </td>
 
               <td>
                 Owner name
-                <span>{props.details.ownerName}</span>
+                <span>{props.details.Fname}</span>
               </td>
 
               <td>
                 NIC
-                <span>{props.details.nic}</span>
+                <span>{props.details.NIC}</span>
               </td>
             </tr>
 
             <tr>
               <td>
-                Sex
-                <span>{props.details.sex}</span>
+               Rcode
+                <span>{props.details.Rcode}</span>
               </td>
 
               <td>
                 Mobile
-                <span>{props.details.mobile}</span>
+                <span>{props.details.phoneNo}</span>
               </td>
 
               <td>
-                DOB
-                <span>{props.details.dob}</span>
+                Location
+                <span className={classes.location_styl}>{props.details.location}</span>
               </td>
             </tr>
 

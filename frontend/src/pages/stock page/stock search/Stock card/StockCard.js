@@ -15,7 +15,7 @@ const StockCard = (props) => {
           salesRep:props.data.srep,
           vehicle:props.data.vehicle,
           route:props.data.route,
-          itemList:props.data.itemlist
+          itemList:props.data.Itemlist
          }))
     navigation('/stock_keeper/stock/stock_update');
   }
@@ -26,7 +26,7 @@ const StockCard = (props) => {
     salesRep:props.data.srep,
     vehicle:props.data.vehicle,
     route:props.data.route,
-    itemList:props.data.itemlist
+    itemList:props.data.Itemlist
    });
   return (
     <div className={classes.stockCard_main}>
@@ -55,7 +55,7 @@ const StockCard = (props) => {
               </tr>
               <tr>
                 <td>
-                  Item list<br></br> <span>{props.data.itemlist} </span>
+                  Item list<br></br> <span>{props.data.Itemlist} </span>
                 </td>
                 <td></td>
               </tr>

@@ -4,6 +4,7 @@ import logo from "../../../assets/zr red.png";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
+import swal from 'sweetalert';
 
 const NewStock = () => {
   const navigation = useNavigate();
@@ -98,7 +99,8 @@ const NewStock = () => {
         console.log("this is post error",err);
       }
 
-      
+      swal("Done!", "You added new stock list!", "success");
+      window.location.reload();
 
   }
   return (

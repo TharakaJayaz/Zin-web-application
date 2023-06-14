@@ -5,8 +5,10 @@ import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import PopupMessageForDelete from '../popupMessageForDelete'; // Import the component responsible for displaying the popup message
 import PopupMessageForUpdate from '../popupMessageForUpdate';
+import NavbarAdmin from "../../../ui/navbar/NavbarAdmin";
 import axios from 'axios';
-import NavbarAdmin from '../../../ui/navbar/NavbarAdmin';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 // const ItemUpdate = () => {
 //   return (
@@ -15,7 +17,6 @@ import NavbarAdmin from '../../../ui/navbar/NavbarAdmin';
 //        <img src = {background} alt = 'background vector'   className={classes.back_img}/>
 //     </div>
 //   )
-
 // }
 
 
@@ -52,7 +53,6 @@ function ItemUpdate() {
     }, []);
 
     const handleUpdate = (item) => {
-        debugger;
         setUpdatePopupData(item);
         setshowpopupupdate(true);
     }
@@ -63,12 +63,10 @@ function ItemUpdate() {
         setShowPopup(true);
     }
 
-    const handleDisplay = () => {
-        setShowTable(!showTable);
-    };
 
     return (
         <div style={{ position: "relative" }}>
+
             <NavbarAdmin />
 
             <div style={{ position: "absolute", zIndex: 200, margin: 'auto', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -87,49 +85,49 @@ function ItemUpdate() {
 
                 <div className='container'>
                     <div className='mt-3'>
-                        <h2>-------------------------ITEMS FETCHED.-------------------------</h2>
+                        <h2 >  -------------------------ITEMS FETCHED.------------------------- </h2>
                         <br></br>
                         {stockData.length > 0 ? (
                             <>
-                                <table calssname=' table-bordered'>
+                                <Table striped bordered hover>
                                     <thead>
                                         <tr>
-                                            &nbsp;&nbsp;  <th style={{ border: '1px solid black', padding: '8px' }}>Stock ID</th>
-                                            &nbsp;&nbsp;  <th style={{ border: '1px solid black', padding: '8px' }}>Qty</th>
-                                            &nbsp;&nbsp; <th style={{ border: '1px solid black', padding: '8px' }}>Product Name</th>
-                                            &nbsp;&nbsp; <th style={{ border: '1px solid black', padding: '8px' }}>Name</th>
-                                            &nbsp;&nbsp; <th style={{ border: '1px solid black', padding: '8px' }}>Price</th>
-                                            &nbsp;&nbsp; <th style={{ border: '1px solid black', padding: '8px' }}>Manufacture Date</th>
-                                            &nbsp;&nbsp; <th style={{ border: '1px solid black', padding: '8px' }}>Expiry Date</th>
-                                            &nbsp;&nbsp; <th style={{ border: '1px solid black', padding: '8px' }}>Discount</th>
+                                            <th>Stock ID</th>
+                                            <th>Qty</th>
+                                            <th>Product Name</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Manufacture Date</th>
+                                            <th>Expiry Date</th>
+                                            <th>Discount</th>
+                                            <th>Operations</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {stockData.map((item, index) => (
                                             <tr key={index}>
-                                                &nbsp;&nbsp; <td style={{ border: '1px solid black', padding: '8px' }}>{item.stockID} </td>
-                                                &nbsp;&nbsp;<td style={{ border: '1px solid black', padding: '8px' }}>{item.qty} </td>
-                                                &nbsp;&nbsp;<td style={{ border: '1px solid black', padding: '8px' }}>{item.productname} </td>
-                                                &nbsp;&nbsp; <td style={{ border: '1px solid black', padding: '8px' }}>{item.name} </td>
-                                                &nbsp;&nbsp; <td style={{ border: '1px solid black', padding: '8px' }}>{item.price} </td>
-                                                &nbsp;&nbsp; <td style={{ border: '1px solid black', padding: '8px' }}>{item.manufacturedate} </td>
-                                                &nbsp;&nbsp; <td style={{ border: '1px solid black', padding: '8px' }}>{item.expirydate} </td>
-                                                &nbsp;&nbsp;<td style={{ border: '1px solid black', padding: '8px' }}>{item.discount}</td>
+                                                <td>{item.stockID} </td>
+                                                <td>{item.qty} </td>
+                                                <td>{item.productname} </td>
+                                                <td>{item.name} </td>
+                                                <td>{item.price} </td>
+                                                <td>{item.manufacturedate} </td>
+                                                <td>{item.expirydate} </td>
+                                                <td>{item.discount}</td>
                                                 <td>
-                                                    <button onClick={() => handleUpdate(item)}>Update</button>
-                                                    &nbsp;&nbsp;
-                                                    <button onClick={() => handledelete(item.stockID)}>delete</button>
-
+                                                    <span style={{ paddingRight: "15px" }}>
+                                                        <Button variant="outline-info" onClick={() => handleUpdate(item)}>Update</Button>
+                                                    </span>
+                                                    <span>
+                                                        <Button variant="outline-danger" onClick={() => handledelete(item.stockID)}>delete</Button>
+                                                    </span>
                                                 </td>
                                             </tr>
                                         ))}
                                     </tbody>
-                                </table>
+                                </Table>
                                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    <button style={{ margin: "auto" }} onClick={handleDisplay}>
-                                        <br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <Link to="/admin/items"> DISPLAY </Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                                    </button>
+                                    <Link to="/admin/items" className="btn btn-primary">DISPLAY</Link>
                                 </div>
                             </>
                         ) : (

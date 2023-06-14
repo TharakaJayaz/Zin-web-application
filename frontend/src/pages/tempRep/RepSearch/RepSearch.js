@@ -24,61 +24,6 @@ const RepSearch = (props) => {
   const details = reps;
   // const details = [
   //   {
-  //     id: 1,
-  //     name: "tharaka",
-  //     gender:"male",
-  //     mobile: "0718736614",
-  //     bdate:"1999-01-02",
-  //     nic: "992505729V",
-  //     rdate: "2023-03-19",
-  //     address: "192/16 bokotuwa junction,ethpitiya,walasmulla",
-  //     email: "tha1@gmail.com",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "prabhath",
-  //     gender:"male",
-  //     mobile: "0779256365",
-  //     bdate:"2000-01-02",
-  //     nic: "992505730V",
-  //     rdate: "2023-03-20",
-  //     address: "162/4 nawala road,dehiwala",
-  //     email: "pra1@gmail.com",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "tharaki",
-  //     gender:"male",
-  //     mobile: "0472245591",
-  //     bdate:"1999-02-02",
-  //     nic: "992505731V",
-  //     rdate: "2023-03-29",
-  //     address: "122/3 piliandala road,maharagama",
-  //     email: "jay12@mail.com",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "tharuka",
-  //     gender:"male",
-  //     mobile: "0778776614",
-  //     bdate:"1989-08-02",
-  //     nic: "992505729V",
-  //     rdate: "2023-02-9",
-  //     address: "123/6,new road horana,mawanalla",
-  //     email: "tharu12@gmail.com",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "janith",
-  //     gender:"male",
-  //     mobile: "0778736614",
-  //     bdate:"1989-07-02",
-  //     nic: "992505749V",
-  //     rdate: "2023-01-9",
-  //     address: "145/6 kumarasingha kuliyapitiya",
-  //     email: "janith`@gmail.com",
-  //   },
-  //   {
   //     id: 6,
   //     name: "jayasingha",
   //     gender:"male",
@@ -106,7 +51,7 @@ const RepSearch = (props) => {
     event.preventDefault();
     // console.log('entered name',inputValue)
     for (let i = 0; i < details.length; i++) {
-      if (details[i].fullname === inputValue) {
+      if (details[i].fullname.toLowerCase().trim() === inputValue) {
         setDisplayDetials(details[i]); // set values of matching representative to display card
         setDisplayLogic(true);
         console.log(displayDetails);
@@ -176,7 +121,7 @@ const RepSearch = (props) => {
                   <tr
                     key={detial.RID}
                     className={classes.map_raw}
-                    onClick={() => trHandler(detial.fullname)}
+                    onFocus={() => trHandler(detial.fullname)}
                   >
                     <td>{detial.fullname}</td>
                     <td>{detial.phoneNo}</td>

@@ -97,23 +97,27 @@ const shopUpdateSlice = createSlice({
     shopName: "",
     ownerName: "",
     nic: "",
+    Rcode:"",
     mobile: "",
-    email: "",
-    dob: "",
+    location:"",
     address: "",
-    sex: "",
+    email: "",
+    
+    
+    
   },
   reducers:{
     add(state,action){
-      state.id = action.payload.id;
-      state.shopName = action.payload.shopName;
-      state.ownerName = action.payload.ownerName;
-      state.nic = action.payload.nic;
-      state.mobile = action.payload.mobile;
+      state.id = action.payload.SID;
+      state.shopName = action.payload.shop_name;
+      state.ownerName = action.payload.Fname + " " + action.payload.Lname ;
+      state.nic = action.payload.NIC;
+      state.mobile = action.payload.phoneNo;
       state.email = action.payload.email;
-      state.dob = action.payload.dob;
+      state.Rcode = action.payload.Rcode;
+      state.location = action.payload.location;
       state.address = action.payload.address;
-      state.sex = action.payload.sex;
+      
     }
   }
 });

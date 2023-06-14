@@ -201,7 +201,7 @@ const RegisterRep = () => {
                 </td>
 
                 <td>
-                  Type: <br></br>
+                  Sex: <br></br>
                   <input ref={typeInputRef} type="text" className={classes.form_inputs} />
                 </td>
 

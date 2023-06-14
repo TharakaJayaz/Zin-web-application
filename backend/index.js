@@ -106,6 +106,14 @@ app.get("/stock", (req, res) => {
   });
 });
 
+app.get("/feedback", (req, res) => {
+  const p = "SELECT * FROM feedback";
+  db.query(p, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
 app.get("/salesreptemp", (req, res) => {
   const q = "SELECT * FROM Sales_repTemp";
   db.query(q, (err, data) => {
@@ -411,11 +419,7 @@ app.delete("/reps/:rid", (req, res) => {
   });
 });
 
-
-
-// get confiremd sales reps details 
-
-
+// get confiremd sales reps details
 
 app.get("/reps_confirm", (req, res) => {
   const q = "SELECT * FROM sales_rep_confirm";
@@ -425,32 +429,25 @@ app.get("/reps_confirm", (req, res) => {
   });
 });
 
-
 //delete confirmed rep data
 
-app.delete("/reps_confirm/:id" ,(req,res)=>{
+app.delete("/reps_confirm/:id", (req, res) => {
   const repId = req.params.id;
   const q = "DELETE FROM sales_rep_confirm WHERE RID= ?";
 
- 
-
-  db.query(q,[repId],(err,data)=>{
-    if(err) return res.json(err);
+  db.query(q, [repId], (err, data) => {
+    if (err) return res.json(err);
     return res.json("rep has been deleted");
-  })
-})
+  });
+});
 
+// update specific rep details
 
-
-// update specific rep details 
-
-
-app.put("/reps_update/:id" ,(req,res)=>{
+app.put("/reps_update/:id", (req, res) => {
   const repID = req.params.id;
- 
 
-
-  const q = "UPDATE sales_rep_confirm SET  `NIC` = ?,  `fullname` = ?, `email` = ?, `phoneNo` = ?,`address` = ? WHERE RID =?";
+  const q =
+    "UPDATE sales_rep_confirm SET  `NIC` = ?,  `fullname` = ?, `email` = ?, `phoneNo` = ?,`address` = ? WHERE RID =?";
 
   const values = [
     req.body.nic,
@@ -458,14 +455,13 @@ app.put("/reps_update/:id" ,(req,res)=>{
     req.body.email,
     req.body.mobile,
     req.body.address,
-]
+  ];
 
-  db.query(q,[...values,repID],(err,data)=>{
-    if(err) return res.json(err);
+  db.query(q, [...values, repID], (err, data) => {
+    if (err) return res.json(err);
     return res.json("Rep has been update");
-  })
+  });
 });
-
 
 // write stock list data in data base
 
@@ -478,13 +474,12 @@ app.post("/stocklist", (req, res) => {
 
   const values = [
     req.body.ID,
-    
+
     req.body.date,
     req.body.srep,
     req.body.vehicle,
     req.body.route,
     req.body.itemlist,
-   
   ];
 
   db.query(q, [values], (err, data) => {
@@ -492,8 +487,6 @@ app.post("/stocklist", (req, res) => {
     return res.json("stock list has been added");
   });
 });
-
-
 
 // get stock list data in database
 
@@ -505,7 +498,116 @@ app.get("/stocklist", (req, res) => {
   });
 });
 
+// update stck list
 
+
+
+// get temp shop details
+
+app.get("/shoptemp", (req, res) => {
+  const q = "SELECT * FROM shop";
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
+// get  shop details
+
+app.get("/shopconfirm", (req, res) => {
+  const q = "SELECT * FROM shop_confirm";
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
+// write confirmed shop detail in backend
+
+
+app.post("/shopconfirm", (req, res) => {
+;
+
+
+    const q = "INSERT INTO shop_confirm (`SID`, `email`, `shop_name`, `location`, `address`, `Fname`, `Lname`, `phoneNo`, `NIC`, `Rcode`) VALUES (?);"
+
+  const values = [
+    req.body.SID,
+
+    req.body.email,
+    req.body.shop_name,
+    req.body.location,
+    req.body.address,
+    req.body.Fname,
+    req.body.Lname,
+    req.body.phoneNo,
+    req.body.NIC,
+    req.body.Rcode,
+  ];
+
+  db.query(q, [values], (err, data) => {
+    if (err) return res.json(err);
+    return res.json("stock list has been added");
+  });
+});
+
+// delete confiremed data from shop table
+
+
+app.delete("/shopconfirm/:id", (req, res) => {
+  const sid = req.params.id;
+  const q = "DELETE FROM shop WHERE SID= ?";
+
+  db.query(q, [sid], (err, data) => {
+    if (err) return res.json(err);
+    return res.json("shop has been deleted");
+  });
+});
+
+
+
+// update shop details
+
+
+app.put("/shopconfirm/:id", (req, res) => {
+  const repID = req.params.id;
+ 
+
+
+  const q =
+    "UPDATE shop_confirm SET   `email` = ?, `shop_name` = ?, `location` = ?,`address` = ?,`Fname` = ?  , `Lname` = ? ,`phoneNo` = ?  , `NIC` = ? ,`Rcode` =?   WHERE SID =?";
+
+  const values = [
+    req.body.email,
+    req.body.shop_name,
+    req.body.location,
+    
+    req.body.address,
+    req.body.Fname,
+    req.body.Lname,
+    req.body.phoneNo,
+    req.body.NIC,
+    req.body.Rcode,
+  ];
+
+  db.query(q, [...values, repID], (err, data) => {
+    if (err) return res.json(err);
+    return res.json("Rep has been update");
+  });
+});
+
+// delete confiremed data from shop table
+
+
+app.delete("/shopconfirmdelete/:id", (req, res) => {
+  const sid = req.params.id;
+  const q = "DELETE FROM shop_confirm WHERE SID= ?";
+
+  db.query(q, [sid], (err, data) => {
+    if (err) return res.json(err);
+    return res.json("shop has been deleted");
+  });
+});
 
 app.use((req, res, next) => {
   res.status(404).json({

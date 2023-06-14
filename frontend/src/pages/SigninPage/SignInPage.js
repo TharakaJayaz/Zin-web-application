@@ -14,8 +14,13 @@ const SignInPage = () => {
   const navigate = useNavigate();//hook provided by the react-router-dom
 //hooks can make the code readable and easier to maintain.allows developoers to add state and other features to functional components.
   const checkUser = value => {
-    // debugger;
-    navigate('/admin/temp_reps')
+    const regex = /^Ad/;
+    
+    if (regex.test(value)) {
+      navigate('/admin/temp_reps');
+    } else {
+      navigate('/stock_keeper/item_list');
+    }
     // if (value === 'http://localhost:8800/user') {
     //   navigate('/admin/temp_reps')
     // //} else if (value === 'stock') {
@@ -33,6 +38,7 @@ const SignInPage = () => {
     setEnteredPassword(event.target.value);
   };
 
+  // handle the submition of the signin
   const submitHandler = (event) => {
     event.preventDefault();
     console.log(enteredUsername, enteredPassword);
@@ -40,7 +46,6 @@ const SignInPage = () => {
       userid: enteredUsername,
       password: enteredPassword,
     }).then(data => {
-      debugger;
       if (data.data.status) {
         console.log("Loged in");
         checkUser(enteredUsername);
@@ -68,7 +73,7 @@ const SignInPage = () => {
           <p className={classes.signIn_third_div_para}>
             Hello there! Sign in and manage <br></br>your works
           </p>
-          {isVerified ? <></> : <p className={classes.err_msg}>Invalid Credentials</p>}
+          {isVerified ? <></> : <p>Invalid Credentials</p>}
           <form
             className={classes.signIn_third_div_input_form}
             onSubmit={submitHandler}

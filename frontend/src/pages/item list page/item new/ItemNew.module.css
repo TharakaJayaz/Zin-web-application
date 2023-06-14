@@ -220,9 +220,12 @@
 
 .details_div_sec3 form table{
     border:none;
+    
+    
 }
 .details_div_sec3 form table tbody tr {
     border:none;
+    
 }
 
 .details_div_sec3 form table .row_head{
@@ -232,6 +235,7 @@
 
 .details_div_sec3 form table .row_data{
     background-color: transparent;
+    
     
 }
 
