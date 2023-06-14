@@ -464,7 +464,46 @@ app.put("/reps_update/:id" ,(req,res)=>{
     if(err) return res.json(err);
     return res.json("Rep has been update");
   })
-})
+});
+
+
+// write stock list data in data base
+
+app.post("/stocklist", (req, res) => {
+  // const rid = req.params.rid;
+  // const q = "INSERT INTO sales_rep (`registration_date` ,`password`,`email`,`full_name`,`RID`,`phone`,`NIC`,`address`) VALUES(?)";
+
+  const q =
+    "INSERT INTO stock_table (`ID`, `listdate`, `srep`, `vehicle`, `route`, `Itemlist`)  VALUES (?) ";
+
+  const values = [
+    req.body.ID,
+    
+    req.body.date,
+    req.body.srep,
+    req.body.vehicle,
+    req.body.route,
+    req.body.itemlist,
+   
+  ];
+
+  db.query(q, [values], (err, data) => {
+    if (err) return res.json(err);
+    return res.json("stock list has been added");
+  });
+});
+
+
+
+// get stock list data in database
+
+app.get("/stocklist", (req, res) => {
+  const q = "SELECT * FROM stock_table";
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
 
 
 

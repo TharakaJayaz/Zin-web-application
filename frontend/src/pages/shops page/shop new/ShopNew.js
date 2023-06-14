@@ -162,7 +162,7 @@ const ShopNew = () => {
                     </td>
                   </tr>
 
-                  <tr>
+                  {/* <tr>
                     <td className={classes.td_left}>NIC</td>
                     <td className={classes.td_right}>
                       <input
@@ -172,9 +172,9 @@ const ShopNew = () => {
                         value={nicvalue}
                       />
                     </td>
-                  </tr>
+                  </tr> */}
 
-                  <tr>
+                  {/* <tr>
                     <td className={classes.td_left}>Sex</td>
                     <td className={classes.td_right}>
                       <input
@@ -184,7 +184,7 @@ const ShopNew = () => {
                         value={sexvalue}
                       />
                     </td>
-                  </tr>
+                  </tr> */}
 
                   <tr>
                     <td className={classes.td_left}>Mobile</td>
@@ -197,7 +197,7 @@ const ShopNew = () => {
                       />
                     </td>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <td className={classes.td_left}>DOB</td>
                     <td className={classes.td_right}>
                       <input
@@ -207,7 +207,7 @@ const ShopNew = () => {
                         value={dobvalue}
                       />
                     </td>
-                  </tr>
+                  </tr> */}
                   <tr>
                     <td className={classes.td_left}>Address</td>
                     <td className={classes.td_right}>
@@ -220,7 +220,7 @@ const ShopNew = () => {
                     </td>
                   </tr>
 
-                  <tr>
+                  {/* <tr>
                     <td className={classes.td_left}>Email</td>
                     <td className={classes.td_right}>
                       <input
@@ -230,7 +230,7 @@ const ShopNew = () => {
                         value={emailvalue}
                       />
                     </td>
-                  </tr>
+                  </tr> */}
                 </tbody>
               </table>
               <section className={classes.sub_sec4}>

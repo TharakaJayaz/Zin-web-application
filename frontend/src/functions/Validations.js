@@ -41,4 +41,8 @@ export const nicValidationFunction = nic =>{
 }
 
 
+
+
+
+
 console.log('etst')

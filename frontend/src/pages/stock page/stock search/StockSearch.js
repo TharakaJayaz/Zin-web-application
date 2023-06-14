@@ -1,15 +1,34 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from "./StockSearch.module.css";
 import { GoSearch } from "react-icons/go";
 import details from "../../../details/StockList";
 import StockCard from "./Stock card/StockCard";
+import axios from "axios";
 
 const StockSearch = (props) => {
   const [inputValue, setInputValue] = useState();
   const [suggestLogic, setSuggestLogicValue] = useState(false);
   const [displayDetails, setDisplayDetails] = useState("");
   const [displayLogic,setDisplayLogic] = useState(false);
-  const informations = details;
+  
+
+ const [stockList,setStockList] = useState("");
+  useEffect(() => {
+    const fetchAllStockDetails = async () => {
+      try {
+        const res = await axios.get("http://localhost:8800/stocklist"); // fetching stocklist details from backend
+        setStockList(res.data); // assign backend data to tempReps
+        console.log("values from backend",res.data)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchAllStockDetails();
+    console.log("stock list from backend", stockList);
+  }, []);
+
+  const informations = stockList;
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -19,6 +38,7 @@ const StockSearch = (props) => {
     for (let i = 0; i < informations.length; i++) {
       if (informations[i].id === inputValue.trim()) {
         setDisplayDetails(informations[i]);
+        console.log("setting display details",informations[i])
       }
     }
 
@@ -70,21 +90,21 @@ const StockSearch = (props) => {
         <div className={classes.suggest_div}>
           <div className={classes.suggest_div_sub_div}>
             {informations
-              .filter((listItem) => listItem.id.includes(inputValue))
+              .filter((listItem) => listItem.ID.includes(inputValue))
               .map((list) => (
                 <div
-                  key={list.id}
+                  key={list.ID}
                   onClick={suggestDisplayHandler}
                   className={classes.suggest_div_display}
                 >
                   {" "}
-                  {list.id}
+                  {list.ID}
                 </div>
               ))}
           </div>
         </div>
       )}
-       {console.log(displayLogic)}
+       {console.log("data for card",displayDetails)}
       {displayLogic &&(<div><StockCard data = {displayDetails}/> </div>  )}
     </div>
   );

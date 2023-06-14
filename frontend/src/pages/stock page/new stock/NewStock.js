@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./NewStock.module.css";
 import logo from "../../../assets/zr red.png";
 import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import axios from "axios";
 
 const NewStock = () => {
   const navigation = useNavigate();
@@ -9,6 +11,96 @@ const NewStock = () => {
   const imgOnclickHandler = () => {
     navigation("/");
   };
+
+
+
+  const [idInput,setIdInput] = useState("");
+  const [dateInput,setDateInput] = useState("");
+  const [saleRepInput,setSaleRepInput] = useState("");
+  const [vehicleInput,setVehicleInput] = useState("");
+  const [routeInput,setRouteInput] = useState("");
+  const [itemListInput,setItemListInput] = useState("");
+ 
+
+  const idHandler = (event)  =>{
+         setIdInput(event.target.value);
+  };
+
+
+  
+  const dateHandler = (event)  =>{
+         setDateInput(event.target.value);
+  }
+
+
+  const saleRepHandler = (event)  =>{
+       setSaleRepInput(event.target.value);
+  }
+
+
+  const vehicleHandler = (event)  =>{
+      setVehicleInput(event.target.value);
+  }
+
+  const routeHandler = (event)  =>{
+     setRouteInput(event.target.value);
+  }
+ 
+  const itemListHandler = (event)  =>{
+  setItemListInput(event.target.value);
+  }
+
+
+  // const idSchema = yup.object().shape()({
+  //     id:yup.string().required()
+  // })
+
+
+
+  const canselHandler = ()  =>{
+
+  }
+
+  const confirmHandler = async (event)  =>{
+      event.preventDefault();
+      // console.log({idInput,dateInput,saleRepInput,vehicleInput,routeInput,itemListInput});
+
+      // const idValid = await idSchema.isValid({id:idInput});
+
+      // console.log(idValid);
+
+      try {
+        // await axios.post("http://localhost:8800/reps", datas);
+  
+        await axios.post("http://localhost:8800/stocklist", {
+          ID:idInput ,
+          date: dateInput,
+          srep: saleRepInput,
+          vehicle: vehicleInput,
+          route:routeInput ,
+          itemlist: itemListInput,
+         
+        });
+        // setErrStatus(true);
+        // window.location.reload();
+  
+        console.log("add to sales rep table",{
+          ID:idInput,
+          
+          date: dateInput,
+          srep: saleRepInput,
+          vehicle: vehicleInput,
+          route:routeInput,
+          itemlist: itemListInput,
+         
+        });
+      } catch (err) {
+        console.log("this is post error",err);
+      }
+
+      
+
+  }
   return (
     <div className={classes.main_div}>
       <div className={classes.detail_div}>
@@ -30,35 +122,36 @@ const NewStock = () => {
                 <tbody>
                   <tr>
                     <td>
-                      ID <input type="text" className={classes.form_inputs} />{" "}
+                      ID <input type="text"    onChange={idHandler}   value ={idInput} className={classes.form_inputs} />{" "}
                     </td>
                     <td>
-                      Date <input type="text"    className={classes.form_inputs} />{" "}
+                      Date <input type="date"  onChange={dateHandler}   className={classes.form_inputs} />{" "}
                     </td>
                     <td>
-                      Sales Rep <input type="text"   className={classes.form_inputs} />{" "}
+                      Sales Rep <input type="text"   onChange={saleRepHandler}   value={saleRepInput} className={classes.form_inputs} />{" "}
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      Vehicle <input type="text" className={classes.form_inputs} />{" "}
+                      Vehicle <input type="text"   onChange={vehicleHandler} value={vehicleInput} className={classes.form_inputs} />{" "}
                     </td>
                     <td>
-                      Route <input type="text"    className={classes.form_inputs} />{" "}
+                      Route <input type="text"  onChange={routeHandler}   value={routeInput}  className={classes.form_inputs} />{" "}
                     </td>
                     <td>
-                     Item List<input type="text"   className={classes.form_inputs} />{" "}
+                     Item List<input type="text"   onChange={itemListHandler} value={itemListInput}  className={classes.form_inputs} />{" "}
                     </td>
                   </tr>
                 </tbody>
               </table>
+              <section className={classes.detail_section2_sub3}>
+            <button className={classes.sub3_btn_cancel}   onClick={canselHandler} >Cancel</button>
+            <button className={classes.sub3_btn_confirm}  onClick={confirmHandler} >Confirm</button>
+          </section>
             </form>
           </section>
 
-          <section className={classes.detail_section2_sub3}>
-            <button className={classes.sub3_btn_cancel}>Cancel</button>
-            <button className={classes.sub3_btn_confirm}>Confirm</button>
-          </section>
+        
         </section>
       </div>
     </div>
