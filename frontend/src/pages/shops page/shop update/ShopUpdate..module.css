@@ -176,3 +176,10 @@
     color:rgb(13, 236, 13);
 
 }
+
+.err_sec{
+    display: block;
+    color:red;
+    position: relative;
+    top:-10px;
+}

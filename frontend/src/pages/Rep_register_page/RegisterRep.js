@@ -7,7 +7,6 @@ import ResitrationSuccess from "./ResitrationSuccess";
 import axios from "axios";
 import { Base64 } from 'js-base64';
 
-
 const RegisterRep = () => {
   const ridInputRef = useRef();
   const nicInputRef = useRef();
@@ -19,6 +18,8 @@ const RegisterRep = () => {
   const phoneNoInputRef = useRef();
   const typeInputRef = useRef();
   const addressInputRef = useRef();
+
+  const [selectedGender, setSelectedGender] = useState("");
 
   //validation logic values
   const [validationLogic, setValidationLogic] = useState();
@@ -54,11 +55,13 @@ const RegisterRep = () => {
       password: passwordInputRef.current.value,
       email: emailInputRef.current.value,
       phonenumber: phoneNoInputRef.current.value,
-      type: typeInputRef.current.value,
+      type: selectedGender,
       address: addressInputRef.current.value,
     }
 
-    if (inputValues.rid.trim() === '' || inputValues.nic.trim() === '' || inputValues.registrationdate.trim() === '' || inputValues.fullname.trim() === '' || inputValues.password.trim() === '' || inputValues.email.trim() === '' || inputValues.phonenumber.trim() === '' || inputValues.type.trim() === '' || inputValues.address.trim() === '') {
+
+
+    if (inputValues.rid.trim() === '' || inputValues.nic.trim() === '' || inputValues.registrationdate.trim() === '' || inputValues.fullname.trim() === '' || inputValues.password.trim() === '' || inputValues.email.trim() === '' || inputValues.phonenumber.trim() === '' || inputValues.type.trim() === '' || inputValues.address.trim() === '' || (selectedGender === '')) {
       setErrorMessage("All inputs should  be filled*");
       setValidationLogic(true);
       console.log('setting true')
@@ -71,7 +74,7 @@ const RegisterRep = () => {
     // FORM VALIDATION
     // password validation
 
-    setPasswordValidLogic(true);
+    // setPasswordValidLogic(true);
     // if(inputValues.password!== inputValues.reenterpassword){
     //   setPasswordValidLogic(true);
     //   return;
@@ -165,16 +168,15 @@ const RegisterRep = () => {
 
 
   const onBlurConfirmPassword = () => {
-    if (passwordInputRef.current.value !== confirmPasswordInputRef.current.value) {
+    if (passwordInputRef.current.value === confirmPasswordInputRef.current.value) {
+      setConfirmPasswordError("");
+      setPasswordValidLogic(false);
+    } else {
       setConfirmPasswordError("Does not match with Confirm password");
       setPasswordValidLogic(true);
-    } else {
-      setPasswordValidLogic(false);
-      setConfirmPasswordError(null);
+
     }
   }
-
-
 
 
   const imgOnclickHandler = () => {
@@ -232,17 +234,20 @@ const RegisterRep = () => {
 
 
 
-                
+
                 <td>
-  Gender: <br/>
-  <select ref={typeInputRef} className={classes.form_inputs} onChange={(e) => typeInputRef.current.value = e.target.value} >
-    <option value="">Select gender</option>
-    <option value="Male">Male</option>
-    <option value="Female">Female</option>
-  </select>
-  {/* <br/> */}
-  {typeInputRef.current ? typeInputRef.current.value : ""}
-</td>
+                  Gender: <br />
+                  {/* <select ref={typeInputRef} className={classes.form_inputs} onChange={(e) => typeInputRef.current.value = e.target.value}>
+                    <option value="">Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select> */}
+                  {/* <br/> */}
+                  <div style={{ marginTop: 10 }}>
+                    <input type="radio" value="Male" name="gender" style={{ marginLeft: 20, }} onChange={() => setSelectedGender("Male")} /><span style={{ color: "#000", fontSize: 15 }}>Male</span>
+                    <input type="radio" value="Male" name="gender" style={{ marginLeft: 20, }} onChange={() => setSelectedGender("Female")} /><span style={{ color: "#000", fontSize: 15 }}>Female</span>
+                  </div>
+                </td>
                 {/* <td>
                   Gender: <br></br>
                   <input ref={typeInputRef} type="text" className={classes.form_inputs} />

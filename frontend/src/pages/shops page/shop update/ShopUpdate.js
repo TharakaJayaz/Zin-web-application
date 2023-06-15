@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import swal from "sweetalert";
 import axios from "axios";
+import { emailValidationFunction, emptyValidation, mobileValidationFunction, nicValidationFunction } from "../../../functions/Validations";
 
 const ShopUpdate = () => {
   const navigation = useNavigate();
@@ -40,44 +41,107 @@ const ShopUpdate = () => {
   const [addressvalue,setaddressValue]  = useState(currentDetails.address);
   const [sexvalue,setsexValue]  = useState(currentDetails.Rcode);
 
+
+  const [shopNameErr,setshopNameErr]  = useState(false);
+  
+  const [ownerNameErr,setownerNameErr]  = useState(false);
+  const [locationErr,setlocationErr]  = useState(false);
+  const [mobileErr,setmobileErr]  = useState(false);
+  const [emailErr,setemailErr]  = useState(false);
+  const [nicErr,setnicErr]  = useState(false);
+  const [rcodeErr,setrcodeErr]  = useState(false);
+  const [addErr,setaddErr]  = useState(false);
+
+
+
   const shopNameInputHandler = (event) => {
     setshopNameValue(event.target.value);
+
+    if(emptyValidation(event.target.value)){
+      setshopNameErr(true)
+    }else{
+      setshopNameErr(false);
+    }
     
   };
 
   const ownerNameInputHandler = (event) => {
     setownerNameValue(event.target.value);
+
+    if(emptyValidation(event.target.value)){
+      setownerNameErr(true)
+    }else{
+      setownerNameErr(false);
+    }
     
   };
 
   const nicInputHandler = (event) => {
     setnicValue(event.target.value);
+
+    if(!nicValidationFunction(event.target.value)){
+      setnicErr(true)
+    }else{
+      setnicErr(false);
+    }
+
     
   };
 
   const sexInputHandler = (event) => {
     setsexValue(event.target.value);
+    if(emptyValidation(event.target.value)){
+      setrcodeErr(true)
+    }else{
+      setrcodeErr(false);
+    }
     
   };
 
   const mobileInputHandler = (event) => {
     setmobileValue(event.target.value);
+
+    if(!mobileValidationFunction(event.target.value)){
+      setmobileErr(true)
+    }else{
+      setmobileErr(false);
+    }
     
   };
 
   const dobInputHandler = (event) => {
     setdobValue(event.target.value);
+
+    if(emptyValidation(event.target.value)){
+      setlocationErr(true)
+    }else{
+      setlocationErr(false);
+    }
+
     
   };
 
   const addressInputHandler = (event) => {
     setaddressValue(event.target.value);
+
+    if(emptyValidation(event.target.value)){
+      setaddErr(true)
+    }else{
+      setaddErr(false);
+    }
     
   };
 
 
   const emailInputHandler = (event) => {
     setemailValue(event.target.value);
+
+
+    if(!emailValidationFunction(event.target.value)){
+      setemailErr(true)
+    }else{
+      setemailErr(false);
+    }
     
   };
 
@@ -91,6 +155,9 @@ const ShopUpdate = () => {
   const [confirmLogic,setConfirmLogic] = useState(false);
 
   const yesBtnHandler = async()  =>{
+
+    if(!shopNameErr  && !ownerNameErr  && !emailErr  && !locationErr && !addErr  && !mobileErr  && !nicErr   && !rcodeErr){
+
     try{
       await axios.put("http://localhost:8800/shopconfirm/" +currntDetailsForInputs.SID,currntDetailsForInputs)
 
@@ -105,9 +172,11 @@ const ShopUpdate = () => {
 
   swal("Updated!", "You updated the shop details", "success");
              
-          setConfirmLogic(false);
+          
           navigation("/admin/shops/shop_srch");
   }
+  setConfirmLogic(false);
+}
 
   
   const noBtnHandler = ()  =>{
@@ -155,6 +224,21 @@ const ShopUpdate = () => {
             <img src={logo} alt="logo" onClick={logoHandler} />
           </section>
           <section className={classes.sub_sec2}>Update Shop:{idvalue}</section>
+          <section className={classes.err_sec}> 
+            
+            
+            
+            {shopNameErr && ( <span>Invalid Shop Name</span>)}
+            {ownerNameErr && ( <span>Invalid Owner Name</span>)}
+            {emailErr && ( <span>Invalid Email</span>)}
+            {locationErr && ( <span>Invalid Location</span>)}
+            {addErr && ( <span>Invalid Address</span>)}
+            {mobileErr && ( <span>Invalid Mobile</span>)}
+            {nicErr && ( <span>Invalid NIC</span>)}
+            {rcodeErr && ( <span>Invalid Rcode</span>)}
+
+
+            </section>
           <section className={classes.sub_sec3}>
             <form>
               <table>
@@ -255,6 +339,8 @@ const ShopUpdate = () => {
                 </tbody>
               </table>
               <section className={classes.sub_sec4}>
+
+            
             <button onClick={updateHandler}>Update</button>
           </section>
             </form>

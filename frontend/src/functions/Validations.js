@@ -62,6 +62,22 @@ export const emptyValidation = (input) => {
     return firstTwoChars === "SL";
   };
 
+  export const checkShopID = (input) => {
+    if (typeof input !== 'string') {
+      return false; // Input is not a string
+    }
+  
+    if (input.length === 0) {
+      return false; // Input is an empty string
+    }
+  
+    const firstTwoChars = input.slice(0, 2);
+  
+    return firstTwoChars === "SH";
+  };
+
+
+
 
 export  const checkFirstTwoNumbers = (input) => {
    

@@ -5,6 +5,7 @@ import logo from "../../../assets/zr red.png";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import axios from "axios";
+import { checkShopID, emailValidationFunction, emptyValidation, mobileValidationFunction, nicValidationFunction } from "../../../functions/Validations";
 
 const ShopNew = () => {
   const navigation = useNavigate();
@@ -48,45 +49,109 @@ const ShopNew = () => {
   const [addvalue,setaddValue]  = useState();
 
 
+
+
+  const [shopNameErr,setshopNameErr]  = useState(false);
+  const [idErr,setidErr]  = useState(false);
+  const [ownerNameErr,setownerNameErr]  = useState(false);
+  const [locationErr,setlocationErr]  = useState(false);
+  const [mobileErr,setmobileErr]  = useState(false);
+  const [emailErr,setemailErr]  = useState(false);
+  const [nicErr,setnicErr]  = useState(false);
+  const [rcodeErr,setrcodeErr]  = useState(false);
+  const [addErr,setaddErr]  = useState(false);
+
+
   const shopIdInputHandler = (event) => {
       setidValue(event.target.value);
+      if(!checkShopID(event.target.value)){
+        setidErr(true)
+      }else{
+        setidErr(false);
+      }
   };
 
   const shopNameInputHandler = (event) => {
     setshopNameValue(event.target.value);
+
+    if(emptyValidation(event.target.value)){
+      setshopNameErr(true)
+    }else{
+      setshopNameErr(false);
+    }
   };
 
   const ownerNameInputHandler = (event) => {
     setownerNameValue(event.target.value);
+
+    if(emptyValidation(event.target.value)){
+      setownerNameErr(true)
+    }else{
+      setownerNameErr(false);
+    }
+
   };
 
   const locationInputHandler = (event) => {
     setlocationValue(event.target.value);
+    if(emptyValidation(event.target.value)){
+      setlocationErr(true)
+    }else{
+      setlocationErr(false);
+    }
+
   };
 
   const addressInputHandler = (event) => {
     setaddValue(event.target.value);
+
+    if(emptyValidation(event.target.value)){
+      setaddErr(true)
+    }else{
+      setaddErr(false);
+    }
   };
 
   const mobileInputHandler = (event) => {
     setmobileValue(event.target.value);
+    if(!mobileValidationFunction(event.target.value)){
+      setmobileErr(true)
+    }else{
+      setmobileErr(false);
+    }
   };
 
   const nicInputHandler = (event) => {
     setnicValue(event.target.value);
+    if(!nicValidationFunction(event.target.value)){
+      setnicErr(true)
+    }else{
+      setnicErr(false);
+    }
   };
 
   const rcodeInputHandler = (event) => {
     setrcodeValue(event.target.value);
+    if(emptyValidation(event.target.value)){
+      setrcodeErr(true)
+    }else{
+      setrcodeErr(false);
+    }
   };
 
   const emailInputHandler = (event) => {
     setemailValue(event.target.value);
+    if(!emailValidationFunction(event.target.value)){
+      setemailErr(true)
+    }else{
+      setemailErr(false);
+    }
   };
 
   const addHandler = async (event) => {
   
     event.preventDefault();
+    if(!idErr&& !shopNameErr  && !ownerNameErr  && !emailErr  && !locationErr && !addErr  && !mobileErr  && !nicErr   && !rcodeErr){
 
     setCurrntDetailsForInputs({
          
@@ -163,6 +228,9 @@ const ShopNew = () => {
       setrcodeValue("");
       setemailValue("");
       navigation("/admin/shops");
+
+
+    }
       
 
 
@@ -304,6 +372,21 @@ const ShopNew = () => {
                   </tr> */}
                 </tbody>
               </table>
+              <section className={classes.err_sec}> 
+            
+            
+               {idErr && ( <span>Invalid ShopID</span>)}
+               {shopNameErr && ( <span>Invalid Shop Name</span>)}
+               {ownerNameErr && ( <span>Invalid Owner Name</span>)}
+               {emailErr && ( <span>Invalid Email</span>)}
+               {locationErr && ( <span>Invalid Location</span>)}
+               {addErr && ( <span>Invalid Address</span>)}
+               {mobileErr && ( <span>Invalid Mobile</span>)}
+               {nicErr && ( <span>Invalid NIC</span>)}
+               {rcodeErr && ( <span>Invalid Rcode</span>)}
+
+
+               </section>
               <section className={classes.sub_sec4}>
                 <button onClick={addHandler}>Add</button>
                 
