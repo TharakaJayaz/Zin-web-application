@@ -48,7 +48,19 @@ export const emptyValidation = (input) => {
   };
 
 
-
+  export const checkStockID = (input) => {
+    if (typeof input !== 'string') {
+      return false; // Input is not a string
+    }
+  
+    if (input.length === 0) {
+      return false; // Input is an empty string
+    }
+  
+    const firstTwoChars = input.slice(0, 2);
+  
+    return firstTwoChars === "SL";
+  };
 
 
 console.log('etst');

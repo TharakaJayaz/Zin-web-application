@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 import swal from 'sweetalert';
+import { checkStockID } from "../../../functions/Validations";
 
 const NewStock = () => {
   const navigation = useNavigate();
@@ -23,14 +24,28 @@ const NewStock = () => {
   const [itemListInput,setItemListInput] = useState("");
  
 
+  const [iderr,setIDErr] = useState(false);
+  const [dateerr,setDateErr] = useState(false);
+  const [salesReperr,setSalesRepErr] = useState(false);
+  const [vehicleerr,setVehicleErr] = useState(false);
+  const [temListerr,setItemListErr] = useState(false);
+  const [err,setErr] = useState(false);
+
   const idHandler = (event)  =>{
          setIdInput(event.target.value);
+         if(!checkStockID(event.target.value)){
+                setIDErr(true);
+         }else{
+          setIDErr(false);
+         }
+
   };
 
 
   
   const dateHandler = (event)  =>{
          setDateInput(event.target.value);
+         console.log("date val",event.target.value);
   }
 
 
@@ -50,6 +65,7 @@ const NewStock = () => {
   const itemListHandler = (event)  =>{
   setItemListInput(event.target.value);
   }
+
 
 
   // const idSchema = yup.object().shape()({
@@ -146,6 +162,10 @@ const NewStock = () => {
                   </tr>
                 </tbody>
               </table>
+              <section>  
+              {iderr &&(  <span> Invalid ID</span>  )}
+                
+              </section>
               <section className={classes.detail_section2_sub3}>
             <button className={classes.sub3_btn_cancel}   onClick={canselHandler} >Cancel</button>
             <button className={classes.sub3_btn_confirm}  onClick={confirmHandler} >Confirm</button>
