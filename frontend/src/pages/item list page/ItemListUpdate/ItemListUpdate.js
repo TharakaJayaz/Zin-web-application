@@ -153,7 +153,7 @@ const ItemListUpdate = (props) => {
         <div className={classes.ILU_details_subDiv}>
           <section className={classes.details_div_sec1}>
             <img src={logo} alt="zr logo" onClick={LogoHandler} />
-            <h1>Update Item List</h1>
+            <h1>Update Item List : <span>{currentDetails.id}</span></h1>
           </section>
           <section className={classes.details_div_sec2}>
             <form>

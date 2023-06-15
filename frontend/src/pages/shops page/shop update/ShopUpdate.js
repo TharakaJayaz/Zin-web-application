@@ -95,15 +95,18 @@ const ShopUpdate = () => {
       await axios.put("http://localhost:8800/shopconfirm/" +currntDetailsForInputs.SID,currntDetailsForInputs)
 
       // create onchange and set it to PUT
-      swal("Updated!", "You updated the shop details", "success");
+     
      
   }
   catch(err){
    console.log(err);
   }
+ 
 
-
+  swal("Updated!", "You updated the shop details", "success");
+             
           setConfirmLogic(false);
+          navigation("/admin/shops/shop_srch");
   }
 
   

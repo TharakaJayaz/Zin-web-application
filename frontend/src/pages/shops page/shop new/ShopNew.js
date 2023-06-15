@@ -10,7 +10,7 @@ const ShopNew = () => {
   const navigation = useNavigate();
 
   const logoHandler = () => {
-    navigation("/");
+    navigation("/admin/shops");
   };
 
   const [currntDetailsForInputs, setCurrntDetailsForInputs] = useState({
@@ -162,7 +162,8 @@ const ShopNew = () => {
       setnicValue("");
       setrcodeValue("");
       setemailValue("");
-      swal("sucessfully added");
+      navigation("/admin/shops");
+      
 
 
 

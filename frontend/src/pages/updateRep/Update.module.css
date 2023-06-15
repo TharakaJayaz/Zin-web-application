@@ -157,3 +157,7 @@ border-radius: 10px;
     scale:1.1;
     transition: 0.4s;
 }
+
+.err_sec{
+    color:red;
+}

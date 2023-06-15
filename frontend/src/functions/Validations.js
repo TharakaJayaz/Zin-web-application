@@ -32,17 +32,23 @@ export const nicValidationFunction = nic =>{
     if(nicS.includes("v" || nicS.includes("V"))){
         if(nicS.length === 10){
             return true
-        }else{
+        }
+        else{
             return false
         }
+    }else if(nicS.length ===12){ 
+           return true;
     }else{
-        return false;
-    }
-}
+        return false }
+};
+
+
+export const emptyValidation = (input) => {
+    return input === null || input ==="" ;
+  };
 
 
 
 
 
-
-console.log('etst')
+console.log('etst');

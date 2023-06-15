@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { MdErrorOutline } from "react-icons/md";
 import {
   emailValidationFunction,
+  emptyValidation,
   mobileValidationFunction,
   nicValidationFunction,
 } from "../../functions/Validations";
@@ -70,6 +71,14 @@ const UpdateRep = () => {
       setAddressInput(event.target.value);
  }
 
+ const [nicErr,setnicErr] = useState(false);
+ const [nameErr,setnameErr] = useState(false);
+ const [mobileErr,setmobilrErr] = useState(false);
+ const [addressErr,setaddressErr] = useState(false);
+ const [emailErr,setemailErr] = useState(false);
+
+ const [displayErrMsg,setDisplayErrMsg] = useState("");
+
 
 
   const submitHandler = (event) => {
@@ -94,39 +103,90 @@ const UpdateRep = () => {
       SetErrStatus(false);
     }
 
-    if (!mobileValidationFunction(mobileValue)) {
+    if (!mobileValidationFunction(mobileInput)) {
       setErrMessage("invalid mobile");
       setErrLogic(true);
+      setmobilrErr(true);
+      setDisplayErrMsg("invalid mobile");
+    }else{
+      setmobilrErr(false);
     }
-    if (!emailValidationFunction(emailValue)) {
+    if (!emailValidationFunction(emailInput)) {
       setErrMessage("invalid email");
       setErrLogic(true);
+      setemailErr(true);
+      setDisplayErrMsg("invalid email");
+    }else{
+      setemailErr(false);
     }
 
-    if (!nicValidationFunction(nicValue)) {
+    if (!nicValidationFunction(nicInput)) {
       setErrMessage("invalid nic");
       setErrLogic(true);
+      setnicErr(true);
+      setDisplayErrMsg("Invalid NIC");
+    }else{
+      setnicErr(false);
     }
+
+
     if (
-      mobileValidationFunction(mobileValue) &&
-      emailValidationFunction(emailValue) &&
-      nicValidationFunction(nicValue)
+      mobileValidationFunction(mobileInput) &&
+      emailValidationFunction(emailInput) &&
+      nicValidationFunction(nicInput)
     ) {
       setErrMessage("");
       setErrLogic(false);
     }
 
+    if(emptyValidation (addressInput)){
+         setaddressErr(true);
+         setDisplayErrMsg("Address Field must not empty");
+    }else{
+      setaddressErr(false);
+    }
+
+    if(emptyValidation(nameInput)){
+      setnameErr(true);
+      setDisplayErrMsg("Name Field must not empty");
+    }else{
+      setnameErr(false)
+    }
+
     // if (!(errlogic || errStatus)) {
     //   setTotalLogic(false);
     // }
+    console.log("display err",displayErrMsg);
   };
 
 
+  if(!nameErr && !emailErr && !nicErr && !addressErr && !mobileErr  ){
+    setErrMessage(" ");
+  }else{
+    console.log("enerd else part of btn handler");
+    return
+  }
+
+
+  
+
   const buttonHandler = async ()  =>{
+     console.log({
+      namerr:nameErr,
+      emailErr:emailErr,
+      nicErr:nicErr,
+      addressErr:addressErr,
+      mobileErr:mobileErr
+     })
+ 
+
+
      if (!(errlogic || errStatus)) {
       setTotalLogic(false);
     }
-    console.log('total logic',totalLogic);
+    // console.log('total logic',totalLogic);
+    // console.log('err logic',errlogic);
+    // console.log('err status',errStatus);
 
     try{
       await axios.put("http://localhost:8800/reps_update/" +currentDetails.id,{
@@ -139,7 +199,7 @@ const UpdateRep = () => {
       })
       // create onchange and set it to PUT
       swal("Updated!", "You updated the rep details", "success");
-      navigation("/admin/temp_reps");
+      // navigation("/admin/temp_reps");
   }
   catch(err){
    console.log(err);
@@ -181,6 +241,7 @@ const UpdateRep = () => {
               <input type="text"   onChange={addressHandler}  value={addressInput}/>
             </div>
             {/* {errStatus && <p className={classes.err_p}>All Fields shuld be filled*</p>} */}
+            <section className={classes.err_sec}> {displayErrMsg }</section>
             <button onClick={buttonHandler}>Update</button>
           </div>
 
@@ -191,7 +252,7 @@ const UpdateRep = () => {
           />
         </form>)
       }
-      {!totalLogic&&(<UpdateSuccess />   )}
+      {/* {!totalLogic&&(<UpdateSuccess />   )} */}
     </>
   );
 };

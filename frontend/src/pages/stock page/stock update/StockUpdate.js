@@ -4,13 +4,15 @@ import backgroundLogo from "../../../assets/Background vector group.png";
 import logo from "../../../assets/zr red.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import swal from "sweetalert";
 const StockUpdate = () => {
   const navigation = useNavigate();
 
   // get values from redux toolkit state
 
   const currentDetails = useSelector((state) => state.stockUpdate);
-
+  console.log("recived data rfom redux",currentDetails);
   // set values from toolkit to useState to update inputs
 
   const [currntDetailsForInputs, setCurrntDetailsForInputs] = useState({
@@ -57,14 +59,12 @@ const StockUpdate = () => {
   };
 
   const logoHandler = () => {
-    navigation("/");
+    navigation("/stock_keeper/stock");
   };
 
   // handling function for update button
 
-
-
-  const updateHandler = (event) => {
+  const updateHandler = async (event) => {
     event.preventDefault();
     console.log("clicked");
 
@@ -76,7 +76,35 @@ const StockUpdate = () => {
       route: routeValue,
       itemList: itemListValue,
     });
-    console.log("value after update", currntDetailsForInputs);
+    console.log("value after update", {
+      id: idValue,
+      date: dateValue,
+      salesRep: salesRepValue,
+      vehicle: vehicleValue,
+      route: routeValue,
+      itemList: itemListValue,
+    });
+
+    try{
+      await axios.put("http://localhost:8800/stocklist/" +idValue,{
+        // id: idValue,
+        date: dateValue,
+        salesRep: salesRepValue,
+        vehicle: vehicleValue,
+        route: routeValue,
+        itemList: itemListValue,
+      })
+
+      // create onchange and set it to PUT
+      swal("Updated!", "You updated the stock list details", "success");
+      navigation("/stock_keeper/stock");
+     
+  }
+  catch(err){
+   console.log(err);
+  }
+
+
   };
 
   return (
@@ -86,12 +114,12 @@ const StockUpdate = () => {
           <section className={classes.sub_sec1}>
             <img src={logo} alt="logo" onClick={logoHandler} />
           </section>
-          <section className={classes.sub_sec2}>Update Stock List</section>
+          <section className={classes.sub_sec2}>Update Stock List: <span>{idValue}</span></section>
           <section className={classes.sub_sec3}>
             <form>
               <table>
                 <tbody>
-                  <tr>
+                  {/* <tr>
                     <td className={classes.td_left}>ID</td>
                     <td className={classes.td_right}>
                       <input
@@ -101,7 +129,7 @@ const StockUpdate = () => {
                         value={idValue}
                       />
                     </td>
-                  </tr>
+                  </tr> */}
 
                   <tr>
                     <td className={classes.td_left}>Date</td>

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./stockCard.module.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { stocKupdateAction } from "../../../../store";
+import axios from "axios";
 
 const StockCard = (props) => {
   const navigation = useNavigate();
   const dispatch = useDispatch();
+  const [deleteLogic,setDeleteLogic] = useState(false);
 
   const updateBtnHandler = () =>{
          dispatch(stocKupdateAction.add({
@@ -18,6 +20,28 @@ const StockCard = (props) => {
           itemList:props.data.Itemlist
          }))
     navigation('/stock_keeper/stock/stock_update');
+  };
+
+ const yesBtnHandler = async()  =>{
+  try {
+    await axios.delete("http://localhost:8800/stocklist/" + props.data.ID);
+    
+   
+  } catch (err) {
+    console.log(err);
+  }
+  setDeleteLogic(false);
+  window.location.reload();
+ }
+
+ const noBtnHandler = ()  =>{
+    setDeleteLogic(false);
+ }
+
+
+
+  const deletebtnHandler = ()  =>{
+       setDeleteLogic(true);
   }
 
   console.log("recieved data",{
@@ -60,6 +84,15 @@ const StockCard = (props) => {
                 <td></td>
               </tr>
             </tbody>
+            { deleteLogic &&(<div className={classes.err_div}>
+        <div className={classes.err_div_msg}>
+          <section className={classes.err_div_msg_sec1}>Do You Want To delete This stock list ? </section>
+          <section className={classes.err_div_msg_sec2}>
+            <button className={classes.bt1} onClick={yesBtnHandler} >Yes</button>
+            <button className={classes.bt2} onClick={noBtnHandler} >No</button>
+          </section>
+        </div>
+      </div>)}
           </table>
         </section>
       </div>
@@ -67,7 +100,7 @@ const StockCard = (props) => {
         <div className={classes.stockCard_sub2_main_div}>
           <button className={classes.btn_cancel}>Cancel</button>
           <button className={classes.btn_update} onClick={updateBtnHandler} >Update</button>
-          <button className={classes.btn_delete}>Delete</button>
+          <button className={classes.btn_delete} onClick={deletebtnHandler}>Delete</button>
         </div>
       </div>
     </div>

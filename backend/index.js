@@ -498,9 +498,50 @@ app.get("/stocklist", (req, res) => {
   });
 });
 
+
+
+
+
 // update stck list
 
+app.put("/stocklist/:id", (req, res) => {
+  const repID = req.params.id;
 
+
+  const p =
+    "UPDATE stock_table SET  `listdate` = ?, `srep` = ?, `vehicle` = ?, `route` = ?, `Itemlist`= ? WHERE ID = ?";
+
+  // complete backend
+
+  const values = [
+   
+    req.body.date,
+    req.body.salesRep,
+    req.body.vehicle,
+    req.body.route,
+    req.body.itemList,
+  ];
+
+  db.query(p, [...values, repID], (err, data) => {
+    if (err) return res.json(err);
+    return res.json("stock list has been update");
+  });
+});
+
+
+
+// delete stock list
+
+
+app.delete("/stocklist/:id", (req, res) => {
+  const sid = req.params.id;
+  const q = "DELETE FROM stock_table WHERE ID= ?";
+
+  db.query(q, [sid], (err, data) => {
+    if (err) return res.json(err);
+    return res.json("stock list has been deleted");
+  });
+});
 
 // get temp shop details
 
@@ -524,12 +565,9 @@ app.get("/shopconfirm", (req, res) => {
 
 // write confirmed shop detail in backend
 
-
 app.post("/shopconfirm", (req, res) => {
-;
-
-
-    const q = "INSERT INTO shop_confirm (`SID`, `email`, `shop_name`, `location`, `address`, `Fname`, `Lname`, `phoneNo`, `NIC`, `Rcode`) VALUES (?);"
+  const q =
+    "INSERT INTO shop_confirm (`SID`, `email`, `shop_name`, `location`, `address`, `Fname`, `Lname`, `phoneNo`, `NIC`, `Rcode`) VALUES (?);";
 
   const values = [
     req.body.SID,
@@ -553,7 +591,6 @@ app.post("/shopconfirm", (req, res) => {
 
 // delete confiremed data from shop table
 
-
 app.delete("/shopconfirm/:id", (req, res) => {
   const sid = req.params.id;
   const q = "DELETE FROM shop WHERE SID= ?";
@@ -564,15 +601,10 @@ app.delete("/shopconfirm/:id", (req, res) => {
   });
 });
 
-
-
 // update shop details
-
 
 app.put("/shopconfirm/:id", (req, res) => {
   const repID = req.params.id;
- 
-
 
   const q =
     "UPDATE shop_confirm SET   `email` = ?, `shop_name` = ?, `location` = ?,`address` = ?,`Fname` = ?  , `Lname` = ? ,`phoneNo` = ?  , `NIC` = ? ,`Rcode` =?   WHERE SID =?";
@@ -581,7 +613,7 @@ app.put("/shopconfirm/:id", (req, res) => {
     req.body.email,
     req.body.shop_name,
     req.body.location,
-    
+
     req.body.address,
     req.body.Fname,
     req.body.Lname,
@@ -597,7 +629,6 @@ app.put("/shopconfirm/:id", (req, res) => {
 });
 
 // delete confiremed data from shop table
-
 
 app.delete("/shopconfirmdelete/:id", (req, res) => {
   const sid = req.params.id;

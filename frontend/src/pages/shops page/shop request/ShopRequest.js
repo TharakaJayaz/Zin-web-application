@@ -152,7 +152,7 @@ const ShopRequest = () => {
 
         { confirmLogic &&(<div className={classes.err_div}>
         <div className={classes.err_div_msg}>
-          <section className={classes.err_div_msg_sec1}>Do You Want To Confirm This Item ? </section>
+          <section className={classes.err_div_msg_sec1}>Do You Want To Confirm This shop ? </section>
           <section className={classes.err_div_msg_sec2}>
             <button className={classes.bt1} onClick={yesBtnHandler} >Yes</button>
             <button className={classes.bt2} onClick={noBtnHandler} >No</button>
@@ -162,7 +162,7 @@ const ShopRequest = () => {
 
       { deleteLogic &&(<div className={classes.err_div}>
         <div className={classes.err_div_msg}>
-          <section className={classes.err_div_msg_sec1}>Do You Want To Delete This Item ? </section>
+          <section className={classes.err_div_msg_sec1}>Do You Want To Delete This shop ? </section>
           <section className={classes.err_div_msg_sec2}>
             <button className={classes.bt1} onClick={yesBtnHandler} >Yes</button>
             <button className={classes.bt2} onClick={noBtnHandler} >No</button>

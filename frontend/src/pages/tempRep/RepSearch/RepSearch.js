@@ -18,9 +18,9 @@ const RepSearch = (props) => {
     };
 
     fetchAllTempReps();
-    console.log("reps", reps);
+   
   }, []);
-
+  console.log("reps from back end", reps);
   const details = reps;
   // const details = [
   //   {
@@ -54,7 +54,7 @@ const RepSearch = (props) => {
       if (details[i].fullname.toLowerCase().trim() === inputValue) {
         setDisplayDetials(details[i]); // set values of matching representative to display card
         setDisplayLogic(true);
-        console.log(displayDetails);
+        console.log("display details",details[i]);
         // console.log('id for entered value',details[i].id)
       }
     }

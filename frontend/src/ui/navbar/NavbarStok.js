@@ -11,6 +11,10 @@ const NavbarStok = (props) => {
   const imageClickHandler = ()  =>{
     navigation("/");
   }
+
+  const logoutHandler = () =>{
+    navigation("/signIn");
+  }
   return (
     <div>
       <div className={`${classes.nav_main_div} ${props.className} `}>
@@ -29,7 +33,7 @@ const NavbarStok = (props) => {
           {/* <input type="text" className={classes.navSearch_input} placeholder = "search"/>
           <button className={`${classes.navSearch__button} ${props.buttonstyle}`}>Search</button> */}
         </div>
-        <button className={classes.nav_main_div_logOut_button}>Logout</button>
+        <button  onClick={logoutHandler} className={classes.nav_main_div_logOut_button}>Logout</button>
        
       </div>
     </div>

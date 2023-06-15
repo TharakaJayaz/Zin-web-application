@@ -36,7 +36,7 @@ const StockSearch = (props) => {
     setDisplayLogic(true);
 
     for (let i = 0; i < informations.length; i++) {
-      if (informations[i].ID === inputValue.trim()) {
+      if (informations[i].ID.trim() === inputValue.trim()) {
         setDisplayDetails(informations[i]);
         console.log("setting display details",informations[i])
       }
