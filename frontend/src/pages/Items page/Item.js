@@ -31,6 +31,7 @@ function Item() {
 
       <div className={classes.updt_div} style={{ padding: "60px" }}>
         {stockData.length > 0 ? (
+            <div className={classes.BTtable_div}>
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -67,6 +68,7 @@ function Item() {
               ))}
             </tbody>
           </Table>
+          </div>
         ) : (
           <p>Loading stock data...</p>
         )}

@@ -44,7 +44,7 @@
     max-width:100vw;
 }
 .updt_div{
-    background: #F55A5A;
+    background: #de4141;
     height: 100vh;
     width:100vw;
     position: relative;
@@ -225,7 +225,7 @@
 }
 
 .err_para{
-    color:red;
+    color:rgb(134, 98, 98);
     text-align: center;
 }
 
@@ -268,4 +268,42 @@
     height:500px;
     position: fixed;
     margin-top:245px;
+}
+.feedback-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .star-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 24px;
+    color: #ffd700;
+    cursor: pointer;
+  }
+  
+  .selected {
+    color: #ffac38;
+  }
+
+
+  .heding{
+    width:100vw;
+    text-align: center;
+    font-size: 2rem;
+    background-color: rgb(48, 114, 30);
+  }
+  
+
+  /* .back_color{
+    background: rgb(193, 75, 75);
+  } */
+
+
+.BTtable_div{
+    height:400px;
+    overflow: auto;
 }

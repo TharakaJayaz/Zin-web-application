@@ -210,12 +210,3 @@
     position: fixed;
     margin-top:245px;
 }
-
-
-.confirm_err_style{
-    color: red;
-    position: absolute;
-    top:470px;
-    left:790px;
-    
-}
