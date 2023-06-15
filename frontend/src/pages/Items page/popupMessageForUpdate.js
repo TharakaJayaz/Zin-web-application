@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, useRef } from "react";
 import classes from './popupMessage.module.css';
 import { IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
@@ -9,170 +10,174 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const PopupMessageForUpdate = ({ onClose, data }) => {
-    const [showPopup, setShowPopup] = useState(true);
-    const [showpopupdate, setshowpopupupdate] = useState(false);
-    const inputStyle = {
-        padding: '10px'
-    }
+  const [showPopup, setShowPopup] = useState(true);
+  const [showpopupdate, setshowpopupupdate] = useState(false);
+  const inputStyle = {
+    padding: '10px'
+  };
 
-    console.log(data);
-    const stockIDInputRef = useRef();
-    const qtyInputRef = useRef();
-    const productnameInputRef = useRef(data.productname);
-    const nameInputRef = useRef(data.name);
-    const priceInputRef = useRef(data.price);
-    const manufacturedateInputRef = useRef(data.manufacturedate);
-    const expirydateInputRef = useRef(data.expirydate);
-    const discountInputRef = useRef(data.discount);
-    const imageInputRef = useRef(data.image);
+  console.log(data);
+  const stockIDInputRef = useRef();
+  const qtyInputRef = useRef();
+  const productnameInputRef = useRef(data.productname);
+  const nameInputRef = useRef(data.name);
+  const priceInputRef = useRef(data.price);
+  const manufacturedateInputRef = useRef(data.manufacturedate);
+  const expirydateInputRef = useRef(data.expirydate);
+  const discountInputRef = useRef(data.discount);
+  const imageInputRef = useRef(data.image);
 
+  useEffect(() => {
+    stockIDInputRef.current.value = data.stockID;
+    qtyInputRef.current.value = data.qty;
+    productnameInputRef.current.value = data.productname;
+    nameInputRef.current.value = data.name;
+    priceInputRef.current.value = data.price;
+    manufacturedateInputRef.current.value = data.manufacturedate;
+    expirydateInputRef.current.value = data.expirydate;
+    discountInputRef.current.value = data.discount;
+    // imageInputRef.current.value = data.image;
+  }, [data]);
 
-    useEffect(() => {
-        stockIDInputRef.current.value = data.stockID;
-        qtyInputRef.current.value = data.qty;
-        productnameInputRef.current.value = data.productname;
-        nameInputRef.current.value = data.name;
-        priceInputRef.current.value = data.price;
-        manufacturedateInputRef.current.value = data.manufacturedate;
-        expirydateInputRef.current.value = data.expirydate;
-        discountInputRef.current.value = data.discount;
-        // imageInputRef.current.value = data.image;
-    }, [data]);
+  const [buttonLogic, setButtonLogic] = useState(false);
 
-    const [buttonLogic, setButtonLogic] = useState(false);
+  const navigation = useNavigate();
 
-    const navigation = useNavigate();
+  const reloadPage = () => {
+    window.location.reload();
+  };
 
-    const reloadPage = () => {
+  const buttonHandler = async (event) => {
+    const itemData = {
+      id: data,
+    };
+
+    try {
+      const response = await axios.post('http://localhost:8800/updateItem', itemData);
+      if (response.data === 'successfull') {
         window.location.reload();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const formSubmitHandler = async (event) => {
+    event.preventDefault();
+    console.log(stockIDInputRef.current.value, qtyInputRef.current.value, productnameInputRef.current.value, nameInputRef.current.value, imageInputRef.current.value);
+    debugger;
+    const itemData = {
+      stockID: stockIDInputRef.current.value,
+      qty: qtyInputRef.current.value,
+      productname: productnameInputRef.current.value,
+      name: nameInputRef.current.value,
+      price: priceInputRef.current.value,
+      manufacturedate: manufacturedateInputRef.current.value,
+      expirydate: expirydateInputRef.current.value,
+      discount: discountInputRef.current.value,
+      image: imageInputRef.current.value,
     };
+    try {
+      const response = await axios.post('http://localhost:8800/updateItem', itemData);
+      debugger;
+      if (response.status === 200) {
+        window.location.reload();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-    const buttonHandler = async (event) => {
-        const itemData = {
-            id: data,
-        };
+  return (
+    <div  className="popup" style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div
+        className="popup-content"
+        style={{
+          padding: '20px',
+          backgroundColor: '#bdbdbd',
+          width: "979px",
+          height: "450px",
+          borderRadius: '5px',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border:'2px solid black',
+          borderRadius:60,
+        
+        }}
+      >
+        <form  onSubmit={formSubmitHandler} className={classes.form_main}>
+          <h2 style={{ color: 'red', fontWeight: 'bold' }} className={`${classes.form_heading} ${classes.updateItem}${classes.centered}`}>
+            Update Item
+          </h2>
 
-        try {
-            const response = await axios.post('http://localhost:8800/updateItem', itemData);
-            if (response.data === 'successfull') {
-                window.location.reload();
-            }
-        } catch (err) {
-            console.log(err);
-        }
-    };
+           {/* <h2 className={classes.updateItem}>Update Item</h2> */}
 
-    const formSubmitHandler = async (event) => {
-        event.preventDefault();
-        console.log(stockIDInputRef.current.value, qtyInputRef.current.value, productnameInputRef.current.value, nameInputRef.current.value,imageInputRef.current.value);
-        debugger;
-        const itemData = {
-            stockID: stockIDInputRef.current.value,
-            qty: qtyInputRef.current.value,
-            productname: productnameInputRef.current.value,
-            name: nameInputRef.current.value,
-            price: priceInputRef.current.value,
-            manufacturedate: manufacturedateInputRef.current.value,
-            expirydate: expirydateInputRef.current.value,
-            discount: discountInputRef.current.value,
-            image: imageInputRef.current.value,
-        };
-        try {
-            const response = await axios.post('http://localhost:8800/updateItem', itemData);
-            debugger;
-            if (response.status === 200) {
-                window.location.reload();
-            }
-        } catch (err) {
-            console.log(err);
-        }
+          <table className={classes.form_table}>
+            <tbody>
+              <tr className={classes.form_tr1}>
+                <td>
+                  StockID:
+                  <input ref={stockIDInputRef} type="text" style={inputStyle} className={classes.form_inputs} readOnly />
+                </td>
+                <td>
+                  Quantity:
+                  <input ref={qtyInputRef} type="text" style={inputStyle} className={classes.form_inputs} />
+                </td>
+                <td>
+                  Product Name:
+                  <input ref={productnameInputRef} type="text" style={inputStyle} className={classes.form_inputs} />
+                </td>
+              </tr>
+              <tr className={classes.form_tr2}>
+                <td>
+                  Name:
+                  <input ref={nameInputRef} type="text" style={inputStyle} className={classes.form_inputs} />
+                </td>
+                <td>
+                  Price:
+                  <input ref={priceInputRef} type="text" style={inputStyle} className={classes.form_inputs} />
+                </td>
+                <td>
+                  Manufacture Date:
+                  <input ref={manufacturedateInputRef} type="date" style={inputStyle} className={classes.form_inputs} />
+                </td>
+              </tr>
+              <tr className={classes.form_tr3}>
+                <td>
+                  Expiry Date:
+                  <input ref={expirydateInputRef} type="date" style={inputStyle} className={classes.form_inputs} />
+                </td>
+                <td>
+                  Discount:
+                  <input ref={discountInputRef} type="text" style={inputStyle} className={classes.form_inputs} />
+                </td>
+                <td>
+                  Image:
+                  <input ref={imageInputRef} type="file" style={inputStyle} className={classes.form_inputs} />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div className={`${classes.form_button_div} ${classes.centered}`}>
+  <button type="submit" className={classes.form_cancel} onClick={onClose}>
+    Cancel
+  </button>
+  <div className={classes.button_space}></div> {/* Add a div for spacing */}
+  <button className={classes.form_continue} onClick={formSubmitHandler}>
+    Continue
+  </button>
+</div>
 
-    };
+        </form>
+      </div>
+    </div>
+  );
+};
 
-    return (
-        <div className="popup" style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div
-                className="popup-content"
-                style={{
-                    padding: '20px',
-                    backgroundColor: '#fff',
-                    width: "679px",
-                    height: "289px",
-                    borderRadius: '5px',
-                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                <form onSubmit={formSubmitHandler} className={classes.form_main} >
-                    <h2 className={classes.form_heading}>
-                        Update Item
-                    </h2>
-                    <table className={classes.form_table}>
-                        <tbody>
-                            <tr style={{ margin: '50px' }} className={classes.form_tr1}>
-                                <td>
-                                    StockID <br></br>
-                                    <input ref={stockIDInputRef} type="text" style={inputStyle} className={classes.form_inputs} readOnly />
-                                </td>
-                                <td>
-                                    Qty <br></br>
-                                    <input ref={qtyInputRef} type="text" style={inputStyle} className={classes.form_inputs} />
-                                </td>
-                                <td>
-                                    productname<br></br>
-                                    <input ref={productnameInputRef} type="text" style={inputStyle} className={classes.form_inputs} />
-                                </td>
-                            </tr>
-                            <tr style={{ margin: '50px' }} className={classes.form_tr2}>
-                                <td>
-                                    Name<br></br>
-                                    <input ref={nameInputRef} type="text" style={inputStyle} className={classes.form_inputs} />
-                                </td>
-                                <td>
-                                    price <br></br>
-                                    <input ref={priceInputRef} type="text" style={inputStyle} className={classes.form_inputs} />
-                                </td>
-
-                                <td>
-                                    manufacturedate<br></br>
-                                    <input ref={manufacturedateInputRef} type="date" style={inputStyle} className={classes.form_inputs} />
-                                </td>
-                            </tr>
-                            <tr style={{ margin: '50px' }} className={classes.form_tr3}>
-                                <td>
-                                    expirydate <br></br>
-                                    <input ref={expirydateInputRef} type="date" style={inputStyle} className={classes.form_inputs} />
-                                </td>
-
-                                <td>
-                                    discount <br></br>
-                                    <input ref={discountInputRef} type="text" style={inputStyle} className={classes.form_inputs} />
-                                </td>
-
-                                <td>
-                                    Image <br></br>
-                                    <input ref={imageInputRef} type="file" style={inputStyle} className={classes.form_inputs}
-                                    />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    {/* {validationLogic && <p className={classes.err_para}>All inputs should  be filled*</p>} */}
-
-                    <div className={classes.form_button_div}>
-                        <button type="submit" style={{ textAlign: "center" }} className={classes.form_cancel} onClick={onClose} >
-                            {" "}
-                            Cancel
-                        </button>
-                        <button className={classes.form_continue} onClick={formSubmitHandler}>Continue</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    )
+export default PopupMessageForUpdate;
 
     // const RegisterRep = () => {
     //     const stockIDInputRef = useRef();
@@ -362,5 +367,3 @@ const PopupMessageForUpdate = ({ onClose, data }) => {
     //         );
     //     };
     // }
-};
-export default PopupMessageForUpdate;

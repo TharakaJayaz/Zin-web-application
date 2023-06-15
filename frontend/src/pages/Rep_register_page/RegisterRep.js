@@ -230,13 +230,26 @@ const RegisterRep = () => {
                   <input ref={phoneNoInputRef} type="text" className={`${classes.form_inputs} ${TPValidLogic && (classes.err_style)}`} />
                 </td>
 
+
+
+                
                 <td>
-                  Type: <br></br>
+  Gender: <br/>
+  <select ref={typeInputRef} className={classes.form_inputs} onChange={(e) => typeInputRef.current.value = e.target.value} >
+    <option value="">Select gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+  {/* <br/> */}
+  {typeInputRef.current ? typeInputRef.current.value : ""}
+</td>
+                {/* <td>
+                  Gender: <br></br>
                   <input ref={typeInputRef} type="text" className={classes.form_inputs} />
-                </td>
+                </td> */}
 
                 <td>
-                  Address <br></br>
+                  Address: <br></br>
                   <input ref={addressInputRef} type="text" className={classes.form_inputs}
                   />
                 </td>

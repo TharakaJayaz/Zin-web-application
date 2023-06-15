@@ -21,3 +21,42 @@
     margin-bottom: 20px;
     margin-right: 120px;
 }
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    max-width: 90%;
+    margin: 0 auto;
+    word-wrap: break-word;
+  }
+  .centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .eye-catching-text {
+    text-align: center;
+    font-size: 4rem;
+    color: #40ff5d; /* Pink color */
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(5, 20, 63, 0.5);
+    animation: blink 1s infinite alternate;
+  }
+  
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+  
