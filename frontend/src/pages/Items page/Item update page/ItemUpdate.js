@@ -81,7 +81,7 @@ function ItemUpdate() {
             </div>
             <br />
             {stockData.length > 0 ? (
-              <>
+              <><div className={classes.BTtable_div}>
                 <Table striped bordered hover>
                   <thead>
                     <tr>
@@ -123,6 +123,7 @@ function ItemUpdate() {
                     ))}
                   </tbody>
                 </Table>
+                </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <Link to="/admin/add/item" className="btn btn-primary" style={{ position: 'absolute', top: '15px', right: '40px' }}>
                     ADD

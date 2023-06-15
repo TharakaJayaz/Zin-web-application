@@ -7,7 +7,7 @@ const PopupMessage = ({ onClose }) => {
   const navigation = useNavigate();
 
   const buttonHandler = event => {
-    navigation('/');
+    navigation('/admin/items/update');
   };
 
   return (
