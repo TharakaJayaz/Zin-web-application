@@ -269,3 +269,23 @@
     position: fixed;
     margin-top:245px;
 }
+.feedback-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .star-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 24px;
+    color: #ffd700;
+    cursor: pointer;
+  }
+  
+  .selected {
+    color: #ffac38;
+  }
+  

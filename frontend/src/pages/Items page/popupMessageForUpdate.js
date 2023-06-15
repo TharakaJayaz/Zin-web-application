@@ -36,7 +36,7 @@ const PopupMessageForUpdate = ({ onClose, data }) => {
         manufacturedateInputRef.current.value = data.manufacturedate;
         expirydateInputRef.current.value = data.expirydate;
         discountInputRef.current.value = data.discount;
-        imageInputRef.current.value = data.image;
+        // imageInputRef.current.value = data.image;
     }, [data]);
 
     const [buttonLogic, setButtonLogic] = useState(false);

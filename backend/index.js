@@ -412,7 +412,7 @@ app.get("/salesrep", (req, res) => {
 app.post("/add", (req, res) => {
   const q = "INSERT INTO `codewithx_Project`.`sales_rep` (`RID`, `NIC`, `registrationdate`, `fullname`, `password`, `email`, `phoneNo`, `type`, `address`) VALUES ((?), (?),(?), (?), (?), (?), (?), (?), (?));"
   const values = [req.body.rid, req.body.nic, req.body.registrationdate, req.body.fullname, req.body.password, req.body.email, req.body.phonenumber, req.body.type, req.body.address]
-  // console.log(req.body);
+  console.log(req.body);
   db.query(q, values, (err, data) => {
     if (err) console.log(err);
     console.log("Success");
