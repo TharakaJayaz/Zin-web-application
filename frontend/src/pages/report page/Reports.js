@@ -1,102 +1,261 @@
-import React, { useState } from "react";
-import classes from "./Report.module.css";
+// import React, { useState, useEffect } from "react";
+// import classes from "./Reports.Module.css";
+// import { useHistory } from 'react-router-dom';
+// //import NavbarAdmin from "../../ui/navbar/NavbarAdmin";
+// //import ItemCard from "./ItemCard";
+// // import { FaSearch } from "react-icons/fa";
+// // import background from '../../assets/Background vector group.png';
+// import Table from 'react-bootstrap/Table';
+// //import NavbarAdmin from "../../../ui/navbar/NavbarAdmin";
+
+// import axios from 'axios';
+// import { Navigate } from "react-router-dom";
+
+
+// function FeedbackReport() {
+//   const [stockData, setStockData] = useState([]);
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       debugger;
+//       try {
+//         const response = await axios.get('http://localhost:8800/feedback');
+//         setStockData(response.data);
+//       } catch (error) {
+//         console.error('Error fetching stock data:', error);
+//       }
+//     };
+
+//     fetchData();
+//   }
+ 
+  
+//   , []);
+ 
+
+    
+  
+//   return (
+//     <div>
+//       {/* <NavbarAdmin /> */}
+
+//       <div className={classes.updt_div} style={{ padding: "60px" }}>
+
+//         {stockData.length > 0 ? (
+//           <Table striped bordered hover>
+//             <thead>
+//               <tr>
+//                 <th>FID</th>
+//                 <th>Comment</th>
+//                 <th>SID</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {stockData.map((item, index) => (
+//                 <tr key={index}>
+
+//                   {/* <td><img src={"http://localhost:8800/static/" + item.image} height={60} width={60} /></td> */}
+//                   <td>{item.FID}</td>
+//                   <td>{item.comment}</td>
+//                   <td>{item.SID}</td>
+//                 </tr>
+//               ))}
+//             </tbody>
+
+//           </Table>
+
+          
+//         ) : (
+          
+//           <p>Loading Report data...</p>
+//         )}
+//         <button style={{ backgroundColor: 'red' }} onClick={handleContinue}>
+//       Continue
+//     </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default FeedbackReport;
+
+
+
+
+import React, { useState, useEffect } from "react";
+import classes from "./Reports.Module.css";
+import { useNavigate } from 'react-router-dom';  // Import useNavigate instead of useHistory
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
+import { FaStar } from 'react-icons/fa';
+import axios from 'axios';
 import NavbarAdmin from "../../ui/navbar/NavbarAdmin";
-import { IoChevronBackOutline } from "react-icons/io5";
-import details from "../../details/ReportDetails";
-import { GoSearch } from "react-icons/go";
-import ReportCard from "./ReportCard";
 
-const Reports = (props) => {
-  const [inputValue, setInputValue] = useState();
-  const [suggestLogic, setSuggestLogicValue] = useState(false);
-  const [displayDetails, setDisplayDetails] = useState("");
-  const [displayLogic, setDisplayLogic] = useState(false);
-  const informations = details;
+function FeedbackReport() {
+  const [stockData, setStockData] = useState([]);
+  const [rating, setRating] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const handleRating = (value) => {
+    setRating(value);
+  };
+  const navigate = useNavigate();
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    setSuggestLogicValue(false);
-    setDisplayLogic(true);
+  const handleContinue = () => {
+    navigate('/admin/temp_reps');
+  };
 
-    for (let i = 0; i < informations.length; i++) {
-      if (informations[i].id === inputValue.trim()) {
-        setDisplayDetails(informations[i]);
+  useEffect(() => {
+    const fetchData = async () => {
+      debugger;
+      try {
+        const response = await axios.get('http://localhost:8800/feedback');
+        setStockData(response.data);
+      } catch (error) {
+        console.error('Error fetching stock data:', error);
       }
-    }
+    };
 
-    //  console.log(displayDetails);
-  };
-
-  const inputHandler = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const inputBlurHandler = () => {
-    if (inputValue !== null) {
-      return;
-    }
-    setSuggestLogicValue(false);
-  };
-
-  const inputFocusHandler = () => {
-    //  if(inputValue !==null){
-    //     setSuggestLogicValue(true);
-    //  }
-    setSuggestLogicValue(true);
-    setDisplayLogic(false);
-  };
-
-  const suggestDisplayHandler = (event) => {
-    setInputValue(event.target.innerHTML);
-    console.log("suggestDisplayHandler is working");
-  };
-
-  const updtBtnHandler = () => {};
+    fetchData();
+  }, []);
 
   return (
-    <div className={classes.main_div}>
-      <NavbarAdmin />
-
-      <form className={classes.repSearch_form} onSubmit={submitHandler}>
-        <input
-          type="text"
-          placeholder="Search..."
-          onChange={inputHandler}
-          onBlur={inputBlurHandler}
-          onFocus={inputFocusHandler}
-          value={inputValue}
-        />{" "}
-        <button>
-          <GoSearch className={classes.search_icon} />
-        </button>
-      </form>
-      {suggestLogic && (
-        <div className={classes.suggest_div}>
-          <div className={classes.suggest_div_sub_div}>
-            {informations
-              .filter((shop) => shop.id.includes(inputValue))
-              .map((list) => (
-                <div
-                  key={list.id}
-                  onClick={suggestDisplayHandler}
-                  className={classes.suggest_div_display}
-                >
-                  {" "}
-                  {list.id}
-                </div>
+    <div >
+      <div className={classes.updt_div} style={{ padding: "60px",background:"rgb(251, 232, 232)"}}>
+        <NavbarAdmin    />
+        <p style={{width:'100vw', textAlign:"center",fontSize:'2rem',letterSpacing:"2px"  }}>FEEDBACK REPORTS</p>
+        {stockData.length > 0 ? (
+          <div style={{height:"450px",overflow:'auto'}}>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>FID</th>
+                <th>Comment</th>
+                <th>SID</th>
+              </tr>
+            </thead>
+            <tbody>
+              {stockData.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.FID}</td>
+                  <td>{item.comment}</td>
+                  <td>{item.SID}</td>
+                </tr>
               ))}
+            </tbody>
+          </Table>
           </div>
-        </div>
-      )}
-      {console.log(displayLogic)}
-      {displayLogic && (
-        <div className={classes.logic_display_div}>
-          {<ReportCard className={classes.card_style}  details = {displayDetails}/>}
-          {console.log("details to display", displayDetails)};
-        </div>
-      )}
+        ) : (
+          <p>Loading Report data...</p>
+        )}
+       
+       
+       <button style={{ backgroundColor: 'red', color: 'white', padding: '10px 20px', borderRadius: '4px', border: 'none', cursor: 'pointer' }} onClick={handleContinue}>
+  BACK
+</button>
+
+        {/* <button style={{ backgroundColor: 'ash' }} onClick={handleContinue}>
+          BACK
+        </button> */}
+      </div>
+      {/* <div className="feedback-container">
+      <Button variant="primary" onClick={() => setShowModal(true)}>Open Rating Popup</Button>
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Rate the Product</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Please select a rating:</p>
+          <div className="star-container">
+            {[1, 2, 3, 4, 5].map((value) => (
+              <FaStar
+                key={value}
+                className={value <= rating ? 'selected' : ''}
+                onClick={() => handleRating(value)}
+              />
+            ))}
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
+          <Button variant="primary" onClick={() => console.log('Submitted rating:', rating)}>Submit</Button>
+        </Modal.Footer>
+      </Modal>
+    </div> */}
     </div>
+    
   );
 };
 
-export default Reports;
+
+export default FeedbackReport;
+
+/*import React, { useState } from "react";
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import { FaStar } from 'react-icons/fa';
+import './FeedbackReport.css';
+
+function FeedbackReport() {
+  const [rating, setRating] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [reviewedRows, setReviewedRows] = useState([]);
+
+  const handleRating = (value) => {
+    setRating(value);
+  };
+
+  const handleRowReview = (rowId) => {
+    setReviewedRows([...reviewedRows, rowId]);
+  };
+
+  const isRowReviewed = (rowId) => {
+    return reviewedRows.includes(rowId);
+  };
+
+  return (
+    <div className="feedback-container">
+      <table className="feedback-table">
+        <thead>
+          <tr>
+            <th>FID</th>
+            <th>Comment</th>
+            <th>SID</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {stockData.map((item, index) => (
+            <tr key={index}>
+              <td>{item.FID}</td>
+              <td>{item.comment}</td>
+              <td>{item.SID}</td>
+              <td>
+                <button
+                  className={`review-button ${isRowReviewed(index) ? 'reviewed' : ''}`}
+                  onClick={() => handleRowReview(index)}
+                >
+                  {isRowReviewed(index) ? 'Reviewed' : 'Review'}
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Review Confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Thank you for reviewing!</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={() => setShowModal(false)}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
+}
+
+export default FeedbackReport;
+*/

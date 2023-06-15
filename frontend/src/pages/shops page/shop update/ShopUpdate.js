@@ -4,6 +4,8 @@ import backgroundLogo from "../../../assets/Background vector group.png";
 import logo from "../../../assets/zr red.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import swal from "sweetalert";
+import axios from "axios";
 
 const ShopUpdate = () => {
   const navigation = useNavigate();
@@ -13,15 +15,16 @@ const ShopUpdate = () => {
   const [currntDetailsForInputs, setCurrntDetailsForInputs] = useState({
  
    
-    id:currentDetails.id,
-    shopName: currentDetails.shopName,
-    ownerName: currentDetails.ownerName,
-    nic: currentDetails.nic,
-    mobile: currentDetails.mobile,
+    SID:currentDetails.id,
+    shop_name: currentDetails.shopName,
+    Fname: currentDetails.ownerName.split(" ")[0],
+    Lname: currentDetails.ownerName.split(" ")[1],
+    NIC: currentDetails.nic,
+    phoneNo: currentDetails.mobile,
     email: currentDetails.email,
-    dob:currentDetails.dob,
+    location:currentDetails.location,
     address:currentDetails.address,
-    sex: currentDetails.sex
+    Rcode: currentDetails.Rcode
 
 
   });
@@ -33,9 +36,9 @@ const ShopUpdate = () => {
   const [nicvalue,setnicValue]  = useState(currentDetails.nic);
   const [mobilevalue,setmobileValue]  = useState(currentDetails.mobile);
   const [emailvalue,setemailValue]  = useState(currentDetails.email);
-  const [dobvalue,setdobValue]  = useState(currentDetails.dob);
+  const [dobvalue,setdobValue]  = useState(currentDetails.location);
   const [addressvalue,setaddressValue]  = useState(currentDetails.address);
-  const [sexvalue,setsexValue]  = useState(currentDetails.sex);
+  const [sexvalue,setsexValue]  = useState(currentDetails.Rcode);
 
   const shopNameInputHandler = (event) => {
     setshopNameValue(event.target.value);
@@ -81,31 +84,72 @@ const ShopUpdate = () => {
 
 
   const logoHandler = () => {
-    navigation("/");
+    navigation("/admin/shops/shop_srch");
   };
+
+
+  const [confirmLogic,setConfirmLogic] = useState(false);
+
+  const yesBtnHandler = async()  =>{
+    try{
+      await axios.put("http://localhost:8800/shopconfirm/" +currntDetailsForInputs.SID,currntDetailsForInputs)
+
+      // create onchange and set it to PUT
+     
+     
+  }
+  catch(err){
+   console.log(err);
+  }
+ 
+
+  swal("Updated!", "You updated the shop details", "success");
+             
+          setConfirmLogic(false);
+          navigation("/admin/shops/shop_srch");
+  }
+
+  
+  const noBtnHandler = ()  =>{
+        setConfirmLogic(false);
+  }
+
 
   const updateHandler = (event) => {
     event.preventDefault();
-    console.log("update clicked");
+    // console.log("swal val",swal("values updated"))
+    // console.log("update clicked");
     setCurrntDetailsForInputs({
          
-    id:idvalue,
-    shopName: shopNamevalue,
-    ownerName: ownerNamevalue,
-    nic: nicvalue,
-    mobile: mobilevalue,
+    SID:idvalue,
+    shop_name: shopNamevalue,
+    Fname: ownerNamevalue.split(" ")[0],
+    Lname: ownerNamevalue.split(" ")[1],
+    NIC: nicvalue,
+    phoneNo: mobilevalue,
     email: emailvalue,
-    dob:dobvalue,
+    location:dobvalue,
     address:addressvalue,
-    sex: sexvalue
+    Rcode: sexvalue
     });
     console.log("value after update",currntDetailsForInputs);
+    setConfirmLogic(true);
     
   };
 
   return (
     <div className={classes.main_div}>
       <div className={classes.main_div_sub_div1}>
+
+      { confirmLogic &&(<div className={classes.err_div}>
+        <div className={classes.err_div_msg}>
+          <section className={classes.err_div_msg_sec1}>Do You Want To Confirm Update shop ? </section>
+          <section className={classes.err_div_msg_sec2}>
+            <button className={classes.bt1} onClick={yesBtnHandler} >Yes</button>
+            <button className={classes.bt2} onClick={noBtnHandler} >No</button>
+          </section>
+        </div>
+      </div>)}
         <div className={classes.wrapper_div}>
           <section className={classes.sub_sec1}>
             <img src={logo} alt="logo" onClick={logoHandler} />
@@ -152,7 +196,7 @@ const ShopUpdate = () => {
                   </tr>
 
                   <tr>
-                    <td className={classes.td_left}>Sex</td>
+                    <td className={classes.td_left}>Rcode</td>
                     <td className={classes.td_right}>
                       <input
                         type="text"
@@ -175,7 +219,7 @@ const ShopUpdate = () => {
                     </td>
                   </tr>
                   <tr>
-                    <td className={classes.td_left}>DOB</td>
+                    <td className={classes.td_left}>Location</td>
                     <td className={classes.td_right}>
                       <input
                         type="text"

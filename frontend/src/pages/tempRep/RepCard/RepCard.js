@@ -5,7 +5,10 @@ import axios from "axios";
 
 const RepCard = (props) => {
   const [errStatus, setErrStatus] = useState(false);
-  const [confirm, SetConfirm] = useState(false);
+  const [errStatusConfirm, setErrStatusConfirm] = useState(false);
+  const [confirmAccept,setConfirmAccept] = useState(false);
+
+  // const [confirm, SetConfirm] = useState(false);
   const [datas, setData] = useState({
     date: " ",
     password: " ",
@@ -33,53 +36,86 @@ const RepCard = (props) => {
   // const[dataLogic,setDataLogic] = useState('false');
   const handleDelete = async (id) => {
     setErrStatus(true);
-    console.log("errr status", errStatus);
+    // console.log("errr status", errStatus);
     // async function to make API request
-    console.log("confirmation", confirm);
-    if (confirm) {
-      try {
-        await axios.delete("http://localhost:8800/reps/" + props.rid);
-
-        window.location.reload();
-      } catch (err) {
-        console.log(err);
-      }
-      setErrStatus(false);
-    }
+    // console.log("confirmation", confirm);
+    // if (confirm) {
+    //   try {
+    //     await axios.delete("http://localhost:8800/reps/" + props.rid);
+    //     SetConfirm(false);
+    //     window.location.reload();
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    //   setErrStatus(false);
+      
+    // }
   };
 
-  const handleAccept = async (id) => {
-    setData({
-      date: props.date,
-      password: props.password,
-      email: props.email,
-      RID: props.rid,
-      full_name: props.full_name,
-      phone: props.mobile,
-      NIC: props.nic,
-      address: props.address,
-    });
-
-    // hello
-    try {
-      await axios.post("http://localhost:8800/reps", datas);
-      setErrStatus(true);
-      window.location.reload();
-      console.log("writing data", datas);
-      console.log("add to sales rep table");
-    } catch (err) {
-      console.log(err);
-    }
+  const handleAccept = async () => {
+    setErrStatus(true);
+    setErrStatusConfirm(true);
   };
 
   const noButtonHandler = () => {
-    SetConfirm(false);
+    // SetConfirm(false);
+    setErrStatus(false);
   };
 
-  const yesButtonHandler = () => {
-    console.log("clicked yes");
-    SetConfirm(true);
-    handleDelete(props.rid);
+  const yesButtonHandler = async () => {
+    // console.log("clicked yes");
+    // SetConfirm(true);
+    // console.log(confirm);
+    if(errStatusConfirm){
+      setConfirmAccept(true);
+      try {
+        // await axios.post("http://localhost:8800/reps", datas);
+  
+        await axios.post("http://localhost:8800/reps", {
+          date: props.date,
+          password: props.password,
+          email: props.email,
+          RID: props.rid,
+          full_name: props.name,
+          phone: props.mobile,
+          NIC: props.nic,
+          address: props.address,
+          type: props.type, // have to change to sex:
+        });
+        // setErrStatus(true);
+        // window.location.reload();
+  
+        console.log("add to sales rep table");
+      } catch (err) {
+        console.log(err);
+      }
+
+
+      try {
+        await axios.delete("http://localhost:8800/reps/" + props.rid);
+        
+       
+      } catch (err) {
+        console.log(err);
+      }
+
+
+    }else{
+      try {
+        await axios.delete("http://localhost:8800/reps/" + props.rid);
+        
+       
+      } catch (err) {
+        console.log(err);
+      }
+
+    }
+    console.log("value of confirm accept",confirmAccept);
+
+    // handleDelete(props.rid);
+    setErrStatus(false);
+    window.location.reload();
+    
   };
   return (
     <div className={classes.repCard_main_div}>
@@ -113,7 +149,7 @@ const RepCard = (props) => {
                   <td>
                     Register date
                     <br></br>
-                    <p>{props.rdate}</p>
+                    <p>{props.date}</p>
                   </td>
                 </tr>
 
@@ -127,7 +163,7 @@ const RepCard = (props) => {
                   <td>
                     Sex
                     <br></br>
-                    <p>Male</p>
+                    <p>{props.type}</p>
                   </td>
                 </tr>
 
@@ -166,24 +202,25 @@ const RepCard = (props) => {
             </table>
             {/* testing  */}
             <div className={classes.btn_div}>
-            <button
-              className={classes.repCard_Button_accepts}
-              onClick={() => handleAccept(props.rid)}
-            >
-              Accept
-            </button>
-            <button
-                      className={classes.repCard_Button_cancel}
-                      onClick={() => handleDelete(props.rid)}
-                    >
-                      Cancel
-                    </button>
-                    </div>
+              <button
+                className={classes.repCard_Button_accepts}
+                onClick={() => handleAccept(props.rid)}
+              >
+                Accept
+              </button>
+              <button
+                className={classes.repCard_Button_cancel}
+                onClick={() => handleDelete(props.rid)}
+              >
+                Cancel
+              </button>
+            </div>
           </>
         )}
         {errStatus && (
           <div className={classes.err_msg}>
-            <p>Do you want to delete </p>
+           { !errStatusConfirm && ( <p>Do you want to delete ? </p> ) }
+           { errStatusConfirm &&( <p>Do you want to confirm this data ? </p> ) }
             <button onClick={yesButtonHandler} className={classes.btny}>
               {" "}
               Yes

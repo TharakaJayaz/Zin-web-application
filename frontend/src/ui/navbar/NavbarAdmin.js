@@ -9,6 +9,10 @@ const NavbarAdmin = (props) => {
   const imageClickHandler = ()  =>{
     navigation("/");
   }
+
+  const logoutHandler = () =>{
+    navigation("/signIn");
+  }
   return (
     <div>
       <div className={`${classes.nav_main_div} ${props.className} `}>
@@ -16,7 +20,7 @@ const NavbarAdmin = (props) => {
         <div className={classes.headElements}>
           <ul>
 
-            <NavLink   to = "/admin/items" className={classes.nav_style}><li>Items</li></NavLink>
+            <NavLink   to = "/admin/items/update" className={classes.nav_style}><li>Items</li></NavLink>
             <NavLink  to =  "/admin/temp_reps" className={classes.nav_style}><li>Reps</li></NavLink>
             <NavLink to = "/admin/reports"  className={classes.nav_style}><li>Reports</li></NavLink>
             <NavLink to = "/admin/shops" className={classes.nav_style}><li>Shop</li></NavLink>
@@ -27,7 +31,7 @@ const NavbarAdmin = (props) => {
           {/* <input type="text" className={classes.navSearch_input} placeholder = "search"/>
           <button className={`${classes.navSearch__button} ${props.buttonstyle}`}>Search</button> */}
         </div>
-        <button className={classes.nav_main_div_logOut_button}>Logout</button>
+        <button  onClick={logoutHandler} className={classes.nav_main_div_logOut_button}>Logout</button>
        
       </div>
     </div>

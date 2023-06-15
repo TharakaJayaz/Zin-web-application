@@ -44,3 +44,9 @@
     font-size: 1.5rem;
     font-weight: 650;
 }
+
+
+.location_styl{
+    width:200px;
+    overflow: auto;
+}

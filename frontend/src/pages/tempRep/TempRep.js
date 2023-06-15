@@ -27,8 +27,8 @@ const TempRep = () => {
 
     fetchAllTempReps();
   }, []);
- 
-  console.log(tempReps);
+
+  console.log("temp reps", tempReps);
   const buttonHandler = () => {
     setEnableValue(true);
   };
@@ -67,12 +67,12 @@ const TempRep = () => {
                   nic={tempR.NIC}
                   address={tempR.address}
                   email={tempR.email}
-                  name={tempR.full_name}
-                  mobile={tempR.phone}
-                  rdate={tempR.registration_date}
+                  name={tempR.fullname}
+                  mobile={tempR.phoneNo}
+                  date={tempR.registrationdate}
                   rid={tempR.RID}
                   password={tempR.password}
-                  
+                  type={tempR.type}
                 />
               </SwiperSlide>
             ))}

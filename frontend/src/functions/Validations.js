@@ -32,13 +32,35 @@ export const nicValidationFunction = nic =>{
     if(nicS.includes("v" || nicS.includes("V"))){
         if(nicS.length === 10){
             return true
-        }else{
+        }
+        else{
             return false
         }
+    }else if(nicS.length ===12){ 
+           return true;
     }else{
-        return false;
+        return false }
+};
+
+
+export const emptyValidation = (input) => {
+    return input === null || input ==="" ;
+  };
+
+
+  export const checkStockID = (input) => {
+    if (typeof input !== 'string') {
+      return false; // Input is not a string
     }
-}
+  
+    if (input.length === 0) {
+      return false; // Input is an empty string
+    }
+  
+    const firstTwoChars = input.slice(0, 2);
+  
+    return firstTwoChars === "SL";
+  };
 
 
-console.log('etst')
+console.log('etst');

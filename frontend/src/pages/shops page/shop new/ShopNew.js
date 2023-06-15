@@ -4,24 +4,26 @@ import backgroundLogo from "../../../assets/Background vector group.png";
 import logo from "../../../assets/zr red.png";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import axios from "axios";
 
 const ShopNew = () => {
   const navigation = useNavigate();
 
   const logoHandler = () => {
-    navigation("/");
+    navigation("/admin/shops");
   };
 
   const [currntDetailsForInputs, setCurrntDetailsForInputs] = useState({
-    id: "",
-    shopName: "",
-    ownerName: "",
-    nic: "",
-    mobile: "",
+    SID:"",
+    shop_name: "",
+    Fname: "",
+    Lname: "",
+    location: "",
+    phoneNo: "",
     email: "",
-    dob: "",
-    address: "",
-    sex: "",
+    NIC:"",
+    Rcode:"",
+    address: ""
 
     // id:currentDetails.id,
     // shopName: currentDetails.shopName,
@@ -38,12 +40,12 @@ const ShopNew = () => {
   const [shopNamevalue,setshopNameValue]  = useState();
   const [idvalue,setidValue]  = useState();
   const [ownerNamevalue,setownerNameValue]  = useState();
-  const [nicvalue,setnicValue]  = useState();
+  const [locationvalue,setlocationValue]  = useState();
   const [mobilevalue,setmobileValue]  = useState();
   const [emailvalue,setemailValue]  = useState();
-  const [dobvalue,setdobValue]  = useState();
-  const [addressvalue,setaddressValue]  = useState();
-  const [sexvalue,setsexValue]  = useState();
+  const [nicvalue,setnicValue]  = useState();
+  const [rcodevalue,setrcodeValue]  = useState();
+  const [addvalue,setaddValue]  = useState();
 
 
   const shopIdInputHandler = (event) => {
@@ -58,60 +60,117 @@ const ShopNew = () => {
     setownerNameValue(event.target.value);
   };
 
-  const nicInputHandler = (event) => {
-    setnicValue(event.target.value);
+  const locationInputHandler = (event) => {
+    setlocationValue(event.target.value);
   };
 
-  const sexInputHandler = (event) => {
-    setsexValue(event.target.value);
+  const addressInputHandler = (event) => {
+    setaddValue(event.target.value);
   };
 
   const mobileInputHandler = (event) => {
     setmobileValue(event.target.value);
   };
 
-  const dobInputHandler = (event) => {
-    setdobValue(event.target.value);
+  const nicInputHandler = (event) => {
+    setnicValue(event.target.value);
   };
 
-  const addressInputHandler = (event) => {
-    setaddressValue(event.target.value);
+  const rcodeInputHandler = (event) => {
+    setrcodeValue(event.target.value);
   };
 
   const emailInputHandler = (event) => {
     setemailValue(event.target.value);
   };
 
-  const updateHandler = (event) => {
+  const addHandler = async (event) => {
   
     event.preventDefault();
 
     setCurrntDetailsForInputs({
          
-      id:idvalue,
-      shopName: shopNamevalue,
-      ownerName: ownerNamevalue,
-      nic: nicvalue,
-      mobile: mobilevalue,
+      SID:idvalue,
+      shop_name: shopNamevalue,
+      Fname: ownerNamevalue.split(" ")[0],
+      Lname: ownerNamevalue.split(" ")[1],
+      location: locationvalue,
+      phoneNo: mobilevalue,
       email: emailvalue,
-      dob:dobvalue,
-      address:addressvalue,
-      sex: sexvalue
+      NIC:nicvalue,
+      Rcode:rcodevalue,
+      address: addvalue
       });
       
-      setidValue("");
+      // setidValue("");
+      // setshopNameValue("");
+      // setownerNameValue("");
+      // setlocationValue("");
+      // setaddValue("");
+      // setmobileValue("");
+      // setnicValue("");
+      // setrcodeValue("");
+      // setemailValue("");
+      // swal("sucessfully added");
+
+
+      // console.log("final details",{
+         
+      //   SID:idvalue,
+      //   shop_name: shopNamevalue,
+      //   Fname: ownerNamevalue.split(" ")[0],
+      //   Lname: ownerNamevalue.split(" ")[1],
+      //   location: locationvalue,
+      //   phoneNo: mobilevalue,
+      //   email: emailvalue,
+      //   NIC:nicvalue,
+      //   Rcode:rcodevalue,
+      //   address: addvalue
+      //   });
+
+      try {
+        // await axios.post("http://localhost:8800/reps", datas);
+  
+        await axios.post("http://localhost:8800/shopconfirm", {
+         
+        SID:idvalue,
+        shop_name: shopNamevalue,
+        Fname: ownerNamevalue.split(" ")[0],
+        Lname: ownerNamevalue.split(" ")[1],
+        location: locationvalue,
+        phoneNo: mobilevalue,
+        email: emailvalue,
+        NIC:nicvalue,
+        Rcode:rcodevalue,
+        address: addvalue
+        });
+        // setErrStatus(true);
+        // window.location.reload();
+  
+        console.log("add to shop confirm table");
+      } catch (err) {
+        console.log(err);
+      }
+
+      swal("Done!", "You add shop details!", "success");
+        setidValue("");
       setshopNameValue("");
       setownerNameValue("");
-      setnicValue("");
-      setsexValue("");
+      setlocationValue("");
+      setaddValue("");
       setmobileValue("");
-      setdobValue("");
-      setaddressValue("");
+      setnicValue("");
+      setrcodeValue("");
       setemailValue("");
-      swal("sucessfully added");
+      navigation("/admin/shops");
+      
 
 
-      console.log("final details",currntDetailsForInputs);
+
+      
+
+
+
   };
 
   return (
@@ -163,25 +222,37 @@ const ShopNew = () => {
                   </tr>
 
                   <tr>
-                    <td className={classes.td_left}>NIC</td>
+                    <td className={classes.td_left}>Email</td>
                     <td className={classes.td_right}>
                       <input
                         type="text"
-                        onChange={nicInputHandler}
+                        onChange={emailInputHandler}
                         className={classes.form_inputs}
-                        value={nicvalue}
+                        value={emailvalue}
                       />
                     </td>
                   </tr>
 
                   <tr>
-                    <td className={classes.td_left}>Sex</td>
+                    <td className={classes.td_left}>Location</td>
                     <td className={classes.td_right}>
                       <input
                         type="text"
-                        onChange={sexInputHandler}
+                        onChange={locationInputHandler}
                         className={classes.form_inputs}
-                        value={sexvalue}
+                        value={locationvalue}
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td className={classes.td_left}>Address</td>
+                    <td className={classes.td_right}>
+                      <input
+                        type="text"
+                        onChange={addressInputHandler}
+                        className={classes.form_inputs}
+                        value={addvalue}
                       />
                     </td>
                   </tr>
@@ -198,29 +269,29 @@ const ShopNew = () => {
                     </td>
                   </tr>
                   <tr>
-                    <td className={classes.td_left}>DOB</td>
+                    <td className={classes.td_left}>NIC</td>
                     <td className={classes.td_right}>
                       <input
                         type="text"
-                        onChange={dobInputHandler}
+                        onChange={nicInputHandler}
                         className={classes.form_inputs}
-                        value={dobvalue}
+                        value={nicvalue}
                       />
                     </td>
                   </tr>
                   <tr>
-                    <td className={classes.td_left}>Address</td>
+                    <td className={classes.td_left}>Rcode</td>
                     <td className={classes.td_right}>
                       <input
                         type="text"
-                        onChange={addressInputHandler}
+                        onChange={rcodeInputHandler}
                         className={classes.form_inputs}
-                        value={addressvalue}
+                        value={rcodevalue}
                       />
                     </td>
                   </tr>
 
-                  <tr>
+                  {/* <tr>
                     <td className={classes.td_left}>Email</td>
                     <td className={classes.td_right}>
                       <input
@@ -230,11 +301,11 @@ const ShopNew = () => {
                         value={emailvalue}
                       />
                     </td>
-                  </tr>
+                  </tr> */}
                 </tbody>
               </table>
               <section className={classes.sub_sec4}>
-                <button onClick={updateHandler}>Add</button>
+                <button onClick={addHandler}>Add</button>
                 
               </section>
             </form>

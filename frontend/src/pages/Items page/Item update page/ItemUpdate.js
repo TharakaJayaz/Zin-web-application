@@ -1,150 +1,148 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './ItemUpdate.module.css';
 import background from '../../../assets/Background vector group.png';
-import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import PopupMessageForDelete from '../popupMessageForDelete'; // Import the component responsible for displaying the popup message
+import PopupMessageForDelete from '../popupMessageForDelete';
 import PopupMessageForUpdate from '../popupMessageForUpdate';
-import axios from 'axios';
 import NavbarAdmin from '../../../ui/navbar/NavbarAdmin';
-
-// const ItemUpdate = () => {
-//   return (
-//     <div className={classes.updt_div}>
-//        <div>hello</div>
-//        <img src = {background} alt = 'background vector'   className={classes.back_img}/>
-//     </div>
-//   )
-
-// }
-
+import axios from 'axios';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 function ItemUpdate() {
-    const [stockData, setStockData] = useState([]);
+  const [stockData, setStockData] = useState([]);
+  const [showTable, setShowTable] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
+  const [showpopupdate, setshowpopupupdate] = useState(false);
+  const [updatePopupData, setUpdatePopupData] = useState({});
+  const [id, setId] = useState(0);
+  const [sid, setSid] = useState(0);
 
-    const [showTable, setShowTable] = useState(true);
-    const [showPopup, setShowPopup] = useState(false);
-    const [showpopupdate, setshowpopupupdate] = useState(false);
-    const [updatePopupData, setUpdatePopupData] = useState({});
-    const [id, setId] = useState(0);
-    const [sid, setSid] = useState(0);
-
-    // const stockIDInputRef = useRef();
-    // const qtyInputRef = useRef();
-    // const productnameInputRef = useRef();
-    // const nameInputRef = useRef();
-    // const priceInputRef = useRef();
-    // const manufacturedateInputRef = useRef();
-    // const expirydateInputRef = useRef();
-    // const discountInputRef = useRef();
-    // const imageInputRef = useRef();
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:8800/stock');
-                setStockData(response.data);
-            } catch (error) {
-                console.error('Error fetching stock data:', error);
-            }
-        };
-        fetchData();
-    }, []);
-
-    const handleUpdate = (item) => {
-        debugger;
-        setUpdatePopupData(item);
-        setshowpopupupdate(true);
-    }
-
-    const handledelete = (id) => {
-        console.log("for delete", id)
-        setId(id)
-        setShowPopup(true);
-    }
-
-    const handleDisplay = () => {
-        setShowTable(!showTable);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8800/stock');
+        setStockData(response.data);
+      } catch (error) {
+        console.error('Error fetching stock data:', error);
+      }
     };
+    fetchData();
+  }, []);
 
-    return (
-        <div style={{ position: "relative" }}>
-            <NavbarAdmin />
+  const handleUpdate = (item) => {
+    setUpdatePopupData(item);
+    setshowpopupupdate(true);
+  };
 
-            <div style={{ position: "absolute", zIndex: 200, margin: 'auto', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div>
-                    {showPopup && <PopupMessageForDelete onClose={() => setShowPopup(false)} data={id} />}
-                </div>
+  const handledelete = (id) => {
+    console.log('for delete', id);
+    setId(id);
+    setShowPopup(true);
+  };
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <NavbarAdmin />
+
+      <div
+        style={{
+          position: 'absolute',
+          zIndex: 200,
+          margin: 'auto',
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <div>{showPopup && <PopupMessageForDelete onClose={() => setShowPopup(false)} data={id} />}</div>
+      </div>
+
+      <div
+        style={{
+          position: 'absolute',
+          zIndex: 200,
+          margin: 'auto',
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <div>{showpopupdate && <PopupMessageForUpdate onClose={() => setshowpopupupdate(false)} data={updatePopupData} />}</div>
+      </div>
+
+      <div className={classes.updt_div}>
+        <div className="container">
+          <div className="mt-3">
+            <div className="centered">
+              <h2 className="eye-catching-text">-------------------------ITEMS FETCHED.-------------------------</h2>
             </div>
-
-            <div style={{ position: "absolute", zIndex: 200, margin: 'auto', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div>
-                    {showpopupdate && <PopupMessageForUpdate onClose={() => setshowpopupupdate(false)} data={updatePopupData} />}
+            <br />
+            {stockData.length > 0 ? (
+              <>  <div className={classes.BTtable_div}>
+                <Table striped bordered hover>
+                  <thead>
+                    <tr>
+                      <th>Stock ID</th>
+                      <th>Qty</th>
+                      <th>Product Name</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Manufacture Date</th>
+                      <th>Expiry Date</th>
+                      <th>Discount</th>
+                      <th>Operations</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {stockData.map((item, index) => (
+                      <tr key={index}>
+                        <td>{item.stockID}</td>
+                        <td>{item.qty}</td>
+                        <td>{item.productname}</td>
+                        <td>{item.name}</td>
+                        <td>{item.price}</td>
+                        <td>{item.manufacturedate}</td>
+                        <td>{item.expirydate}</td>
+                        <td>{item.discount}</td>
+                        <td>
+                          <span style={{ paddingRight: '15px' }}>
+                            <Button variant="outline-info" onClick={() => handleUpdate(item)}>
+                              Update
+                            </Button>
+                          </span>
+                          <span>
+                            <Button variant="outline-danger" onClick={() => handledelete(item.stockID)}>
+                              delete
+                            </Button>
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
                 </div>
-            </div>
-
-            <div className={classes.updt_div}>
-
-                <div className='container'>
-                    <div className='mt-3'>
-                        <h2>-------------------------ITEMS FETCHED.-------------------------</h2>
-                        <br></br>
-                        {stockData.length > 0 ? (
-                            <>
-                                <table calssname=' table-bordered'>
-                                    <thead>
-                                        <tr>
-                                            &nbsp;&nbsp;  <th style={{ border: '1px solid black', padding: '8px' }}>Stock ID</th>
-                                            &nbsp;&nbsp;  <th style={{ border: '1px solid black', padding: '8px' }}>Qty</th>
-                                            &nbsp;&nbsp; <th style={{ border: '1px solid black', padding: '8px' }}>Product Name</th>
-                                            &nbsp;&nbsp; <th style={{ border: '1px solid black', padding: '8px' }}>Name</th>
-                                            &nbsp;&nbsp; <th style={{ border: '1px solid black', padding: '8px' }}>Price</th>
-                                            &nbsp;&nbsp; <th style={{ border: '1px solid black', padding: '8px' }}>Manufacture Date</th>
-                                            &nbsp;&nbsp; <th style={{ border: '1px solid black', padding: '8px' }}>Expiry Date</th>
-                                            &nbsp;&nbsp; <th style={{ border: '1px solid black', padding: '8px' }}>Discount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {stockData.map((item, index) => (
-                                            <tr key={index}>
-                                                &nbsp;&nbsp; <td style={{ border: '1px solid black', padding: '8px' }}>{item.stockID} </td>
-                                                &nbsp;&nbsp;<td style={{ border: '1px solid black', padding: '8px' }}>{item.qty} </td>
-                                                &nbsp;&nbsp;<td style={{ border: '1px solid black', padding: '8px' }}>{item.productname} </td>
-                                                &nbsp;&nbsp; <td style={{ border: '1px solid black', padding: '8px' }}>{item.name} </td>
-                                                &nbsp;&nbsp; <td style={{ border: '1px solid black', padding: '8px' }}>{item.price} </td>
-                                                &nbsp;&nbsp; <td style={{ border: '1px solid black', padding: '8px' }}>{item.manufacturedate} </td>
-                                                &nbsp;&nbsp; <td style={{ border: '1px solid black', padding: '8px' }}>{item.expirydate} </td>
-                                                &nbsp;&nbsp;<td style={{ border: '1px solid black', padding: '8px' }}>{item.discount}</td>
-                                                <td>
-                                                    <button onClick={() => handleUpdate(item)}>Update</button>
-                                                    &nbsp;&nbsp;
-                                                    <button onClick={() => handledelete(item.stockID)}>delete</button>
-
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    <button style={{ margin: "auto" }} onClick={handleDisplay}>
-                                        <br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <Link to="/admin/items"> DISPLAY </Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                                    </button>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <Link to="/admin/add/item" className="btn btn-primary" style={{ position: 'absolute', top: '15px', right: '40px' }}>
+                    ADD
+                  </Link>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                    <Link to="/admin/items" className="btn btn-primary">DISPLAY</Link>
                                 </div>
-                            </>
-                        ) : (
-                            <p>Loading stock data...</p>
-                        )}
-                        {/* <img src={background} alt='background vector' className={classes.back_img} /> */}
-
-                        <center>
-                        </center>
-
-                    </div>
-                </div>
-            </div>
+              </>
+            ) : (
+              <p>Loading stock data...</p>
+            )}
+            {/* <img src={background} alt="background vector" className={classes.back_img} />
+            <center></center> */}
+          </div>
         </div>
+      </div>
+    </div>
+  );
+}
 
-    );
-};
-export default ItemUpdate
+export default ItemUpdate;

@@ -107,3 +107,72 @@
 }
 
 
+
+
+
+
+.err_div{
+    position: absolute;
+    z-index: 1000;
+    width:100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.852);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s ease-in-out;
+  
+}
+
+.err_div_msg{
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding:3rem 5rem;
+    font-size: 1.5rem;
+}
+
+.err_div_msg_sec1{
+    
+}
+
+.err_div_msg_sec2{
+    margin-top: 2rem;
+   
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.err_div_msg_sec2 button{
+    width:100px;
+    font-size: 1.1rem;
+    padding:0.3rem 0.5rem ;
+    border-radius: 5px;
+    transition: 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+.err_div_msg_sec2 .bt1{
+    border:2px solid red;
+    color:red;
+}
+
+
+.err_div_msg_sec2 .bt1:hover{
+    background: red;
+    color:#fff;
+    scale: 1.1;
+}
+
+
+.err_div_msg_sec2 .bt2:hover{
+    background: rgb(13, 236, 13);
+    color:#fff;
+    scale: 1.1;
+}
+
+.err_div_msg_sec2 .bt2{
+    border:2px solid rgb(13, 236, 13);
+    color:rgb(13, 236, 13);
+
+}
