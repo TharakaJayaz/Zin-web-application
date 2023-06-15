@@ -7,7 +7,7 @@ const NavbarAdmin = (props) => {
   const navigation = useNavigate();
 
   const imageClickHandler = ()  =>{
-    navigation("/");
+    navigation("/admin/temp_reps");
   }
 
   const logoutHandler = () =>{

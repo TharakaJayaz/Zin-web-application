@@ -6,6 +6,7 @@ import { MdDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import { checkFirstTwoNumbers, emptyValidation } from "../../../functions/Validations";
 
 const ItemNew = (props) => {
   //  const currentDetails = useSelector(state => state.itemListUpdate);
@@ -21,13 +22,16 @@ const ItemNew = (props) => {
   const [tempValue, setTempValue] = useState();
 
   const LogoHandler = () => {
-    navigation("/");
+    navigation("/stock_keeper/item_list");
   };
 
   const yesBtnHandler = () => {
     // setCOnfirmLogic(true);
+    
     setCurrentDetails(tempValue);
     setConfirmMessageLogic(false);
+
+    
   };
   const noBtnHandler = () => {
     //  setCOnfirmLogic(false);
@@ -42,6 +46,12 @@ const ItemNew = (props) => {
   const [priceVaue, setPriceValue] = useState("");
   const [qtyVaue, setQtyValue] = useState("");
 
+  const [itemListerr,setItemListErr] = useState(false);
+  const [itemerr,setItemErr] = useState(false);
+  const [deserr,setDesErr] = useState(false);
+  const [priceerr,setPriceErr] = useState(false);
+  const [qtyerr,setQtyErr] = useState(false);
+
   //handeling functions for input form
 
   const ItemListInputHandler = (event) => {
@@ -50,6 +60,12 @@ const ItemNew = (props) => {
       return;
     }
     setItemListIdValue(event.target.value);
+
+    if(!checkFirstTwoNumbers(event.target.value)){
+      setItemListErr(true);
+    }else{
+      setItemListErr(false);
+    }
   };
 
   const itemInputHandler = (event) => {
@@ -63,23 +79,45 @@ const ItemNew = (props) => {
     }
 
     setItemValue(event.target.value);
+    if(!checkFirstTwoNumbers(event.target.value)){
+      setItemErr(true);
+    }else{
+      setItemErr(false);
+    }
 
     console.log("current id values", currentItemID);
   };
   const desInputHandler = (event) => {
     setDesValue(event.target.value);
+    if(emptyValidation(event.target.value)){
+      setDesErr(true);
+    }else{
+      setDesErr(false);
+    }
   };
 
   const priceInputHandler = (event) => {
     setPriceValue(event.target.value);
+    if(emptyValidation(event.target.value)){
+      setPriceErr(true);
+    }else{
+      setPriceErr(false);
+    }
   };
 
   const qtyInputHandler = (event) => {
     setQtyValue(event.target.value);
+    if(emptyValidation(event.target.value)){
+      setQtyErr(true);
+    }else{
+      setQtyErr(false);
+    }
   };
 
   const addBtnHandler = (event) => {
     event.preventDefault();
+
+    if(!itemerr && !deserr && !priceerr && !qtyerr&& !itemListerr){
 
     let tempItemsValue = currentDetails.items;
 
@@ -99,16 +137,20 @@ const ItemNew = (props) => {
 
     // const tempIDvalue = currentDetails.id;
 
-    const tempData = {
-      id: itemListIdVaue,
-      items: tempItemsValue,
-    };
-
-    setCurrentDetails(tempData);
+  
+    
+      const tempData = {
+        id: itemListIdVaue,
+        items: tempItemsValue,
+      };
+    
+      setCurrentDetails(tempData);
     setItemValue("");
     setDesValue("");
     setPriceValue("");
     setQtyValue("");
+
+    }
   };
 
   const svgHandler = (value) => {
@@ -127,6 +169,12 @@ const ItemNew = (props) => {
     console.log("datad object after deltion", temp);
     setTempValue(temp);
   };
+
+  const saveHandler = ()  =>{
+    swal("Done!", "You Create Item list!", "success");
+    navigation("/stock_keeper/item_list");
+    window.location.reload();
+  }
 
   return (
     <div className={classes.ItemListUpdate_main}>
@@ -184,7 +232,15 @@ const ItemNew = (props) => {
               </table>
             </form>
           </section>
-
+          <section className={classes.err_sec}>  
+              {itemerr &&(  <span> Invalid Item ID</span>  )}
+              {itemListerr &&(  <span> Invalid Item List ID</span>  )}
+              {deserr &&(  <span> Invalid Description</span>  )}
+              {priceerr &&(  <span> Invalid Price</span>  )}
+              {qtyerr &&(  <span> Invalid QTY</span>  )}
+            
+                
+              </section>
           <section className={classes.details_div_sec3}>
             <form>
               <table>
@@ -246,7 +302,7 @@ const ItemNew = (props) => {
             </section>
           </section>
           <section className={classes.details_div_sec4}>
-            <button>Save</button>
+            <button onClick={saveHandler}>Save</button>
           </section>
         </div>
       </div>

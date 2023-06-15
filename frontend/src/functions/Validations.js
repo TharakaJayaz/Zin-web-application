@@ -63,4 +63,17 @@ export const emptyValidation = (input) => {
   };
 
 
+export  const checkFirstTwoNumbers = (input) => {
+   
+  
+    if (input.length < 2) {
+      return false; // Input has fewer than 2 characters
+    }
+  
+    const firstTwoChars = input.slice(0, 2);
+  
+    return /^\d+$/.test(firstTwoChars);
+  };
+
+
 console.log('etst');

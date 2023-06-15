@@ -107,3 +107,9 @@
     border: none;
     z-index: 500;
 }
+
+
+.err_sec span{
+    color:red;
+    
+ }

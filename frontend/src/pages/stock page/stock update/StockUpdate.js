@@ -6,13 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import swal from "sweetalert";
+import { checkStockID, emptyValidation } from "../../../functions/Validations";
 const StockUpdate = () => {
   const navigation = useNavigate();
 
   // get values from redux toolkit state
 
   const currentDetails = useSelector((state) => state.stockUpdate);
-  console.log("recived data rfom redux",currentDetails);
+  console.log("recived data rfom redux", currentDetails);
   // set values from toolkit to useState to update inputs
 
   const [currntDetailsForInputs, setCurrntDetailsForInputs] = useState({
@@ -34,28 +35,69 @@ const StockUpdate = () => {
   const [routeValue, setrouteValue] = useState(currentDetails.route);
   const [itemListValue, setitemListValue] = useState(currentDetails.itemList);
 
+  const [iderr, setIDErr] = useState(false);
+  const [dateerr, setDateErr] = useState(false);
+  const [salesReperr, setSalesRepErr] = useState(false);
+  const [vehicleerr, setVehicleErr] = useState(false);
+  const [itemListerr, setItemListErr] = useState(false);
+  const [routeerr, setrouteErr] = useState(false);
+
   const idInputHandler = (event) => {
     setIdValue(event.target.value);
+    if (!checkStockID(event.target.value)) {
+      setIDErr(true);
+    } else {
+      setIDErr(false);
+    }
   };
 
   const dateInputHandler = (event) => {
     setdateValue(event.target.value);
+    if(emptyValidation(event.target.value)){
+      setDateErr(true)
+    }else{
+     setDateErr(false);
+    }
   };
 
   const salesRepInputHandler = (event) => {
     setsalesRepValue(event.target.value);
+    if(emptyValidation(event.target.value)){
+      setSalesRepErr(true);
+    }else{
+     setSalesRepErr(false);
+    }
   };
 
   const vehicleInputHandler = (event) => {
     setvehicleValue(event.target.value);
+
+    if(emptyValidation(event.target.value)){
+      setVehicleErr(true);
+    }else{
+     setVehicleErr(false);
+    }
+
   };
 
   const routeInputHandler = (event) => {
     setrouteValue(event.target.value);
+
+    if(emptyValidation(event.target.value)){
+      setrouteErr(true);
+    }else{
+     setrouteErr(false);
+    }
   };
 
   const itemListInputHandler = (event) => {
     setitemListValue(event.target.value);
+    if(emptyValidation(event.target.value)){
+      setItemListErr(true);
+    }else{
+     setItemListErr(false);
+    }
+    
   };
 
   const logoHandler = () => {
@@ -85,26 +127,27 @@ const StockUpdate = () => {
       itemList: itemListValue,
     });
 
-    try{
-      await axios.put("http://localhost:8800/stocklist/" +idValue,{
+
+    if(!iderr && !dateerr && !salesReperr && !vehicleerr && !routeerr && !itemListerr){
+
+    try {
+      await axios.put("http://localhost:8800/stocklist/" + idValue, {
         // id: idValue,
         date: dateValue,
         salesRep: salesRepValue,
         vehicle: vehicleValue,
         route: routeValue,
         itemList: itemListValue,
-      })
+      });
 
       // create onchange and set it to PUT
       swal("Updated!", "You updated the stock list details", "success");
       navigation("/stock_keeper/stock");
-     
-  }
-  catch(err){
-   console.log(err);
-  }
+    } catch (err) {
+      console.log(err);
+    }
 
-
+  }
   };
 
   return (
@@ -114,7 +157,9 @@ const StockUpdate = () => {
           <section className={classes.sub_sec1}>
             <img src={logo} alt="logo" onClick={logoHandler} />
           </section>
-          <section className={classes.sub_sec2}>Update Stock List: <span>{idValue}</span></section>
+          <section className={classes.sub_sec2}>
+            Update Stock List: <span>{idValue}</span>
+          </section>
           <section className={classes.sub_sec3}>
             <form>
               <table>
@@ -135,7 +180,7 @@ const StockUpdate = () => {
                     <td className={classes.td_left}>Date</td>
                     <td className={classes.td_right}>
                       <input
-                        type="text"
+                        type="date"
                         onChange={dateInputHandler}
                         className={classes.form_inputs}
                         value={dateValue}
@@ -191,6 +236,15 @@ const StockUpdate = () => {
                   </tr>
                 </tbody>
               </table>
+              <section className={classes.err_sec}>  
+              {iderr &&(  <span> Invalid ID</span>  )}
+              {dateerr &&(  <span> Invalid Date</span>  )}
+              {salesReperr &&(  <span> Invalid Sales rep</span>  )}
+              {vehicleerr &&(  <span> Invalid vehicle</span>  )}
+              {routeerr &&(  <span> Invalid Route</span>  )}
+              { itemListerr&&(  <span> Invalid Item list</span>  )}
+                
+              </section>
               <section className={classes.sub_sec4}>
                 <button onClick={updateHandler}>Update</button>
               </section>

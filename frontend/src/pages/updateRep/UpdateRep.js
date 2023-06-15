@@ -48,7 +48,7 @@ const UpdateRep = () => {
   // navigation functions
 
   const imageClickHandler = () => {
-    navigation("/");
+    navigation("/admin/temp_reps");
   };
 
  const nameHandler =(event)  =>{

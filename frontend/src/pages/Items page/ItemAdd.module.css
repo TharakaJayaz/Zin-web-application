@@ -110,11 +110,11 @@
 
 
 
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 .main_div{
     background: #F55A5A;
@@ -376,7 +376,7 @@
     font-weight: bold;
   }
   
-  button {
+  /* button {
     margin-top: 20px;
     padding: 8px 16px;
     border: none;
@@ -390,4 +390,7 @@
   button:hover {
     background-color: #0056b3;
   }
-  
+   */
+
+
+ 

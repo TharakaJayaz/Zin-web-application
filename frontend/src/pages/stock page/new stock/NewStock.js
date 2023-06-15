@@ -5,13 +5,14 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 import swal from 'sweetalert';
-import { checkStockID } from "../../../functions/Validations";
+import { checkStockID, emptyValidation } from "../../../functions/Validations";
 
 const NewStock = () => {
   const navigation = useNavigate();
 
   const imgOnclickHandler = () => {
-    navigation("/");
+    navigation("/stock_keeper/stock");
+    window.location.reload();
   };
 
 
@@ -28,8 +29,8 @@ const NewStock = () => {
   const [dateerr,setDateErr] = useState(false);
   const [salesReperr,setSalesRepErr] = useState(false);
   const [vehicleerr,setVehicleErr] = useState(false);
-  const [temListerr,setItemListErr] = useState(false);
-  const [err,setErr] = useState(false);
+  const [itemListerr,setItemListErr] = useState(false);
+  const [routeerr,setrouteErr] = useState(false);
 
   const idHandler = (event)  =>{
          setIdInput(event.target.value);
@@ -46,24 +47,49 @@ const NewStock = () => {
   const dateHandler = (event)  =>{
          setDateInput(event.target.value);
          console.log("date val",event.target.value);
+         if(emptyValidation(event.target.value)){
+           setDateErr(true)
+         }else{
+          setDateErr(false);
+         }
   }
 
 
   const saleRepHandler = (event)  =>{
        setSaleRepInput(event.target.value);
+       if(emptyValidation(event.target.value)){
+         setSalesRepErr(true);
+       }else{
+        setSalesRepErr(false);
+       }
   }
 
 
   const vehicleHandler = (event)  =>{
       setVehicleInput(event.target.value);
+      if(emptyValidation(event.target.value)){
+        setVehicleErr(true);
+      }else{
+       setVehicleErr(false);
+      }
   }
 
   const routeHandler = (event)  =>{
      setRouteInput(event.target.value);
+     if(emptyValidation(event.target.value)){
+      setrouteErr(true);
+    }else{
+     setrouteErr(false);
+    }
   }
  
   const itemListHandler = (event)  =>{
   setItemListInput(event.target.value);
+  if(emptyValidation(event.target.value)){
+    setItemListErr(true);
+  }else{
+   setItemListErr(false);
+  }
   }
 
 
@@ -85,6 +111,9 @@ const NewStock = () => {
       // const idValid = await idSchema.isValid({id:idInput});
 
       // console.log(idValid);
+      if(!iderr && !dateerr && !salesReperr && !vehicleerr && !routeerr && !itemListerr){
+
+      
 
       try {
         // await axios.post("http://localhost:8800/reps", datas);
@@ -117,6 +146,8 @@ const NewStock = () => {
 
       swal("Done!", "You added new stock list!", "success");
       window.location.reload();
+
+    }
 
   }
   return (
@@ -162,8 +193,13 @@ const NewStock = () => {
                   </tr>
                 </tbody>
               </table>
-              <section>  
+              <section className={classes.err_sec}>  
               {iderr &&(  <span> Invalid ID</span>  )}
+              {dateerr &&(  <span> Invalid Date</span>  )}
+              {salesReperr &&(  <span> Invalid Sales rep</span>  )}
+              {vehicleerr &&(  <span> Invalid vehicle</span>  )}
+              {routeerr &&(  <span> Invalid Route</span>  )}
+              { itemListerr&&(  <span> Invalid Item list</span>  )}
                 
               </section>
               <section className={classes.detail_section2_sub3}>

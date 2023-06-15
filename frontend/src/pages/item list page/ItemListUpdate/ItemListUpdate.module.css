@@ -299,3 +299,9 @@
 .details_div_sec4 button:hover{
     scale:1.1;
 }
+
+
+.err_sec span{
+    color:red;
+    
+ }

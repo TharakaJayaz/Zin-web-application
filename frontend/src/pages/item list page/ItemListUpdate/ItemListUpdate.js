@@ -6,6 +6,7 @@ import { MdDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
 import swal from 'sweetalert';
 import { useNavigate } from "react-router-dom";
+import { checkFirstTwoNumbers, emptyValidation } from "../../../functions/Validations";
 
 const ItemListUpdate = (props) => {
 //  const currentDetails = useSelector(state => state.itemListUpdate); 
@@ -23,13 +24,18 @@ const ItemListUpdate = (props) => {
 
 
   const LogoHandler = ()  =>{
-    navigation("/");
+    navigation("/stock_keeper/item_list");
   }
 
         const yesBtnHandler = ()  =>{
               // setCOnfirmLogic(true);
+
+              
+
               setCurrentDetails(tempValue);
               setConfirmMessageLogic(false);
+
+              
         }
      const noBtnHandler = ()  =>{
             //  setCOnfirmLogic(false);
@@ -45,6 +51,12 @@ const ItemListUpdate = (props) => {
      const [desVaue,setDesValue] = useState("");
      const [priceVaue,setPriceValue] = useState("");
      const [qtyVaue,setQtyValue] = useState("");
+
+
+     const [itemerr,setItemErr] = useState(false);
+     const [deserr,setDesErr] = useState(false);
+     const [priceerr,setPriceErr] = useState(false);
+     const [qtyerr,setQtyErr] = useState(false);
 
 
      //handeling functions for input form
@@ -64,25 +76,47 @@ const ItemListUpdate = (props) => {
 
      setItemValue(event.target.value);
 
+     if(!checkFirstTwoNumbers(event.target.value)){
+      setItemErr(true);
+    }else{
+      setItemErr(false);
+    }
+
     console.log("current id values",currentItemID)
             
   }
   const desInputHandler = (event)  =>{
         setDesValue(event.target.value);
+        if(emptyValidation(event.target.value)){
+          setDesErr(true);
+        }else{
+          setDesErr(false);
+        }
   }
 
   const priceInputHandler = (event)  =>{
         setPriceValue(event.target.value);
+        if(emptyValidation(event.target.value)){
+          setPriceErr(true);
+        }else{
+          setPriceErr(false);
+        }
   }
 
   const qtyInputHandler = (event)  =>{
        setQtyValue(event.target.value);
+       if(emptyValidation(event.target.value)){
+        setQtyErr(true);
+      }else{
+        setQtyErr(false);
+      }
   }
   
 
 
   const addBtnHandler = (event)  =>{
     event.preventDefault();
+    if(!itemerr && !deserr && !priceerr && !qtyerr){
     
      let tempItemsValue = currentDetails.items; 
 
@@ -113,6 +147,8 @@ const ItemListUpdate = (props) => {
     setDesValue("");
     setPriceValue("");
     setQtyValue("");
+
+  }
   }
 
 
@@ -135,6 +171,12 @@ const ItemListUpdate = (props) => {
     
   };
 
+  const updateHandler = ()  =>{
+    swal("Done!", "You update Item list!", "success");
+    navigation("/stock_keeper/item_list");
+    window.location.reload();
+   
+  }
 
 
 
@@ -186,6 +228,14 @@ const ItemListUpdate = (props) => {
           </section>
 
           <section className={classes.details_div_sec3}>
+          <section className={classes.err_sec}>  
+              {itemerr &&(  <span> Invalid Item ID</span>  )}
+              {deserr &&(  <span> Invalid Description</span>  )}
+              {priceerr &&(  <span> Invalid Price</span>  )}
+              {qtyerr &&(  <span> Invalid QTY</span>  )}
+            
+                
+              </section>
             <form>
               <table>
                 <tbody>
@@ -217,7 +267,7 @@ const ItemListUpdate = (props) => {
             </section>
           </section>
           <section className={classes.details_div_sec4}>
-            <button>Update</button>
+            <button onClick={updateHandler} >Update</button>
           </section>
         </div>
       </div>

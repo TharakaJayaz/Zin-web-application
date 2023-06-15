@@ -57,6 +57,10 @@ const SignInPage = () => {
     setEnteredUsername(""); // create functions for checking admin or stock manager and call in here
     setEnteredPassword("");
   };
+
+  const imgHandler = ()   =>{
+    navigate("/");
+  }
   return (
     <div className={classes.signIn_main_div}>
       {/* <Link to="/admin/temp_reps">
@@ -66,7 +70,7 @@ const SignInPage = () => {
         <button>Stock keeper</button>
       </Link> */}
 
-      <img src={logo} alt="zr image" className={classes.signIn_logo} />
+      <img src={logo}  onClick={imgHandler} alt="zr image" className={classes.signIn_logo} />
       <div className={classes.signIn_second_div}>
         <div className={classes.signIn_third_div}>
           <h1 className={classes.signIn_third_div_heding}>Sign In</h1>

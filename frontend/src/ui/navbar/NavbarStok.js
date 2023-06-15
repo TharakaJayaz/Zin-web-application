@@ -9,7 +9,7 @@ const NavbarStok = (props) => {
   const navigation = useNavigate();
 
   const imageClickHandler = ()  =>{
-    navigation("/");
+    navigation("/stock_keeper/stock");
   }
 
   const logoutHandler = () =>{
